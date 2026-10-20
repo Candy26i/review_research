@@ -19,7 +19,8 @@ training-data contamination.
 
 - [x] Initial idea (slides)
 - [x] Literature pass & experiment design
-- [ ] P0 pilot (~50 papers, rubric + variance estimate)
+- [x] P0 pilot data: 50-paper stratified manifest + 142 per-version sources ([summary](results/pilot_summary.md))
+- [ ] P0 scoring pilot: rubric + variance estimate
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
 - [ ] P2 main runs (E1 monotonicity, E2 pairwise, E3 reliability)
