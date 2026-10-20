@@ -8,6 +8,7 @@ the signal survives controls for length, cosmetic edits, camera-ready leakage, a
 training-data contamination.
 
 - 📋 Full experiment design: [docs/EXPERIMENT_DESIGN.md](docs/EXPERIMENT_DESIGN.md)
+- 🛠️ Pilot data-collection runbook: [docs/PILOT_RUNBOOK.md](docs/PILOT_RUNBOOK.md)
 - 🎯 Hypotheses: scores correlate positively with version (H1) but are far from monotonic (H2);
   test–retest noise rivals the revision signal (H3); superficial edits move scores as much as
   substantive ones (H4)
@@ -19,6 +20,7 @@ training-data contamination.
 - [x] Initial idea (slides)
 - [x] Literature pass & experiment design
 - [ ] P0 pilot (~50 papers, rubric + variance estimate)
+- [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
 - [ ] P2 main runs (E1 monotonicity, E2 pairwise, E3 reliability)
 - [ ] P3 controls (placebo pairs, causal probes, contamination)
