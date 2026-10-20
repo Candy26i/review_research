@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+data/
+results/raw/
+*.pdf
+!docs/**/*.pdf
+.ipynb_checkpoints/
