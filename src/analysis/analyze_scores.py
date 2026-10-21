@@ -9,6 +9,12 @@ version, rep) call), keeps only parsed_ok rows, aggregates rating mean/SD per
    of tau>0 / tau==0(ties) / tau<0, a one-line histogram; plus adjacent-pair direction
    accuracy P(mean v_{i+1} > v_i) / P(=) / P(<), split by churn_class joined from the
    diffs file on (arxiv_id, v_from, v_to) - cosmetic pairs SHOULD be '='.
+1b. INFERENTIAL VERSION EFFECT - robustness + significance companions to tau:
+   per-paper Pearson/Spearman (>= 3 versions only; 2-version papers are trivially +/-1),
+   Page's trend test (scipy.stats.page_trend_test on the first 3 versions of papers with
+   >= 3 versions; H1 = ratings increase along versions), and a mixed-effects regression
+   on rep-level ratings, rating ~ version_position with a random intercept per paper
+   (statsmodels MixedLM) - the effect size is "rating points per revision step".
 2. RELIABILITY - test-retest SD per (paper, version) across reps (mean/median); ICC(2,1);
    and signal-to-noise: between-version SD of per-version means within a paper vs the
    test-retest SD.
@@ -301,6 +307,79 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
                       f"/{len(cos)} tied ({pct(cosmetic_eq)}).")
     md.append("")
 
+    # --------------------------------------- 1b. inferential version effect
+    md.append("### 1b. Inferential version-effect tests")
+    md.append("")
+    prs, srs = [], []
+    paper_corr: dict[str, tuple] = {}
+    for aid in sorted(by_pv):
+        vs = sorted(by_pv[aid])
+        if len(vs) < 3:
+            paper_corr[aid] = (None, None)
+            continue
+        means = [vstats[(aid, v)]["mean"] for v in vs]
+        pr, sr = corr_pair(list(range(len(vs))), means)
+        paper_corr[aid] = (pr, sr)
+        if pr is not None:
+            prs.append(pr)
+        if sr is not None:
+            srs.append(sr)
+    sh_pr = sum(p > 0 for p in prs) / len(prs) if prs else None
+    md.append(f"- per-paper correlation, version position vs mean rating (>= 3 versions, "
+              f"constant-rating papers excluded): mean Pearson "
+              f"{fmt(np.mean(prs) if prs else None, 2)} (n={len(prs)}, {pct(sh_pr)} "
+              f"positive) | mean Spearman {fmt(np.mean(srs) if srs else None, 2)} "
+              f"(n={len(srs)})")
+
+    page_p = None
+    page_rows = [[vstats[(aid, v)]["mean"] for v in sorted(by_pv[aid])[:3]]
+                 for aid in sorted(by_pv) if len(by_pv[aid]) >= 3]
+    if len(page_rows) >= 2:
+        try:
+            pt = sps.page_trend_test(np.array(page_rows), ranked=False)
+            page_p = float(pt.pvalue)
+            md.append(f"- Page trend test (first 3 versions of the {len(page_rows)} papers "
+                      f"with >= 3 versions; H1 = ratings increase along versions): "
+                      f"L={pt.statistic:.0f}, p={page_p:.4f}")
+        except Exception as exc:
+            md.append(f"- Page trend test: n/a ({type(exc).__name__}: {exc})")
+    else:
+        md.append("- Page trend test: n/a (needs >= 2 papers with >= 3 versions)")
+
+    ml_coef = ml_p = None
+    try:
+        import warnings
+
+        import pandas as pd
+        import statsmodels.formula.api as smf
+        reg_rows = []
+        for aid, vd in by_pv.items():
+            vs = sorted(vd)
+            if len(vs) < 2:
+                continue
+            pos_of = {v: i for i, v in enumerate(vs)}
+            for v in vs:
+                for r in vd[v]:
+                    reg_rows.append({"rating": r["rating"], "pos": pos_of[v], "paper": aid})
+        df = pd.DataFrame(reg_rows)
+        if not df.empty and df["paper"].nunique() >= 3 and df["pos"].nunique() >= 2:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                fit = smf.mixedlm("rating ~ pos", df, groups=df["paper"]).fit(reml=True)
+            ml_coef = float(fit.params["pos"])
+            ml_se = float(fit.bse["pos"])
+            ml_p = float(fit.pvalues["pos"])
+            md.append(f"- mixed-effects regression rating ~ version_position + (1|paper) "
+                      f"on rep-level ratings (n={len(df)}, {df['paper'].nunique()} papers): "
+                      f"{ml_coef:+.2f} rating points per revision step "
+                      f"(95% CI [{ml_coef - 1.96 * ml_se:+.2f}, {ml_coef + 1.96 * ml_se:+.2f}], "
+                      f"p={ml_p:.4f})")
+        else:
+            md.append("- mixed-effects regression: n/a (needs >= 3 papers, >= 2 positions)")
+    except Exception as exc:
+        md.append(f"- mixed-effects regression: n/a ({type(exc).__name__}: {exc})")
+    md.append("")
+
     # -------------------------------------------------------- 2. reliability
     md.append("### 2. Reliability")
     md.append("")
@@ -446,6 +525,8 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
             "ratings_by_version": {str(v): round(vstats[(aid, v)]["mean"], 3)
                                    for v in sorted(vd)},
             "tau": finite_or_none(paper_tau.get(aid)),
+            "pearson": finite_or_none(paper_corr.get(aid, (None, None))[0]),
+            "spearman": finite_or_none(paper_corr.get(aid, (None, None))[1]),
             "mean_sd": round(float(np.mean(sds)), 3) if sds else None,
             "human_mean": man.get(aid, {}).get("mean_score"),
         })
@@ -454,6 +535,8 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
         f"[{model}] mean tau {fmt(mean_tau, 2)} (n={len(taus_finite)}, all-tied {n_tied}) | "
         f"P(up) {pct(sh_pos)}" + (f" | cosmetic '=' {pct(cosmetic_eq)}"
                                   if cosmetic_eq is not None else ""),
+        f"[{model}] version effect: mixedlm {fmt(ml_coef, 2)}/step (p={fmt(ml_p, 4)}) | "
+        f"page p {fmt(page_p, 4)} | mean pearson {fmt(np.mean(prs) if prs else None, 2)}",
         f"[{model}] retest SD mean {fmt(mean_sd)} | ICC(2,1) {fmt(icc, 2)} | "
         f"between-version SD mean {fmt(mean_between)}",
         f"[{model}] human anchor: pearson {fmt(pearson_overall, 2)} | AUC rating "
