@@ -250,3 +250,23 @@ images after the 12 MB/request base64 budget); completions ~0.07M/arm. At flash-
 list prices (order $0.3-0.5/M input, $2.5/M output) that is roughly **$1-2 for both
 arms combined** — check the current price page before the full 50-paper run
 (~5x pilot volume).
+
+## Contamination / recognition probe (run 2026-10-21)
+
+Can the model identify the anonymized pilot papers FROM MEMORY? One call per selected
+version sends the scrubbed text with `src/review/prompts/recognition_v1.md` and logs the
+model's claimed title/authors/venue/year/decision plus a 0..1 confidence, graded against
+the pilot manifest and the ICLR corpus (`src/review/run_recognition_probe.py` docstring
+has the grading rules).
+
+```sh
+python3 src/review/run_recognition_probe.py --which anchor   # default: 50 calls, one anchor
+                                                             # version per paper, ~$0.23
+# --which all  = every scrubbed version (142 calls)
+# --mock       = no network, deterministic fake guesses through the same parse/grade path
+```
+
+Temperature is pinned to 0 (factual probe). Append-only checkpoint
+`data/processed/recognition_log.jsonl` keyed on `<arxiv_id>v<v>|<model>`; re-running
+makes 0 new calls. Headline numbers go in `docs/FINDINGS.md`
+("Contamination / recognition probe").

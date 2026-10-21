@@ -15,6 +15,17 @@ version, rep) call), keeps only parsed_ok rows, aggregates rating mean/SD per
    >= 3 versions; H1 = ratings increase along versions), and a mixed-effects regression
    on rep-level ratings, rating ~ version_position with a random intercept per paper
    (statsmodels MixedLM) - the effect size is "rating points per revision step".
+   A second MixedLM spec adds log_words (ln of n_words joined from the scrub log by key
+   '<arxiv_id>v<v>') as a verbosity control, and the mean finite tau gets a bootstrap
+   95% CI (papers = the tau list resampled with replacement, 10,000 draws, numpy
+   Generator seeded 42).
+1c. WHERE THE EFFECT LIVES - adjacent-pair mean-rating deltas (v_to minus v_from)
+   grouped by stage transition (stages from the manifest versions) and by churn_class,
+   including the TRUE-PLACEBO subset (churn_class == 'cosmetic' AND
+   figs_any_change == False: text and figures both unchanged - the cleanest noise
+   floor; n, mean |delta|, share with delta == 0), with cosmetic-but-figures-changed
+   pairs reported separately; plus Spearman rho between churn and |delta| over all
+   adjacent pairs.
 2. RELIABILITY - test-retest SD per (paper, version) across reps (mean/median); ICC(2,1);
    and signal-to-noise: between-version SD of per-version means within a paper vs the
    test-retest SD.
@@ -41,7 +52,9 @@ fewer are dropped (the report says how many).
 
 Degenerate-input safety: with < 2 reps the reliability section prints 'n/a (reps<2)';
 all-tied papers give tau = nan and are excluded from the mean tau but counted in the
-'all tied' share; a missing diffs file skips the churn split with a note.
+'all tied' share; a missing diffs file skips the churn split with a note. The review
+log is appended to by a concurrently-running scorer, so an unparseable FINAL log line
+(a torn mid-write tail) is skipped; a malformed line anywhere else still raises.
 
 Report formatting: rating-scale numbers use one decimal; unitless statistics
 (tau / r / AUC / ICC) use two decimals so they stay distinguishable.
@@ -73,10 +86,10 @@ TIE_EPS = 1e-9
 
 
 # ---------------------------------------------------------------- formatting
-def fmt(x, nd: int = 1) -> str:
+def fmt(x, nd: int = 1, signed: bool = False) -> str:
     if x is None or (isinstance(x, float) and not math.isfinite(x)):
         return "n/a"
-    return f"{x:.{nd}f}"
+    return f"{x:+.{nd}f}" if signed else f"{x:.{nd}f}"
 
 
 def pct(x) -> str:
@@ -112,6 +125,29 @@ def vote_to_accept(vote):
     return None
 
 
+def _read_log_tolerant(path: str | Path) -> list[dict]:
+    """read_jsonl for the review log, which another process appends to while we run.
+
+    A read can catch the final row mid-write, so an unparseable LAST line is skipped
+    (the torn tail of a concurrent append). A malformed line anywhere else still
+    raises - that would be real corruption, not a race, and must not be silent.
+    """
+    p = Path(path)
+    if not p.exists():
+        return []
+    with p.open() as f:
+        lines = [ln for ln in f if ln.strip()]
+    rows: list[dict] = []
+    for i, line in enumerate(lines):
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            if i == len(lines) - 1:
+                break  # torn trailing line from a concurrent append
+            raise
+    return rows
+
+
 def load_reviews(path: str, model_filter: str | None):
     """Parsed_ok rows only -> {model: [ {arxiv_id, v, rep, rating, accept} ]}.
 
@@ -120,7 +156,7 @@ def load_reviews(path: str, model_filter: str | None):
     The vote may be named 'vote', 'accept' (run_llm_review.py writes a top-level boolean
     'accept'), or 'recommendation'; the first non-None among them wins.
     """
-    rows = read_jsonl(path)
+    rows = _read_log_tolerant(path)
     recs: dict[str, list[dict]] = defaultdict(list)
     n_used = 0
     for row in rows:
@@ -149,11 +185,17 @@ def load_reviews(path: str, model_filter: str | None):
 
 
 def load_diffs(path: str):
-    """(arxiv_id, v_from, v_to) -> churn_class, or None when the file is missing."""
+    """(arxiv_id, v_from, v_to) -> full diff row, or None when the file is missing."""
     if not Path(path).exists():
         return None
-    return {(str(r["arxiv_id"]), int(r["v_from"]), int(r["v_to"])): r.get("churn_class", "unknown")
+    return {(str(r["arxiv_id"]), int(r["v_from"]), int(r["v_to"])): r
             for r in read_jsonl(path)}
+
+
+def load_scrub(path: str) -> dict[str, int]:
+    """'<arxiv_id>v<v>' -> n_words from the scrub log ({} when the file is missing)."""
+    return {str(r["key"]): r["n_words"] for r in read_jsonl(path)
+            if "key" in r and _is_num(r.get("n_words"))}
 
 
 def anchor_version(mrow: dict) -> int:
@@ -207,8 +249,13 @@ def tau_histogram_line(taus: list[float], n_tied: int) -> str:
 
 
 # ------------------------------------------------------------ per-model work
-def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
-    """Returns (markdown_section, headline_lines, per_paper_rows)."""
+def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs,
+                  scrub: dict[str, int] | None = None):
+    """Returns (markdown_section, headline_lines, per_paper_rows).
+
+    scrub maps '<arxiv_id>v<v>' -> n_words (verbosity control in section 1b).
+    """
+    scrub = scrub or {}
     man = {str(m["arxiv_id"]): m for m in manifest}
 
     # per (paper, version) aggregates across reps
@@ -242,7 +289,8 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
     taus_finite: list[float] = []
     n_tied = 0
     paper_tau: dict[str, float | None] = {}
-    pairs: list[tuple[str, int, int, str, str | None]] = []  # aid, v_from, v_to, dir, churn
+    # aid, v_from, v_to, dir, churn_class, delta (mean rating v_to minus v_from)
+    pairs: list[tuple[str, int, int, str, str | None, float]] = []
     for aid in tqdm(sorted(by_pv), desc=f"{model}: papers", leave=False):
         vs = sorted(by_pv[aid])
         means = [vstats[(aid, v)]["mean"] for v in vs]
@@ -258,8 +306,9 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
         for a, b in zip(vs, vs[1:]):
             m1, m2 = vstats[(aid, a)]["mean"], vstats[(aid, b)]["mean"]
             d = "=" if abs(m2 - m1) < TIE_EPS else (">" if m2 > m1 else "<")
-            cls = diffs.get((aid, a, b), "unknown") if diffs is not None else None
-            pairs.append((aid, a, b, d, cls))
+            cls = (diffs.get((aid, a, b)) or {}).get("churn_class", "unknown") \
+                if diffs is not None else None
+            pairs.append((aid, a, b, d, cls, m2 - m1))
 
     n_multi = len(taus_finite) + n_tied
     mean_tau = float(np.mean(taus_finite)) if taus_finite else None
@@ -310,6 +359,21 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
     # --------------------------------------- 1b. inferential version effect
     md.append("### 1b. Inferential version-effect tests")
     md.append("")
+
+    boot_lo = boot_hi = None
+    if taus_finite:
+        rng = np.random.default_rng(42)
+        taus_arr = np.asarray(taus_finite, dtype=float)
+        idx = rng.integers(0, len(taus_arr), size=(10_000, len(taus_arr)))
+        boot_means = taus_arr[idx].mean(axis=1)
+        boot_lo = float(np.percentile(boot_means, 2.5))
+        boot_hi = float(np.percentile(boot_means, 97.5))
+        md.append(f"- bootstrap 95% CI for the mean finite tau (papers resampled with "
+                  f"replacement, 10,000 draws, seed 42): mean {fmt(mean_tau, 2)}, "
+                  f"CI [{boot_lo:+.2f}, {boot_hi:+.2f}]")
+    else:
+        md.append("- bootstrap 95% CI for the mean finite tau: n/a (no finite taus)")
+
     prs, srs = [], []
     paper_corr: dict[str, tuple] = {}
     for aid in sorted(by_pv):
@@ -347,6 +411,7 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
         md.append("- Page trend test: n/a (needs >= 2 papers with >= 3 versions)")
 
     ml_coef = ml_p = None
+    ml2_coef = ml2_p = ml2_words_coef = ml2_words_p = None
     try:
         import warnings
 
@@ -359,8 +424,11 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
                 continue
             pos_of = {v: i for i, v in enumerate(vs)}
             for v in vs:
+                nw = scrub.get(f"{aid}v{v}")
+                lw = math.log(nw) if _is_num(nw) and nw > 0 else None
                 for r in vd[v]:
-                    reg_rows.append({"rating": r["rating"], "pos": pos_of[v], "paper": aid})
+                    reg_rows.append({"rating": r["rating"], "pos": pos_of[v],
+                                     "paper": aid, "log_words": lw})
         df = pd.DataFrame(reg_rows)
         if not df.empty and df["paper"].nunique() >= 3 and df["pos"].nunique() >= 2:
             with warnings.catch_warnings():
@@ -376,8 +444,138 @@ def analyze_model(model: str, recs: list[dict], manifest: list[dict], diffs):
                       f"p={ml_p:.4f})")
         else:
             md.append("- mixed-effects regression: n/a (needs >= 3 papers, >= 2 positions)")
+
+        # verbosity-bias check: same model with document length as a covariate
+        df2 = df.dropna(subset=["log_words"]) if "log_words" in df.columns else df
+        if (not df2.empty and df2["paper"].nunique() >= 3
+                and df2["pos"].nunique() >= 2 and df2["log_words"].nunique() >= 2):
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                fit2 = smf.mixedlm("rating ~ pos + log_words", df2,
+                                   groups=df2["paper"]).fit(reml=True)
+            ml2_coef = float(fit2.params["pos"])
+            ml2_se = float(fit2.bse["pos"])
+            ml2_p = float(fit2.pvalues["pos"])
+            ml2_words_coef = float(fit2.params["log_words"])
+            ml2_words_se = float(fit2.bse["log_words"])
+            ml2_words_p = float(fit2.pvalues["log_words"])
+            n_dropped = len(df) - len(df2)
+            md.append(f"- verbosity control rating ~ version_position + log_words + (1|paper) "
+                      f"(n={len(df2)}, {df2['paper'].nunique()} papers"
+                      + (f"; {n_dropped} rows without scrub n_words dropped"
+                         if n_dropped else "")
+                      + f"): version {ml2_coef:+.2f}/step "
+                      f"(95% CI [{ml2_coef - 1.96 * ml2_se:+.2f}, "
+                      f"{ml2_coef + 1.96 * ml2_se:+.2f}], p={ml2_p:.4f}) | "
+                      f"log_words {ml2_words_coef:+.2f} "
+                      f"(95% CI [{ml2_words_coef - 1.96 * ml2_words_se:+.2f}, "
+                      f"{ml2_words_coef + 1.96 * ml2_words_se:+.2f}], p={ml2_words_p:.4f})")
+            if math.isfinite(ml2_coef) and math.isfinite(ml2_p):
+                if ml2_p < 0.05:
+                    md.append(f"  - The version coefficient SURVIVES the length control "
+                              f"({ml2_coef:+.2f}/step, p={ml2_p:.4f} after adjusting for "
+                              f"log document length), so the version effect is not just "
+                              f"verbosity bias.")
+                else:
+                    md.append(f"  - The version coefficient does NOT survive the length "
+                              f"control (p={ml2_p:.4f} >= 0.05 once log document length "
+                              f"is adjusted for), consistent with verbosity bias.")
+        else:
+            md.append("- verbosity control rating ~ version_position + log_words + "
+                      "(1|paper): n/a (needs >= 3 papers, >= 2 positions, and scrub-log "
+                      "n_words with variation)")
     except Exception as exc:
         md.append(f"- mixed-effects regression: n/a ({type(exc).__name__}: {exc})")
+    md.append("")
+
+    # --------------------------------------------- 1c. where the effect lives
+    md.append("### 1c. Where the effect lives")
+    md.append("")
+
+    def stage_of(aid: str, v: int) -> str:
+        for vv in man.get(aid, {}).get("versions", []):
+            if vv.get("v") == v:
+                return vv.get("stage") or "unknown"
+        return "unknown"
+
+    def delta_row(label: str, ds: list[float]) -> str:
+        if not ds:
+            return f"| {label} | 0 | n/a | n/a | n/a |"
+        zero_share = sum(abs(d) < TIE_EPS for d in ds) / len(ds)
+        return (f"| {label} | {len(ds)} | {fmt(float(np.mean(ds)), 2, signed=True)} | "
+                f"{fmt(float(np.mean(np.abs(ds))), 2)} | {pct(zero_share)} |")
+
+    # (a) deltas by stage transition, stages joined from the manifest versions
+    by_trans: dict[str, list[float]] = defaultdict(list)
+    for aid, a, b, _d, _cls, delta in pairs:
+        by_trans[f"{stage_of(aid, a)} -> {stage_of(aid, b)}"].append(delta)
+    md.append("Adjacent-pair mean rating delta (v_to minus v_from) by stage transition "
+              "(stages from the manifest):")
+    md.append("")
+    md.append("| stage transition | n | mean delta | mean \\|delta\\| | share delta==0 |")
+    md.append("|---|---|---|---|---|")
+    for name in sorted(by_trans, key=lambda k: (-len(by_trans[k]), k)):
+        md.append(delta_row(name, by_trans[name]))
+    if not by_trans:
+        md.append(delta_row("(no adjacent pairs)", []))
+    md.append("")
+
+    # (b) deltas by churn_class + the true-placebo subset (text AND figures unchanged)
+    placebo_n = None
+    placebo_abs = placebo_zero = None
+    if diffs is None:
+        md.append("_Note: diffs file not found - churn split, placebo subset and churn "
+                  "correlation skipped._")
+    else:
+        md.append("Same deltas by churn_class (true placebo = cosmetic text churn AND "
+                  "unchanged figures):")
+        md.append("")
+        md.append("| subset | n | mean delta | mean \\|delta\\| | share delta==0 |")
+        md.append("|---|---|---|---|---|")
+        for cls in CHURN_ORDER:
+            ds = [p[5] for p in pairs if p[4] == cls]
+            if ds:
+                md.append(delta_row(cls, ds))
+        placebo_ds: list[float] = []
+        cos_fig_ds: list[float] = []
+        for aid, a, b, _d, cls, delta in pairs:
+            row = diffs.get((aid, a, b))
+            if row is None or row.get("churn_class") != "cosmetic":
+                continue
+            fac = row.get("figs_any_change")  # absent for a few pairs -> neither subset
+            if fac is False:
+                placebo_ds.append(delta)
+            elif fac is True:
+                cos_fig_ds.append(delta)
+        md.append(delta_row("TRUE PLACEBO (cosmetic & figs unchanged)", placebo_ds))
+        md.append(delta_row("cosmetic & figure changes", cos_fig_ds))
+        md.append("")
+        placebo_n = len(placebo_ds)
+        if placebo_ds:
+            placebo_abs = float(np.mean(np.abs(placebo_ds)))
+            placebo_zero = sum(abs(d) < TIE_EPS for d in placebo_ds) / placebo_n
+            md.append(f"- TRUE-PLACEBO noise floor (text and figures both unchanged): "
+                      f"n={placebo_n}, mean |delta| {fmt(placebo_abs, 2)}, share with "
+                      f"delta==0 {pct(placebo_zero)}. Cosmetic pairs with figure changes "
+                      f"are reported separately (n={len(cos_fig_ds)}); cosmetic pairs "
+                      f"without a figs_any_change flag are in neither subset.")
+        else:
+            md.append("- TRUE-PLACEBO noise floor: n/a (no scored cosmetic pair with "
+                      "figs_any_change == False)")
+
+        # (c) does the amount of text churn predict how much the rating moves?
+        churn_xy = [(float(diffs[(aid, a, b)]["churn"]), abs(delta))
+                    for aid, a, b, _d, _cls, delta in pairs
+                    if (aid, a, b) in diffs and _is_num(diffs[(aid, a, b)].get("churn"))]
+        if (len(churn_xy) >= 3 and len({x for x, _ in churn_xy}) >= 2
+                and len({y for _, y in churn_xy}) >= 2):
+            sp = sps.spearmanr([x for x, _ in churn_xy], [y for _, y in churn_xy])
+            md.append(f"- rating delta vs churn: Spearman rho(churn, |delta|) = "
+                      f"{fmt(float(sp.statistic), 2)} (p={fmt(float(sp.pvalue), 4)}, "
+                      f"n={len(churn_xy)} adjacent pairs)")
+        else:
+            md.append(f"- rating delta vs churn: n/a (needs >= 3 pairs with churn and "
+                      f"variation in both; have {len(churn_xy)})")
     md.append("")
 
     # -------------------------------------------------------- 2. reliability
@@ -551,6 +749,8 @@ def main() -> None:
     ap.add_argument("--log", default="data/processed/reviews_log.jsonl")
     ap.add_argument("--manifest", default="data/processed/pilot_manifest.jsonl")
     ap.add_argument("--diffs", default="data/processed/version_diffs.jsonl")
+    ap.add_argument("--scrub", default="data/processed/scrub_log.jsonl",
+                    help="scrub log with per-version n_words (verbosity control in 1b)")
     ap.add_argument("--model", default=None,
                     help="only this model (default: every model in the log, separately)")
     ap.add_argument("--out", default="results/e0_scores_summary.md",
@@ -562,6 +762,7 @@ def main() -> None:
     recs_by_model, n_total, n_used = load_reviews(args.log, args.model)
     manifest = read_jsonl(args.manifest)
     diffs = load_diffs(args.diffs)
+    scrub = load_scrub(args.scrub)
 
     header = ["# E0: LLM review-score analysis", "",
               f"- log: `{args.log}` - {n_total} rows, {n_used} parsed_ok rating rows used"
@@ -572,7 +773,7 @@ def main() -> None:
 
     sections, headlines, per_paper_rows = [], [], []
     for model in sorted(recs_by_model):
-        sec, hl, pp = analyze_model(model, recs_by_model[model], manifest, diffs)
+        sec, hl, pp = analyze_model(model, recs_by_model[model], manifest, diffs, scrub)
         sections.append(sec)
         headlines.extend(hl)
         per_paper_rows.extend(pp)
