@@ -98,6 +98,35 @@ across all versions. DeepSeek-chat is also harsh (mean 4.2 vs human 6.0); Gemini
 the human mean but compressed. Score-distribution mismatch alone makes raw-score deployment
 comparisons misleading.
 
+## E4: length-matched edit probes (deepseek-reasoner arm; Gemini arm pending)
+
+25 papers × 6 variants (base / three length-preserved degradations / +31% filler /
+−40% appendix-cut), K=3, 444/444 parsed. Full tables:
+[`results/e4_probes_summary.md`](../results/e4_probes_summary.md).
+
+| variant (direction, length) | paired Δ vs base | p (mixed model) | right subscore hit? |
+|---|---|---|---|
+| typos (quality↓, len=) | **−0.41** | 0.003 | yes — presentation −0.77 |
+| corrupt_numbers (soundness↓, len=) | −0.27 | 0.053 | **no** — presentation moved, not soundness |
+| shuffle_paragraphs (coherence↓, len=) | **+0.29** | 0.034 | — (presentation −0.37 yet rating UP) |
+| pad_filler (content=, len **+31%**) | **−0.92** | <1e-4 | — (presentation −1.29) |
+| drop_appendix (core=, len **−40%**) | −0.01 | 0.95 | — |
+
+Interpretation:
+1. **The observational length effect is mediation, not verbosity bias.** Experimentally
+   *adding* 30% content-free text tanks the score (−0.92) and *removing* 40% of the
+   document (appendix) changes nothing. The reviewer does not reward length per se — in
+   real revisions, length grows because content grows, and that is what the E1 log-words
+   covariate was absorbing.
+2. **Surface noise is detected; structural and numerical damage is not.** Typos are
+   correctly punished on presentation. But corrupting result numbers (creating internal
+   inconsistencies) is only marginally penalized — and misattributed to presentation — and
+   **shuffling paragraph order *raises* the rating** (+0.29, p=0.03) while presentation
+   drops: the reviewer reads local fluency, not document-level argument structure.
+3. By the pre-registered mechanical rule the reasoner is **neither content-sensitive nor
+   length-sensitive** at these thresholds: its probe responses are selective (fluff,
+   typos) but miss the manipulations a competent human reviewer must catch.
+
 ## Contamination / recognition probe
 
 Run 2026-10-21, `python3 src/review/run_recognition_probe.py --which anchor`:
@@ -142,10 +171,11 @@ manifest/ICLR ground truth (all match).
 
 ## Next steps
 
-1. Extend deepseek-chat (reasoning-off) to all 50 papers (~$2) to complete the 2×2 at full
+1. E4 Gemini arm (296 calls, blocked on the GEMINI_API_KEY line being restored in .env) —
+   the key question: does the only arm that survived the length control also pass the
+   content probes?
+2. Extend deepseek-chat (reasoning-off) to all 50 papers (~$2) to complete the 2×2 at full
    scale; optional: Gemini thinking-off arm (`reasoning_effort: none`).
-2. E4 synthetic causal probes: length-matched known-direction edits (delete the main
-   experiment section, inject typos, paraphrase-with-hype) to break the length confound.
 3. Contamination split: score post-training-cutoff submissions (ICLR 2026 blind set).
 4. E5 human-delta anchoring: rebuttal-revision pairs and resubmission pairs with real human
    score deltas.
