@@ -47,9 +47,39 @@ retry them (checkpointed), which may grow the eligible pool slightly beyond 170.
   via the runbook.
 - `data/raw/sources/<arxiv_id>/arXiv-<id>v<n>.gz` — per-version source archives (not in git).
 
-## Next (E0)
+## Text extraction & anonymization (done 2026-10-20)
 
-1. Text extraction + scrubbing (LaTeX → markdown; strip authors/acks/venue mentions; PDF
-   fallback for source-less versions).
-2. Review rubric + prompt; K-repeat scoring on a handful of papers to estimate variance
-   → power analysis for the main study.
+- **142/142 obtainable versions converted** (all via pylatexenc; the withdrawn
+  2301.12935v2 has neither source nor PDF on arXiv and is excluded — its paper keeps v1/v3).
+  Corpus: **1.34 M words ≈ 2.29 M tokens**, median 59 k chars/version.
+- Pipeline: safe tar extraction (`filter='data'`, 500 MB cap) → `\input`-flattening →
+  LaTeX-level anonymization (author blocks, acknowledgments, camera-ready toggles,
+  template keyword lines) → zero-arg macro expansion (62 k expansions; method names like
+  "SAPO" would otherwise render as "()" — definitions are also collected from `.sty` files)
+  → `\texttt`/`\verb` unwrapping (pylatexenc drops their content: inline code, tool names)
+  → markdown conversion → text-level scrub (emails/URLs incl. scheme-less `github.com/org`
+  links, venue/camera-ready/reviewer-thanks lines, header-region affiliation footnotes,
+  layout residue) → leak audit.
+- **Camera-ready metadata:** 97/144 versions carry a final-copy toggle in their source
+  (`\iclrfinalcopy` etc.) — recorded in `latex_log.jsonl`, scrubbed from the text.
+- **Leak audit of the final corpus:** 0 emails, 0 raw URLs/repo orgs, 0 venue-acceptance
+  lines, 0 template keyword lines, 0 header affiliations; 11 docs have author-surname
+  string hits (manually inspected by QA agents: common-word false positives and third-person
+  self-citations); institution names in running prose (e.g. "labelers from KAIST") are
+  counted in `leak_flags.institution_hits` but not removed — known limitation, to be
+  handled by the E4 recognition probe.
+- **Churn (91 adjacent pairs):** cosmetic 25 / minor 10 / major 56; mean similarity 0.78.
+  By stage transition: pre_submission→during_review has the heaviest edits (mean churn
+  0.46, n=13); during_review→post_decision averages 0.19 (n=37). Four pairs with
+  similarity < 0.30 were each hand-verified as genuine rewrites (retitle/template change),
+  not extraction bugs.
+- Three QA inspectors swept all 142 files against author lists plus deep-read a sample;
+  all systemic findings they raised (ICML template keyword leak, scheme-less repo URLs,
+  affiliation footnotes, a stale-draft main-tex mis-pick that made one paper's versions
+  identical, empty method-name macros) were fixed and the corpus fully regenerated.
+
+## Next (E0 scoring pilot)
+
+1. Review rubric + prompt (ICLR-style 1–10 + confidence, JSON output).
+2. K-repeat scoring on a handful of papers to estimate variance → power analysis for the
+   main study. Needs a model/API-key decision.

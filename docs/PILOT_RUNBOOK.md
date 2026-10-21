@@ -62,3 +62,59 @@ stopped and a completed run does zero network calls. `load_iclr` and
 `build_pilot_manifest` are pure-local and overwrite their outputs deterministically.
 Scores are raw per-reviewer ratings; scales differ by year, so never compare `mean_score`
 across years directly.
+
+## Processing (verified 2026-10-20, full 50-paper run)
+
+```sh
+python3 src/process/extract_sources.py    # 144 archives + 1 PDF fallback (1 network call), ~30 s
+python3 src/process/latex_to_text.py      # LaTeX -> scrubbed markdown, all versions, ~40 s
+python3 src/process/scrub_and_audit.py    # email/URL/leak-line scrub + identity-leak audit, ~3 s
+python3 src/process/diff_versions.py      # churn metrics for adjacent version pairs, ~20 s
+```
+
+Archive contents are untrusted: extraction uses `tarfile` with `filter='data'` only, a
+500 MB per-archive cap, and nothing extracted is ever executed or imported.
+
+### Output files (one line per record)
+
+- `data/processed/extracted.jsonl` — `key (arxiv_idvN), arxiv_id, v, dir, kind
+  (tar|single_tex|pdf), n_files, tex_files[], has_bbl, bytes_extracted, ok, error`;
+  trees land in `data/raw/extracted/<safe_id>/vN/`. Checkpoint on `key`.
+- `data/processed/latex_log.jsonl` — `key, arxiv_id, v, main_tex, converter
+  (pylatexenc|detex_fallback|pdf), n_inputs_flattened, missing_inputs[], finalcopy_flag,
+  tex_title, n_chars, ok, error`; markdown in `data/processed/texts_raw/<safe_id>/vN.md`.
+  Checkpoint on `key`; only `ok` extraction rows are converted.
+- `data/processed/scrub_log.jsonl` — `key, arxiv_id, v, n_chars, n_words, est_tokens,
+  removed {emails, urls, leak_lines}, leak_flags {author_surnames{}, short_surname_hits{},
+  reviewer, rebuttal, iclr, neurips, arxiv, acknowledg, github.com}, sha256`; final texts
+  in `data/processed/texts/<safe_id>/vN.md`. Checkpoint on `key`; audit counts only,
+  removes nothing.
+- `data/processed/version_diffs.jsonl` — `arxiv_id, v_from, v_to, stage_from, stage_to,
+  ratio, churn, churn_class (cosmetic|minor|major), words_from, words_to, words_added,
+  words_removed`. OVERWRITTEN each run (no checkpoint; the whole pilot diffs in seconds).
+
+### Resume and surgical reset
+
+The first three logs are append-only and keyed on `key = "<arxiv_id>v<v>"`: re-running
+skips keys already present, so an interrupted run continues where it stopped and a
+completed run is a no-op. `scrub_and_audit` reports a missing input file as
+`missing input (not checkpointed, rerun later)` and does NOT checkpoint it.
+
+To re-process specific keys after a module fix (surgical reset): (1) delete those keys'
+rows from the affected log(s) — `latex_log.jsonl` and/or `scrub_log.jsonl`, (2) delete
+their output files `texts_raw/<safe_id>/vN.md` / `texts/<safe_id>/vN.md`, (3) re-run the
+affected step(s) — only the deleted keys are recomputed — and (4) re-run
+`diff_versions.py`, which always rebuilds from scratch. When a conversion fix changes
+output for only SOME versions of a paper, re-run every affected version of that paper, or
+the version diff measures converter drift instead of author edits.
+
+### Known data caveats (this pilot)
+
+- `2301.12935` v2 was withdrawn by the authors on arXiv (1 KB stub, `source_type: "I"`,
+  no source and no PDF exist — both 404). It stays `ok=false` in `extracted.jsonl`;
+  142 of 143 manifest versions have text, and its two adjacent diff pairs are skipped.
+- `downloads.jsonl` carries 2 extra versions (`2309.16319` v1/v2) that left the manifest
+  after download; they are extracted/converted but never scrubbed or diffed.
+- Diff pairs with `ratio < 0.30` were each inspected for this run: all 4 are genuine
+  major rewrites (retitle/reframe `2307.04047`, restructures `2309.07915`/`2402.05525`,
+  ICLR->ACL template resubmission `2411.19378`), not extraction inconsistencies.
