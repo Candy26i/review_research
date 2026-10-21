@@ -28,6 +28,35 @@ sys.path.insert(0, "src/collect")
 from util import read_jsonl  # noqa: E402
 
 RATIO_WARN = 0.30
+IMG_EXT = {".png", ".jpg", ".jpeg", ".pdf", ".eps", ".gif", ".svg", ".bmp", ".tiff", ".tif"}
+
+
+def image_map(version_dir: Path) -> dict[str, int]:
+    """Relative path -> size for every image file in an extracted version tree.
+    The text pipeline drops figures (captions only), so figure-level churn is
+    tracked separately here; name+size comparison is a cheap proxy for change."""
+    out: dict[str, int] = {}
+    if not version_dir.is_dir():
+        return out
+    for p in version_dir.rglob("*"):
+        if p.is_file() and p.suffix.lower() in IMG_EXT:
+            out[str(p.relative_to(version_dir))] = p.stat().st_size
+    return out
+
+
+def fig_churn(extracted: Path, safe_id: str, v_from: int, v_to: int) -> dict | None:
+    a = image_map(extracted / safe_id / f"v{v_from}")
+    b = image_map(extracted / safe_id / f"v{v_to}")
+    if not a and not b:
+        return None
+    changed = sum(1 for k in set(a) & set(b) if a[k] != b[k])
+    return {
+        "figs_from": len(a),
+        "figs_to": len(b),
+        "figs_added": len(set(b) - set(a)),
+        "figs_removed": len(set(a) - set(b)),
+        "figs_changed": changed,
+    }
 
 
 def tokenize(text: str, by: str) -> list[str]:
@@ -50,6 +79,8 @@ def main() -> None:
                     help="rewritten from scratch each run")
     ap.add_argument("--by", default="words", choices=["words", "lines"],
                     help="diff unit (the words_* fields count this unit)")
+    ap.add_argument("--extracted", default="data/raw/extracted/",
+                    help="extracted source trees, for figure-level churn")
     args = ap.parse_args()
 
     manifest = read_jsonl(args.manifest)
@@ -99,6 +130,11 @@ def main() -> None:
             "words_added": added,
             "words_removed": removed,
         })
+        fc = fig_churn(Path(args.extracted), safe_id, v_from["v"], v_to["v"])
+        if fc is not None:
+            fc["figs_any_change"] = (fc["figs_added"] + fc["figs_removed"]
+                                     + fc["figs_changed"]) > 0
+            rows[-1].update(fc)
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -120,6 +156,14 @@ def main() -> None:
         print(f"  {sf} -> {st}: n={len(churns)} mean_churn={sum(churns) / len(churns):.4f}")
     if rows:
         print(f"mean ratio: {sum(r['ratio'] for r in rows) / len(rows):.4f}")
+    with_fig = [r for r in rows if "figs_any_change" in r]
+    if with_fig:
+        n_any = sum(r["figs_any_change"] for r in with_fig)
+        print(f"figure churn: {n_any}/{len(with_fig)} pairs change figures "
+              f"({n_any / len(with_fig):.0%}); by text-churn class: " + ", ".join(
+                  f"{c}={sum(r['figs_any_change'] for r in with_fig if r['churn_class'] == c)}"
+                  f"/{sum(1 for r in with_fig if r['churn_class'] == c)}"
+                  for c in ("cosmetic", "minor", "major")))
 
     suspect = [r for r in rows if r["ratio"] < RATIO_WARN]
     if suspect:
