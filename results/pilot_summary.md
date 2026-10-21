@@ -107,8 +107,38 @@ retry them (checkpointed), which may grow the eligible pool slightly beyond 170.
 4. DeepSeek is harsh + compressed (mean 4.2, never uses 1/8/10); Gemini sits near the human
    mean. All arms discriminate accepted/rejected papers far above chance.
 
+## E1 full-scale results — Gemini two arms, all 50 papers (2026-10-21)
+
+426 (text) + 420 (+figs) parsed reviews, K=3, 142 versions; DeepSeek remains pilot-scale
+(10 papers). Full tables in [e0_scores_summary.md](e0_scores_summary.md).
+
+| metric (50 papers) | gemini text | gemini +figs | deepseek-chat (10 papers) |
+|---|---|---|---|
+| mixed-effects: rating points per revision step | **+0.28** (CI +0.21..+0.36, p<1e-4) | **+0.22** (p<1e-4) | +0.01 (p=0.90) |
+| Page trend test p | 0.039 | 0.024 | 0.78 |
+| mean Kendall τ (finite) / all-tied papers | 0.57 / 18 | 0.48 / 15 | -0.14 / 1 |
+| mean per-paper Pearson (≥3 versions) | 0.43 | 0.42 | -0.13 |
+| test-retest SD / ICC(2,1) | 0.4 / 0.81 | 0.4 / 0.81 | 0.9 / 0.26 |
+| cosmetic placebo unchanged | 48% | 52% | 33% |
+| human anchor Pearson / accept-reject AUC | 0.16 / 0.70 | 0.28 / 0.71 | 0.52 / 0.79 |
+
+**What changed from the 10-paper pilot:**
+1. **The version effect is now statistically solid** for Gemini: ~+0.25 rating points per
+   revision step (p<1e-4, three test families agree). DeepSeek's null is equally solid.
+2. **The pilot's figure advantage largely washed out**: at scale both Gemini arms have
+   ICC 0.81; figures still give the best cosmetic-placebo behavior (52% unchanged) and a
+   slightly smaller effect size — figures make the reviewer marginally more conservative.
+3. **New at scale: between-paper validity is weak.** Human-score correlation dropped from
+   0.7 (pilot) to 0.16–0.28, accept/reject AUC from 0.83 to ~0.70. Combined with the strong
+   within-paper signal, the story inverts the naive expectation: **Gemini can see a paper
+   improving, but is mediocre at telling good papers from bad ones** — and DeepSeek is the
+   reverse (decent anchor correlation at pilot scale, blind to revisions). Also ~1/3 of
+   papers get identical Gemini scores across all versions (all-tied).
+4. Scale compression persists in all arms (nobody uses 1/8/10 much; humans do).
+
 ## Next
 
-1. Scale to all 50 papers (Gemini text / +figs; optionally deepseek-reasoner for the
-   thinking hypothesis), K=3.
-2. Then: E4 placebo/causal probes and the contamination audit on the strongest arm.
+1. deepseek-reasoner arm (thinking hypothesis) on the same 50 papers.
+2. E4: synthetic causal probes (inject known-direction edits), contamination probe,
+   true-placebo subset (17 pairs with no text AND no figure changes).
+3. E5 human-ground-truth anchoring (rebuttal pairs / resubmissions) and write-up.
