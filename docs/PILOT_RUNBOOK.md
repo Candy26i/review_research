@@ -118,3 +118,62 @@ the version diff measures converter drift instead of author edits.
 - Diff pairs with `ratio < 0.30` were each inspected for this run: all 4 are genuine
   major rewrites (retitle/reframe `2307.04047`, restructures `2309.07915`/`2402.05525`,
   ICLR->ACL template resubmission `2411.19378`), not extraction inconsistencies.
+
+## E0 scoring (mock-verified 2026-10-20)
+
+Scores every selected paper x version x rep with DeepSeek (`deepseek-chat`, OpenAI-compatible
+`/chat/completions`, `response_format: json_object`), then analyzes whether the LLM rating
+tracks arXiv versions. Mock end-to-end run (8 papers, 3 reps, 72 calls) verified: 100%
+parsed_ok, text SHAs match `scrub_log.jsonl` (real scrubbed texts are what gets sent),
+withdrawn `2301.12935` v2 skipped without error, re-run makes 0 new calls.
+
+### Key setup
+
+Put the API key in the repo-root `.env` (gitignored) — never commit or print it:
+
+```
+DEEPSEEK_API_KEY=sk-...
+```
+
+(`export DEEPSEEK_API_KEY=...` in the shell also works; the env var wins over `.env`.)
+
+### Real runs
+
+```sh
+# pilot: 10 papers (round-robin across strata, deterministic, superset-stable)
+python3 src/review/run_llm_review.py --sample-papers 10 --reps 3
+python3 src/analysis/analyze_scores.py
+
+# full: all 50 manifest papers (142 versions x 3 reps = 426 calls)
+python3 src/review/run_llm_review.py --reps 3
+python3 src/analysis/analyze_scores.py
+```
+
+Defaults: log `data/processed/reviews_log.jsonl`, raw bodies
+`data/processed/reviews/<model>/`, report `results/e0_scores_summary.md`, per-paper rows
+`results/e0_per_paper.jsonl`. `--limit N` caps calls per run for a cautious first ramp-up;
+`--mock` exercises the whole pipeline with zero network calls.
+
+### Approximate cost
+
+```
+cost ~= prompt_tokens/1e6 * $0.28 + completion_tokens/1e6 * $0.42   (deepseek-chat list price)
+```
+
+Prompt tokens per call ~= paper `est_tokens` (from `scrub_log.jsonl`) + ~1.2k prompt
+overhead; completions are capped at 2k tokens (~250-600 typical). Estimated from
+`scrub_log.jsonl`: pilot (10 papers, 3 reps) = 87 calls, ~1.6M prompt tokens, **~$0.5**;
+full (50 papers, 3 reps) = 426 calls, ~7.4M prompt tokens, **~$2.2**. List price, ignoring
+DeepSeek's cache discount (repeated prefixes across reps can come back cheaper as
+`prompt_cache_hit_tokens`).
+
+### Resume semantics
+
+`reviews_log.jsonl` is an append-only checkpoint keyed on
+`key = "<arxiv_id>v<v>|<model>|t<temperature>|r<rep>"`: re-running skips keys already
+logged, an interrupted run continues where it stopped, and a completed run makes 0 calls.
+Changing `--model` or `--temperature` creates new keys (a fresh grid), not overwrites.
+Failed calls (HTTP error after retries, or unparseable after 1 parse re-request) ARE
+checkpointed with `parsed_ok=false`; to retry them, delete those rows from the log and
+re-run. Missing text files are skipped and never checkpointed. `analyze_scores.py` is
+pure-local, reads only `parsed_ok` rows, and OVERWRITES both outputs each run.
