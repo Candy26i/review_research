@@ -20,7 +20,7 @@ training-data contamination.
 - [x] Initial idea (slides)
 - [x] Literature pass & experiment design
 - [x] P0 pilot data: 50-paper stratified manifest + 142 per-version sources ([summary](results/pilot_summary.md))
-- [x] P0 scoring pilot: DeepSeek, 10 papers × 3 reps ([results](results/e0_scores_summary.md)) — version signal ≈ 0, noise > signal, harsh compressed scale
+- [x] P0 scoring pilot, 3 arms ([results](results/e0_scores_summary.md)): version-tracking is **model-dependent** — DeepSeek-chat τ=-0.14 (noise>signal) vs Gemini-flash τ=+0.64; adding figures maximizes reliability (ICC 0.79, best placebo behavior)
 - [ ] E1 main run: all 50 papers, higher K, more models
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing

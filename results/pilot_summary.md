@@ -78,8 +78,37 @@ retry them (checkpointed), which may grow the eligible pool slightly beyond 170.
   affiliation footnotes, a stale-draft main-tex mis-pick that made one paper's versions
   identical, empty method-name macros) were fixed and the corpus fully regenerated.
 
-## Next (E0 scoring pilot)
+## E0 scoring pilot — three arms (done 2026-10-21)
 
-1. Review rubric + prompt (ICLR-style 1–10 + confidence, JSON output).
-2. K-repeat scoring on a handful of papers to estimate variance → power analysis for the
-   main study. Needs a model/API-key decision.
+10 papers × 29 versions × 3 reps per arm; same scrubbed texts, same rubric (ICLR scale
+{1,3,5,6,8,10}); full tables in [e0_scores_summary.md](e0_scores_summary.md).
+
+| metric | deepseek-chat (text) | gemini-3.8-flash (text) | gemini-3.8-flash (+figs) |
+|---|---|---|---|
+| mean Kendall τ (version↑score) | **-0.14** | **+0.64** | +0.44 (3 papers all-tied) |
+| major-churn pairs ranked ↑ / ↓ | 50% / 50% | 87.5% / 12.5% | 62.5% / **0%** |
+| cosmetic placebo unchanged | 33% | 33% | **67%** |
+| test-retest SD / ICC(2,1) | 0.9 / 0.26 | 0.5 / 0.65 | **0.4 / 0.79** |
+| signal-to-noise (version vs retest) | 0.68 | 1.36 | **1.54** |
+| human-score Spearman (anchor) | 0.74 | 0.72 | 0.64 |
+| accept/reject AUC (rating) | 0.79 | 0.83 | 0.77 |
+| rating mean (human 6.0) | 4.2 harsh | 5.4 | 5.5 |
+
+**Takeaways (pilot-sized, n=10):**
+1. **Reviewer reliability is model-dependent, dramatically.** DeepSeek-chat cannot resolve
+   revision-sized differences (τ≈0, noise>signal); Gemini flash tracks versions well
+   (τ=0.64, 87.5% of major revisions ranked higher).
+2. **Figures buy reliability, not discrimination.** The +figs arm is the most *consistent*
+   (ICC 0.79, best placebo behavior, zero wrong-direction on major revisions) but ties more —
+   it moves less, and when it moves it's right.
+3. **Thinking confound to resolve:** gemini-3.8-flash reasons by default, deepseek-chat does
+   not — "reasoning enables revision-tracking" is an alternative reading; deepseek-reasoner
+   on the same papers would separate model-family from reasoning.
+4. DeepSeek is harsh + compressed (mean 4.2, never uses 1/8/10); Gemini sits near the human
+   mean. All arms discriminate accepted/rejected papers far above chance.
+
+## Next
+
+1. Scale to all 50 papers (Gemini text / +figs; optionally deepseek-reasoner for the
+   thinking hypothesis), K=3.
+2. Then: E4 placebo/causal probes and the contamination audit on the strongest arm.
