@@ -177,3 +177,76 @@ Failed calls (HTTP error after retries, or unparseable after 1 parse re-request)
 checkpointed with `parsed_ok=false`; to retry them, delete those rows from the log and
 re-run. Missing text files are skipped and never checkpointed. `analyze_scores.py` is
 pure-local, reads only `parsed_ok` rows, and OVERWRITES both outputs each run.
+
+## Multimodal arm (Gemini)
+
+Anonymized two-arm pilot: the same scrubbed text, with and without the paper's own
+figures, scored by Gemini through its OpenAI-compatible endpoint (verified live
+2026-10-20 on 2408.06291v1: both arms parsed_ok).
+
+### Key setup
+
+Add to the repo-root `.env` (never commit it):
+
+```
+GEMINI_API_KEY=<your key>
+```
+
+Model note: `gemini-2.5-flash` returns HTTP 404 for newer API keys ("no longer
+available to new users"); `gemini-3.8-flash` is in this key's `/models` list and is
+what the live smoke used. If a command 404s, list models and substitute:
+`GET https://generativelanguage.googleapis.com/v1beta/openai/models`.
+
+### 1. Figure collection (one-time per paper set, pure-local)
+
+```bash
+# 10 pilot papers (the same deterministic round-robin selection as --sample-papers 10)
+python3 src/process/collect_figures.py \
+  --papers 2412.12089,2412.04139,2408.06291,2301.12935,2412.05276,2412.07759,2402.05525,2310.02953,2305.14122,2411.15216
+# full corpus: drop --papers
+```
+
+Outputs `data/processed/figures/{safe_id}/v{v}/fig_NN.png` (RGB, longest side 1024 px,
+document order, deduped, capped at 20) and the checkpoint log
+`data/processed/figures_log.jsonl` (key `<arxiv_id>v<v>`; resumable). Figures whose
+filename contains an identity tell (logo/author/affiliation/orcid/signature/headshot/
+photo_) are skipped and logged — pilot-10 result: 30 versions, 423 PNGs, 0 filtered,
+0 errors (2301.12935v2 has no LaTeX tree and gets a clean reason row).
+
+### 2. Two-arm pilot (10 papers, 3 reps each)
+
+```bash
+# arm A: gemini, text-only (keys: ...|gemini-3.8-flash|t1.0|r<rep>)
+python3 src/review/run_llm_review.py --sample-papers 10 --reps 3 \
+  --model gemini-3.8-flash \
+  --base-url https://generativelanguage.googleapis.com/v1beta/openai \
+  --api-key-env GEMINI_API_KEY
+
+# arm B: gemini + figures (keys: ...|gemini-3.8-flash|t1.0|img|r<rep>; log label gets '+figs')
+python3 src/review/run_llm_review.py --sample-papers 10 --reps 3 \
+  --model gemini-3.8-flash \
+  --base-url https://generativelanguage.googleapis.com/v1beta/openai \
+  --api-key-env GEMINI_API_KEY \
+  --images-dir data/processed/figures/
+
+python3 src/analysis/analyze_scores.py   # reports each model label separately
+```
+
+### Key-format note (checkpoint compatibility)
+
+Text-only keys are byte-identical to the historical format
+`<arxiv_id>v<v>|<model>|t<temperature>|r<rep>` — all 87 existing DeepSeek rows still
+checkpoint-skip (verified). Multimodal tasks insert an `|img|` segment:
+`<arxiv_id>v<v>|<model>|t<temperature>|img|r<rep>`, so the two arms never collide and
+each resumes independently. A version with no figure dir runs text-only under the
+text-only key even with `--images-dir` set.
+
+### Approximate cost (pilot, both arms)
+
+Live smoke (2408.06291v1, gemini-3.8-flash): text-only 15,773 prompt tokens; +figs
+(3 images) 19,030 — ~1,086 image tokens per 1024-px figure. Pilot scale: 87 calls/arm;
+text arm ~1.6M prompt tokens, +figs arm adds ~1.2M image tokens (~1,150 attached
+images after the 12 MB/request base64 budget); completions ~0.07M/arm. At flash-class
+list prices (order $0.3-0.5/M input, $2.5/M output) that is roughly **$1-2 for both
+arms combined** — check the current price page before the full 50-paper run
+(~5x pilot volume).
