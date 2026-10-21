@@ -270,3 +270,77 @@ Temperature is pinned to 0 (factual probe). Append-only checkpoint
 `data/processed/recognition_log.jsonl` keyed on `<arxiv_id>v<v>|<model>`; re-running
 makes 0 new calls. Headline numbers go in `docs/FINDINGS.md`
 ("Contamination / recognition probe").
+
+## E4 probes (length-matched known-direction edits; generated + mock-verified 2026-10-21)
+
+Do scores track content or document length? Six deterministic variants of each probe
+paper's anchor version (latest pre_submission/during_review version, else v1 — the
+`analyze_scores.py` anchor rule): `base` (verbatim), `shuffle_paragraphs` /
+`corrupt_numbers` / `typos` (quality DOWN, length within +-1%), `pad_filler` (+25..35%
+content-free filler), `drop_appendix` (<= -10%; skipped when the text has no
+`## Appendix`). The paper subset reuses `run_llm_review.select_papers`, so the 25 probe
+papers are the deterministic stratified round-robin prefix of the main study's
+selection. Generated 2026-10-21: 148 variant texts (25 papers x 6 - 2 `no appendix
+heading` skips), `base.md` byte-identical to the anchor texts, regeneration into a
+scratch dir reproduced all 148 files hash-identically.
+
+### Generation (pure-local, ~20 s)
+
+```sh
+python3 src/process/make_probes.py   # -> data/processed/probes/<safe_id>/<variant>.md
+                                     #    + log data/processed/probes_log.jsonl
+```
+
+### Scoring + analysis
+
+```sh
+# mock e2e first (no network, same parse/log path; point --log/--out-dir at a tmp dir)
+python3 src/review/run_probe_review.py --mock --reps 2 \
+  --log /tmp/e4mock/log.jsonl --out-dir /tmp/e4mock/reviews
+
+# real: deepseek-reasoner (all defaults), 148 probes x 3 reps = 444 calls
+python3 src/review/run_probe_review.py --reps 3
+
+# real: gemini text-only, 148 x 2 = 296 calls (key setup: "Multimodal arm" above)
+python3 src/review/run_probe_review.py \
+  --model gemini-3.8-flash \
+  --base-url https://generativelanguage.googleapis.com/v1beta/openai \
+  --api-key-env GEMINI_API_KEY --max-tokens 8000 --reps 2
+
+python3 src/analysis/analyze_probes.py   # -> results/e4_probes_summary.md
+                                         #    (every model in the log, separately)
+```
+
+Scoring uses the exact main-study rubric (`src/review/prompts/review_v1.md`) through
+`run_llm_review.py`'s request/parse/validate machinery; mock e2e verified 2026-10-21
+(296/296 parsed_ok, re-run makes 0 calls, analysis report renders with ns matching the
+probe counts).
+
+### Approximate cost
+
+Probe texts average ~14.8k prompt tokens/call (pad +31% and drop -40..-67% roughly
+balance around the ~16k paper mean). deepseek-reasoner, 444 calls ~ 6.6M prompt tokens:
+the script's printed formula (deepseek-chat list, $0.28/$0.42 per M) gives **~$2.5**;
+deepseek-reasoner's own list price plus reasoning-token completions realistically lands
+around **$5-10** — check the current price page first. gemini-3.8-flash, 296 calls ~
+4.4M prompt tokens at flash-class list prices (~$0.3-0.5/M in, ~$2.5/M out): roughly
+**$2-3**.
+
+### Resume semantics
+
+All three stages are independently resumable:
+
+- `data/processed/probes_log.jsonl` — append-only, keyed `<arxiv_id>|<variant>`;
+  re-running `make_probes.py` skips logged keys (a completed run writes nothing).
+  Variants are pure functions of (anchor text, `--seed`); to rebuild a paper, delete its
+  rows from the log AND its `data/processed/probes/<safe_id>/` dir, then re-run.
+- `data/processed/probe_reviews_log.jsonl` — append-only, keyed
+  `<arxiv_id>|<variant>|<model>|t<temperature>|r<rep>`: an interrupted run continues
+  where it stopped, a completed run makes 0 calls (verified), and a new `--model` /
+  `--temperature` is a fresh key grid, not an overwrite. Failed calls ARE checkpointed
+  with `parsed_ok=false` — delete those rows to retry. Probes-log rows with
+  `skipped: true` are never scored. Raw bodies go under
+  `data/processed/reviews/<model>-probes/`, so probe raws never mix with main-study raws.
+- `analyze_probes.py` — pure-local; OVERWRITES `results/e4_probes_summary.md` each run
+  and contextualizes effects against the E0 true-placebo noise floor parsed from
+  `results/e0_scores_summary.md`.
