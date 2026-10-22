@@ -184,6 +184,9 @@ def http_chat(cfg: argparse.Namespace, api_key: str, messages: list[dict]) -> di
         "max_tokens": cfg.max_tokens,
         "response_format": {"type": "json_object"},
     }
+    # thinking control (Gemini OpenAI-compat honors reasoning_effort; 'none' disables)
+    if getattr(cfg, 'reasoning_effort', ''):
+        payload["reasoning_effort"] = cfg.reasoning_effort
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     last_err = "unknown error"
     for attempt in range(MAX_ATTEMPTS):
@@ -302,7 +305,9 @@ def run_task(task: dict, cfg: argparse.Namespace, api_key: str | None,
     # Display label for the log's "model" field: --model-label wins; otherwise the raw
     # model name, with '+figs' appended when images are attached. Text-only runs with no
     # --model-label therefore keep "model" exactly as historical rows have it.
-    label = cfg.model_label or (cfg.model + ('+figs' if n_images else ''))
+    re_val = getattr(cfg, 'reasoning_effort', '')
+    label = cfg.model_label or (cfg.model + ('+figs' if n_images else '')
+                                + (f'-re{re_val}' if re_val else ''))
 
     row = {
         "key": task['key'], "arxiv_id": task['arxiv_id'], "v": task['v'], "rep": task['rep'],
@@ -377,8 +382,13 @@ def build_tasks(cfg: argparse.Namespace, papers: list[dict], done: set) -> tuple
             # under --images-dir whose figure dir is missing/empty) keep the exact
             # historical format, so existing checkpoint rows are still skipped on resume.
             img_seg = '|img' if images else ''
+            # reasoning-effort runs are a separate arm: their keys gain a '|re:' segment
+            # so they never collide with the default-thinking runs of the same model
+            re_seg = (f"|re:{cfg.reasoning_effort}"
+                      if getattr(cfg, 'reasoning_effort', '') else '')
             for rep in range(cfg.reps):
-                key = f"{paper['arxiv_id']}v{v}|{cfg.model}|t{cfg.temperature}{img_seg}|r{rep}"
+                key = (f"{paper['arxiv_id']}v{v}|{cfg.model}|t{cfg.temperature}"
+                       f"{img_seg}{re_seg}|r{rep}")
                 if key in done:
                     n_skipped += 1
                     continue
@@ -414,6 +424,9 @@ def main() -> None:
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--limit', type=int, default=0, help='max API calls this run (0 = no cap)')
     ap.add_argument('--max-chars', type=int, default=380000)
+    ap.add_argument('--reasoning-effort', default='',
+                    help="set the OpenAI-compat reasoning_effort ('none' disables thinking "
+                         "on Gemini); empty = omit the field (provider default)")
     ap.add_argument('--mock', action='store_true', help='no network; deterministic fake responses')
     ap.add_argument('--seed', type=int, default=42)
     cfg = ap.parse_args()
