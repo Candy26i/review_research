@@ -25,7 +25,7 @@ training-data contamination.
   - **Completed 2×2** ({DeepSeek, Gemini} × {think off, on}, 50 papers each): both factors additive, model family larger — Gemini-no-think (+0.20/step) beats DeepSeek-think (+0.15); after length control only the Gemini arms stay significant
   - **Verbosity bias absorbs most of it**: after controlling for document length, only Gemini-text keeps an independent version effect (+0.14/step, p=0.001)
   - **Longitudinal ≠ cross-sectional**: all arms see papers improving yet separate accepted/rejected at only AUC ~0.7 (humans 0.88)
-  - **Contamination probe**: 70% exact-title recall despite scrubbing; zero evidence of decision memorization
+  - **Contamination probe**: for 36% of papers the model names a true author never present in the input (real memorization); zero evidence of decision memorization
 - [x] E4 length-matched edit probes, both arms: **no verbosity bias** (adding 31% fluff *tanks* scores: −0.9/−2.2; cutting 40% length changes nothing — the length effect was content mediation), but **no arm detects substantive damage** (falsified result numbers pass unnoticed; paragraph shuffling even raises the reasoner's score)
 - [x] 2×2 completed (deepseek-chat @ 50 papers; Gemini `reasoning_effort: none` arm) — 2,537 reviews total across six arms
 - [ ] Post-cutoff contamination split; E5 human-delta anchoring; write-up

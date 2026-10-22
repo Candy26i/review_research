@@ -22,8 +22,8 @@ for length (adding 31% content-free filler *lowers* scores by 0.9–2.2 points) 
 same probes reveal that no arm detects targeted substantive damage (falsified result
 numbers, shuffled argument structure). All arms are mediocre at absolute quality
 (accept/reject AUC 0.57–0.71 vs 0.88 for human mean scores), and a recognition probe shows
-heavy identity memorization (70% exact-title recall) but no evidence of decision
-memorization.
+real identity memorization (a true author surname — never present in the input — recalled
+for 36% of papers) but no evidence of decision memorization.
 
 ## Setup (brief)
 
@@ -142,18 +142,24 @@ pre_submission), 50 calls, 50/50 parsed_ok, ~$0.23. Log:
 `data/processed/recognition_log.jsonl`.
 
 - **Recognition claim rate: 38/50 (76%)**.
-- Among the 38 claims: **title correct 35/38 (92%)** (70% of all anchors), **≥1 author
-  surname correct 18/38 (47%)**, venue correct 19/38 (50%), decision correct 15/38 (39%) —
-  but split by truth: **accepted 15/21 (71%) vs rejected 0/17 (0%)**; every non-null
-  decision guess was "accepted" (20 guesses, 18 null), so decision "knowledge" behaves like
-  an accept-biased prior, not memory of outcomes.
+- **Metric caveat (important):** the scrubbed texts deliberately KEEP the paper title as
+  their first line (43/50 inputs literally start with the true title), so "title correct"
+  (35/38 among claims) is largely copyable from the input and is NOT memorization evidence;
+  it mainly shows the model can identify-by-title.
+- **The clean memorization evidence is author recall:** author names appear nowhere in the
+  input, yet the model produces **≥1 true author surname for 18/38 claims = 36% of all
+  papers**. Venue correct 19/38 (50%). Decision correct 15/38 — but split by truth:
+  **accepted 15/21 (71%) vs rejected 0/17 (0%)**; every non-null decision guess was
+  "accepted" (20 guesses, 18 null), so decision "knowledge" behaves like an accept-biased
+  prior, not memory of outcomes.
 - Mean self-reported confidence: 0.655 on claims vs 0.088 on non-claims.
 
-Takeaway: identity contamination is heavy — despite scrubbing, the model recovers the exact
-title for most pilot papers and at least one author for about half of its claims — while
-there is no evidence it remembers ICLR decisions (0% correct on rejected papers). So the
-version-tracking signal cannot be read as "the model remembers which version was accepted",
-but authorship/title memorization means its scores are not blind to paper identity either.
+Takeaway: identity contamination is real — for over a third of papers the model can name an
+author it was never shown — while there is no evidence it remembers ICLR decisions (0%
+correct on rejected papers). So the version-tracking signal cannot be read as "the model
+remembers which version was accepted", but author memorization means its scores are not
+blind to paper identity either. (A stricter probe variant would also strip the title from
+the input; planned alongside the post-cutoff contamination split.)
 
 Grading audit: placebo-subset ns in the report hand-recounted (deepseek-chat 5,
 gemini arms 17 — all match) and probe grading re-derived on 3 random log rows against the
