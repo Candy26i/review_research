@@ -344,3 +344,60 @@ All three stages are independently resumable:
 - `analyze_probes.py` — pure-local; OVERWRITES `results/e4_probes_summary.md` each run
   and contextualizes effects against the E0 true-placebo noise floor parsed from
   `results/e0_scores_summary.md`.
+
+## Fresh score-free corpus + contamination split
+
+### Contamination split (pure-local; no API calls)
+
+Splits every model's version-effect MixedLM by the E3 recognition probe and reports,
+per model: group descriptives, the `rating ~ pos * recog + (1|paper)` interaction,
+per-group `rating ~ pos + (1|paper)` slopes, and an accept/reject AUC anchor.
+
+```bash
+python3 src/analysis/analyze_contamination_split.py
+# -> results/contamination_split.md          (split: recognized, 38/12 papers)
+
+python3 src/analysis/analyze_contamination_split.py \
+  --split authors_any_correct --out results/contamination_split_authors.md
+# -> results/contamination_split_authors.md  (split: authors-recalled, 18/32 papers)
+```
+
+Inputs: `data/processed/reviews_log.jsonl` (parsed_ok rows),
+`data/processed/recognition_log.jsonl` (one row per paper: `arxiv_id`,
+`recognized`, `authors_any_correct`, `title_correct`, `confidence`),
+`data/processed/pilot_manifest.jsonl`. Papers missing from the recognition log are
+reported as `unprobed` and excluded from the tests. Both reports are OVERWRITTEN on
+each run. Verified 2026-10-22: on the authors_any_correct split the version effect
+survives in the authors-not-recalled group for all five arms.
+
+### Fresh score-free corpus (live arXiv; search + OAI, 1 req / 3 s)
+
+Collects post-training-cutoff multi-version papers (submittedDate window defaults to
+2026-07-01..2026-09-20) with NO human review scores by construction — supports
+version-tracking analyses only, round-robin across `--categories`.
+
+```bash
+# smoke (verified 2026-10-22: 4 rows, one per category; NOTE --limit-queries caps
+# search+OAI combined and discovery pages are NOT cached, so the budget must cover
+# ~1 search page per category PLUS one OAI call per new paper; --limit-queries 3
+# exhausts on discovery alone and lands 0 rows)
+python3 src/collect/collect_fresh_arxiv.py --target 4 --limit-queries 9
+
+# full collection (orchestrator): no query cap; ~4-20 search pages + 30 OAI calls
+python3 src/collect/collect_fresh_arxiv.py --target 30
+```
+
+Outputs (append-only, checkpointed on `arxiv_id`; reruns resume and already-kept
+papers count toward `--target`):
+
+- `data/processed/fresh_manifest.jsonl` — pilot_manifest-shaped rows: `arxiv_id`,
+  `openreview_id` (= arxiv_id), `iclr_year: null`, `title`, `scores: []`,
+  `mean_score/n_reviews` empty, `decision: "unknown"`, `strata`, `n_versions`,
+  `versions` (`v`, `date`, `stage: "unknown"`, ...; parsed from cached arXivRaw OAI
+  XML under `data/raw/oai_xml/`), `chain_source`, `categories`, `fresh: true`.
+- `data/processed/fresh_papers.jsonl` — iclr_papers-shaped rows keyed
+  `openreview_id = arxiv_id` (`title`, `title_norm`, `authors`, `abstract`, empty
+  score/decision fields), which keeps the scrubber's author-audit join working.
+
+Downstream stages (`download_sources`, `extract_sources`, `latex_to_text`,
+`scrub_and_audit`, review runner) consume these files unchanged.

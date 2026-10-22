@@ -161,6 +161,24 @@ remembers which version was accepted", but author memorization means its scores 
 blind to paper identity either. (A stricter probe variant would also strip the title from
 the input; planned alongside the post-cutoff contamination split.)
 
+### Contamination-split test: the version effect is NOT memory-driven
+
+Re-estimating the version effect with recognition status as an interaction
+(`rating ~ version_position × recognized + (1|paper)`, both split definitions; full tables
+in [`results/contamination_split.md`](../results/contamination_split.md) and
+[`…_authors.md`](../results/contamination_split_authors.md)):
+
+- **The effect survives on unrecognized papers in every reasoning arm** — e.g. gemini text
+  +0.29/step (p=0.0002) on the 12 unrecognized papers, reasoner +0.19 (p=0.026); same
+  picture on the authors-not-recalled split (32 papers, all five arms significant or
+  near-significant).
+- **Where the interaction is significant, it is NEGATIVE** — the slope is *larger* on
+  papers the model does NOT remember (gemini-no-think: unrecognized +0.47 vs recognized
+  +0.13, interaction p<1e-4; +figs and no-think arms similar on the authors split). A
+  plausible mechanism: on memorized papers the score is anchored to the remembered paper,
+  *dampening* sensitivity to version differences. Contamination, if anything, works
+  against the version effect rather than creating it.
+
 Grading audit: placebo-subset ns in the report hand-recounted (deepseek-chat 5,
 gemini arms 17 — all match) and probe grading re-derived on 3 random log rows against the
 manifest/ICLR ground truth (all match).
@@ -171,8 +189,10 @@ manifest/ICLR ground truth (all match).
    figures; the +figs arm mitigates but uses converted stills, not the compiled PDF.
 2. **Length confound** (finding 2) — needs E4 length-matched synthetic edits to separate
    mediator from bias.
-3. **Contamination** — identity (title/author) memorization is demonstrated; post-cutoff
-   papers and the pre/post-cutoff split are the designed control, not yet run.
+3. **Contamination** — author memorization is demonstrated, but the split analysis shows
+   the version effect survives (and is larger) on unmemorized papers, so the headline
+   result is not contamination-driven; a fully post-cutoff fresh-arXiv corpus (no human
+   scores needed for version tracking) is being collected as the definitive control.
 4. **DeepSeek-chat arm is pilot-sized** (10 papers) and the reasoning contrast relies on
    third-party reports that both DeepSeek aliases serve V4.1-Flash (response `model` field:
    `deepseek-flash` for both; verify against DeepSeek's changelog before publication).
