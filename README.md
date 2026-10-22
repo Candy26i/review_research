@@ -28,7 +28,8 @@ training-data contamination.
   - **Contamination probe**: for 36% of papers the model names a true author never present in the input (real memorization); zero evidence of decision memorization
 - [x] E4 length-matched edit probes, both arms: **no verbosity bias** (adding 31% fluff *tanks* scores: −0.9/−2.2; cutting 40% length changes nothing — the length effect was content mediation), but **no arm detects substantive damage** (falsified result numbers pass unnoticed; paragraph shuffling even raises the reasoner's score)
 - [x] 2×2 completed (deepseek-chat @ 50 papers; Gemini `reasoning_effort: none` arm) — 2,537 reviews total across six arms
-- [ ] Post-cutoff contamination split; E5 human-delta anchoring; write-up
+- [x] Contamination closed by three lines: split analysis (effect survives on unmemorized papers, interactions negative), and **zero-recognition replication** on a fresh post-cutoff corpus (0/29 recognized; gemini +0.23/step p=0.016, reasoner +0.19/step p=0.0097)
+- [ ] E5 human-delta anchoring; write-up
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
 - [ ] P2 main runs (E1 monotonicity, E2 pairwise, E3 reliability)

@@ -161,6 +161,24 @@ remembers which version was accepted", but author memorization means its scores 
 blind to paper identity either. (A stricter probe variant would also strip the title from
 the input; planned alongside the post-cutoff contamination split.)
 
+### Zero-contamination replication: the effect holds on papers the models have never seen
+
+A fresh, score-free corpus (30 papers / 65 scrubbed versions, arXiv cs.LG/CL/CV/stat.ML,
+submitted 2026-07..09 — after both models' training windows; full tables in
+[`results/fresh_scores_summary.md`](../results/fresh_scores_summary.md)):
+
+- **Recognition probe: 0/29 papers claimed recognized** (vs 76% on the ICLR corpus) — the
+  post-cutoff design works.
+- **Version effects replicate at matching magnitudes**: gemini-think **+0.23/step
+  (p=0.016)**, deepseek-reasoner **+0.19/step (p=0.0097)** (main corpus: +0.28/+0.15).
+  Gemini's cosmetic-placebo behavior is its best yet here (73% unchanged), ICC 0.77–0.89.
+- (The gemini-no-think arm is partial — credit exhaustion at 72/195 calls — and not yet
+  interpretable.)
+
+Together with the split analysis below, contamination is now excluded by three independent
+lines of evidence: group-split survival, negative interaction, and zero-recognition
+replication.
+
 ### Contamination-split test: the version effect is NOT memory-driven
 
 Re-estimating the version effect with recognition status as an interaction
