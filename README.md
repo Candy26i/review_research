@@ -22,12 +22,13 @@ training-data contamination.
 - [x] P0 pilot data: 50-paper stratified manifest + 142 per-version sources ([summary](results/pilot_summary.md))
 - [x] P0 scoring pilot, 3 arms ([results](results/e0_scores_summary.md)): version-tracking is **model-dependent** — DeepSeek-chat τ=-0.14 (noise>signal) vs Gemini-flash τ=+0.64; adding figures maximizes reliability (ICC 0.79, best placebo behavior)
 - [x] E1 main run, 4 arms × 50 papers × K=3 (1,359 reviews) — headline findings in [docs/FINDINGS.md](docs/FINDINGS.md):
-  - **Reasoning is the hinge**: same DeepSeek model, reasoning off → τ=-0.14; reasoning on → τ=+0.49. Gemini (reasons by default): τ=+0.57
+  - **Completed 2×2** ({DeepSeek, Gemini} × {think off, on}, 50 papers each): both factors additive, model family larger — Gemini-no-think (+0.20/step) beats DeepSeek-think (+0.15); after length control only the Gemini arms stay significant
   - **Verbosity bias absorbs most of it**: after controlling for document length, only Gemini-text keeps an independent version effect (+0.14/step, p=0.001)
   - **Longitudinal ≠ cross-sectional**: all arms see papers improving yet separate accepted/rejected at only AUC ~0.7 (humans 0.88)
   - **Contamination probe**: 70% exact-title recall despite scrubbing; zero evidence of decision memorization
 - [x] E4 length-matched edit probes, both arms: **no verbosity bias** (adding 31% fluff *tanks* scores: −0.9/−2.2; cutting 40% length changes nothing — the length effect was content mediation), but **no arm detects substantive damage** (falsified result numbers pass unnoticed; paragraph shuffling even raises the reasoner's score)
-- [ ] Complete the 2×2 (chat @ 50 papers, Gemini thinking-off); post-cutoff contamination split; E5 human-delta anchoring; write-up
+- [x] 2×2 completed (deepseek-chat @ 50 papers; Gemini `reasoning_effort: none` arm) — 2,537 reviews total across six arms
+- [ ] Post-cutoff contamination split; E5 human-delta anchoring; write-up
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
 - [ ] P2 main runs (E1 monotonicity, E2 pairwise, E3 reliability)

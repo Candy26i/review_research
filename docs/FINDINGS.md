@@ -9,19 +9,21 @@ those files or `data/processed/*.jsonl`.
 ## Abstract
 
 We scored 142 arXiv versions of 50 ICLR 2024–25 submissions (26 accepted / 24 rejected;
-scrubbed, anonymized, stage-labeled) with four LLM-reviewer configurations, three
-repetitions each (1,359 parsed reviews). Whether an LLM reviewer can detect that a paper
-improved across its revisions depends dramatically on configuration: a non-reasoning
-reviewer is blind to revisions (τ ≈ 0), while reasoning-enabled reviewers track them
-(τ 0.49–0.57; +0.15 to +0.28 rating points per revision step, p < 1e-4). Within one model
-family (DeepSeek V4.1-Flash served behind both aliases), toggling reasoning alone moves
-mean τ from −0.14 to +0.49 — the cleanest evidence that *reasoning capability, not model
-family, drives revision sensitivity*. However, controlling for document length absorbs
-most of the effect in every arm except Gemini text-only (+0.14/step, p = 0.001): a large
-share of apparent "recognizing improvement" is "longer papers score higher". All arms are
-mediocre at absolute quality (accept/reject AUC 0.66–0.71 vs 0.88 for human mean scores),
-and a recognition probe shows heavy identity memorization (70% exact-title recall) but no
-evidence of decision memorization.
+scrubbed, anonymized, stage-labeled) with six LLM-reviewer configurations spanning a
+{DeepSeek V4.1-Flash, Gemini 3.8-Flash} × {reasoning off, on} design plus a text+figures
+arm (2,537 parsed reviews). Every configuration shows a positive version-tracking effect
+(+0.11 to +0.28 rating points per revision step), and the 2×2 decomposes it: both factors
+are roughly additive, with **model family the larger one** — Gemini without thinking
+(+0.20/step) beats DeepSeek with thinking (+0.15) — and reasoning adding a consistent
+~+0.04–0.08/step within each family. Controlling for document length absorbs the DeepSeek
+arms' effects entirely but leaves both Gemini arms significant (+0.09 to +0.14/step); E4's
+length-matched probes then show the length component is content mediation, not a reward
+for length (adding 31% content-free filler *lowers* scores by 0.9–2.2 points) — yet the
+same probes reveal that no arm detects targeted substantive damage (falsified result
+numbers, shuffled argument structure). All arms are mediocre at absolute quality
+(accept/reject AUC 0.57–0.71 vs 0.88 for human mean scores), and a recognition probe shows
+heavy identity memorization (70% exact-title recall) but no evidence of decision
+memorization.
 
 ## Setup (brief)
 
@@ -42,37 +44,39 @@ evidence of decision memorization.
 
 ## Findings
 
-### 1. Version tracking is configuration-dependent — and reasoning is the hinge
+### 1. Version tracking: the full 2×2 — model family dominates, reasoning adds a consistent boost
 
-| arm | reasoning | papers | mean τ (bootstrap 95% CI) | raw pts/revision (mixedlm) | ICC(2,1) |
-|---|---|---|---|---|---|
-| deepseek-chat | off | 10 | −0.14 [−0.65, +0.37] | +0.01 (p=0.90) | 0.26 |
-| deepseek-reasoner | on | 50 | +0.49 [+0.30, +0.67] | +0.15 (p<1e-4) | 0.64 |
-| gemini-3.8-flash (text) | on | 50 | +0.57 [+0.35, +0.77] | +0.28 (p<1e-4) | 0.81 |
-| gemini-3.8-flash (+figs) | on | 50 | +0.48 [+0.22, +0.72] | +0.22 (p<1e-4) | 0.81 |
+All cells now at 50 papers × K=3 (same prompts, texts, scale):
 
-Page's trend test agrees (p = 0.02–0.04 for the three reasoning arms; p = 0.78 for chat).
-Same prompts, same texts, same scale. The deepseek pair is the key contrast: **the same
-served model with reasoning toggled goes from blind to tracking** (caveat: the
-reasoning-off arm is pilot-sized, n=10 papers; extending it to 50 is one command).
+| raw pts/revision (mixedlm) | reasoning OFF | reasoning ON |
+|---|---|---|
+| **DeepSeek V4.1-Flash** | +0.11 (p=0.017), τ=0.09 | +0.15 (p<1e-4), τ=0.49 |
+| **Gemini 3.8-Flash** | +0.20 (p<1e-4), τ=0.45 | +0.28 (p<1e-4), τ=0.57 |
 
-### 2. Verbosity bias absorbs most of the effect
+(+figs arm, thinking on: +0.22, τ=0.48.) **An honest correction to our pilot headline:**
+the 10-paper deepseek-chat arm's stark null (τ=−0.14) was partly small-sample noise — at 50
+papers it shows a weak positive effect. The clean reading of the completed 2×2: both
+factors matter and are roughly additive; **Gemini without thinking still beats DeepSeek
+with thinking**, so model family is the larger factor, with reasoning contributing a
+consistent ~+0.04–0.08/step on top. Page's trend test agrees across arms (reasoning arms
+p=0.01–0.04; chat p=0.14). Gemini-no-think is also the best-behaved arm on the cosmetic
+placebo (64% unchanged).
+
+### 2. Length control sharpens the same picture
 
 Adding log(document words) to the mixed model (`rating ~ version_position + log_words +
 (1|paper)`):
 
-| arm | version coef after control | log_words coef | survives? |
-|---|---|---|---|
-| deepseek-chat | −0.05 (p=0.66) | +1.56 (p=0.03) | null stays null |
-| deepseek-reasoner | +0.07 (p=0.10) | +1.14 (p=0.0004) | **no** |
-| gemini text | **+0.14 (p=0.001)** | +1.95 (p<1e-4) | **yes** |
-| gemini +figs | +0.06 (p=0.18) | +2.27 (p<1e-4) | **no** |
+| version coef after length control | reasoning OFF | reasoning ON |
+|---|---|---|
+| **DeepSeek** | +0.01 (p=0.85) | +0.07 (p=0.10) |
+| **Gemini** | **+0.09 (p=0.021)** | **+0.14 (p=0.001)** |
 
-Later versions are longer, and longer papers score higher. Only Gemini-text retains an
-independent version effect. Two readings, not mutually exclusive: (a) LLM reviewers partly
-reward length itself (classic verbosity bias); (b) real revisions genuinely add content,
-so length is a *mediator*, not only a confound — distinguishing these needs E4's synthetic
-probes (length-matched edits).
+(+figs: +0.06, p=0.18.) Only the two Gemini arms keep a significant length-independent
+version effect; both DeepSeek arms' effects are absorbed by length. The pattern is again
+additive — family shifts the controlled effect by ≈+0.08, thinking by ≈+0.05 — and E4
+(below) shows experimentally that the length component is content *mediation*, not a
+reward for length itself.
 
 ### 3. Placebo behavior: scores move on near-identical input
 
