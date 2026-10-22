@@ -169,11 +169,10 @@ submitted 2026-07..09 — after both models' training windows; full tables in
 
 - **Recognition probe: 0/29 papers claimed recognized** (vs 76% on the ICLR corpus) — the
   post-cutoff design works.
-- **Version effects replicate at matching magnitudes**: gemini-think **+0.23/step
-  (p=0.016)**, deepseek-reasoner **+0.19/step (p=0.0097)** (main corpus: +0.28/+0.15).
-  Gemini's cosmetic-placebo behavior is its best yet here (73% unchanged), ICC 0.77–0.89.
-- (The gemini-no-think arm is partial — credit exhaustion at 72/195 calls — and not yet
-  interpretable.)
+- **Version effects replicate at matching magnitudes in all three arms**: gemini-think
+  **+0.23/step (p=0.016)**, gemini-no-think **+0.28/step (p=0.010)**, deepseek-reasoner
+  **+0.19/step (p=0.0097)** (main corpus: +0.28 / +0.20 / +0.15). Reliability is the best
+  of the whole study here (ICC 0.77–0.89; gemini-no-think cosmetic placebo 82% unchanged).
 
 Together with the split analysis below, contamination is now excluded by three independent
 lines of evidence: group-split survival, negative interaction, and zero-recognition

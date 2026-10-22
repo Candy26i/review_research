@@ -1,6 +1,6 @@
 # E0: LLM review-score analysis
 
-- log: `data/processed/fresh_reviews_log.jsonl` - 460 rows, 460 parsed_ok rating rows used
+- log: `data/processed/fresh_reviews_log.jsonl` - 583 rows, 583 parsed_ok rating rows used
 - manifest: `data/processed/fresh_manifest.jsonl` (30 papers) | diffs: `data/processed/fresh_version_diffs.jsonl`
 
 ## Model: deepseek-reasoner
@@ -191,33 +191,33 @@ Same deltas by churn_class (true placebo = cosmetic text churn AND unchanged fig
 
 ## Model: gemini-3.8-flash-renone
 
-- parsed_ok reviews: 72 | papers scored: 27 | paper-versions scored: 48
+- parsed_ok reviews: 195 | papers scored: 29 | paper-versions scored: 65
 
 ### 1. Version tracking
 
-- papers with >= 2 scored versions: 18
-- mean Kendall tau-b (all-tied excluded): 0.50 (n=5)
-- tau>0: 22.2% | tau==0 (ties, incl. all-tied): 72.2% | tau<0: 5.6% | all-tied papers: 13
-- tau hist: [-1.0,-0.5):1 [-0.5,+0.0):0 [+0.0,+0.5):1 [+0.5,+1.0]:3 all-tied(nan):13
+- papers with >= 2 scored versions: 28
+- mean Kendall tau-b (all-tied excluded): 0.52 (n=15)
+- tau>0: 42.9% | tau==0 (ties, incl. all-tied): 50.0% | tau<0: 7.1% | all-tied papers: 13
+- tau hist: [-1.0,-0.5):2 [-0.5,+0.0):0 [+0.0,+0.5):4 [+0.5,+1.0]:9 all-tied(nan):13
 
 Adjacent-pair direction (mean rating of v_{i+1} vs v_i):
 
 | churn_class | n | P(>) | P(=) | P(<) |
 |---|---|---|---|---|
-| ALL | 21 | 23.8% | 66.7% | 9.5% |
-| cosmetic | 3 | 0.0% | 100.0% | 0.0% |
-| minor | 2 | 0.0% | 50.0% | 50.0% |
-| major | 12 | 41.7% | 50.0% | 8.3% |
-| unknown | 4 | 0.0% | 100.0% | 0.0% |
+| ALL | 36 | 38.9% | 44.4% | 16.7% |
+| cosmetic | 11 | 18.2% | 81.8% | 0.0% |
+| minor | 7 | 28.6% | 28.6% | 42.9% |
+| major | 17 | 58.8% | 23.5% | 17.6% |
+| unknown | 1 | 0.0% | 100.0% | 0.0% |
 
-Cosmetic pairs (should be '='): 3/3 tied (100.0%).
+Cosmetic pairs (should be '='): 9/11 tied (81.8%).
 
 ### 1b. Inferential version-effect tests
 
-- bootstrap 95% CI for the mean finite tau (papers resampled with replacement, 10,000 draws, seed 42): mean 0.50, CI [-0.22, +1.00]
-- per-paper correlation, version position vs mean rating (>= 3 versions, constant-rating papers excluded): mean Pearson -0.30 (n=2, 50.0% positive) | mean Spearman -0.23 (n=2)
-- Page trend test (first 3 versions of the 2 papers with >= 3 versions; H1 = ratings increase along versions): L=24, p=0.6389
-- mixed-effects regression rating ~ version_position + (1|paper) on rep-level ratings (n=56, 18 papers): +0.05 rating points per revision step (95% CI [-0.44, +0.54], p=0.8462)
+- bootstrap 95% CI for the mean finite tau (papers resampled with replacement, 10,000 draws, seed 42): mean 0.52, CI [+0.15, +0.83]
+- per-paper correlation, version position vs mean rating (>= 3 versions, constant-rating papers excluded): mean Pearson 0.43 (n=5, 100.0% positive) | mean Spearman 0.45 (n=5)
+- Page trend test (first 3 versions of the 7 papers with >= 3 versions; H1 = ratings increase along versions): L=90, p=0.1173
+- mixed-effects regression rating ~ version_position + (1|paper) on rep-level ratings (n=192, 28 papers): +0.28 rating points per revision step (95% CI [+0.07, +0.50], p=0.0104)
 - verbosity control rating ~ version_position + log_words + (1|paper): n/a (needs >= 3 papers, >= 2 positions, and scrub-log n_words with variation)
 
 ### 1c. Where the effect lives
@@ -226,31 +226,31 @@ Adjacent-pair mean rating delta (v_to minus v_from) by stage transition (stages 
 
 | stage transition | n | mean delta | mean \|delta\| | share delta==0 |
 |---|---|---|---|---|
-| unknown -> unknown | 21 | +0.13 | 0.71 | 66.7% |
+| unknown -> unknown | 36 | +0.27 | 0.71 | 44.4% |
 
 Same deltas by churn_class (true placebo = cosmetic text churn AND unchanged figures):
 
 | subset | n | mean delta | mean \|delta\| | share delta==0 |
 |---|---|---|---|---|
-| cosmetic | 3 | +0.00 | 0.00 | 100.0% |
-| minor | 2 | -0.50 | 0.50 | 50.0% |
-| major | 12 | +0.32 | 1.15 | 50.0% |
-| unknown | 4 | +0.00 | 0.00 | 100.0% |
-| TRUE PLACEBO (cosmetic & figs unchanged) | 2 | +0.00 | 0.00 | 100.0% |
-| cosmetic & figure changes | 1 | +0.00 | 0.00 | 100.0% |
+| cosmetic | 11 | +0.12 | 0.12 | 81.8% |
+| minor | 7 | -0.10 | 0.57 | 28.6% |
+| major | 17 | +0.53 | 1.20 | 23.5% |
+| unknown | 1 | +0.00 | 0.00 | 100.0% |
+| TRUE PLACEBO (cosmetic & figs unchanged) | 8 | +0.17 | 0.17 | 75.0% |
+| cosmetic & figure changes | 3 | +0.00 | 0.00 | 100.0% |
 
-- TRUE-PLACEBO noise floor (text and figures both unchanged): n=2, mean |delta| 0.00, share with delta==0 100.0%. Cosmetic pairs with figure changes are reported separately (n=1); cosmetic pairs without a figs_any_change flag are in neither subset.
-- rating delta vs churn: Spearman rho(churn, |delta|) = 0.27 (p=0.2973, n=17 adjacent pairs)
+- TRUE-PLACEBO noise floor (text and figures both unchanged): n=8, mean |delta| 0.17, share with delta==0 75.0%. Cosmetic pairs with figure changes are reported separately (n=3); cosmetic pairs without a figs_any_change flag are in neither subset.
+- rating delta vs churn: Spearman rho(churn, |delta|) = 0.51 (p=0.0018, n=35 adjacent pairs)
 
 ### 2. Reliability
 
-- test-retest SD across reps (per paper-version, n=22): mean 0.3 | median 0.0
-- ICC(2,1) (targets=paper-versions n=22, raters=rep index k=2, 0 incomplete target(s) dropped): 0.90
-- signal vs noise: between-version SD of per-version means (within paper, n=18) mean 0.3 vs test-retest SD mean 0.3 -> ratio 0.91
+- test-retest SD across reps (per paper-version, n=65): mean 0.4 | median 0.0
+- ICC(2,1) (targets=paper-versions n=65, raters=rep index k=3, 0 incomplete target(s) dropped): 0.87
+- signal vs noise: between-version SD of per-version means (within paper, n=28) mean 0.4 vs test-retest SD mean 0.4 -> ratio 0.91
 
 ### 3. Human anchor
 
-- anchor version = latest pre_submission/during_review (fallback v1); papers with scored anchor: 23 (4 skipped: anchor version not scored)
+- anchor version = latest pre_submission/during_review (fallback v1); papers with scored anchor: 29 (0 skipped: anchor version not scored)
 
 | subset | n | Pearson r | Spearman rho |
 |---|---|---|---|
@@ -268,17 +268,17 @@ Same deltas by churn_class (true placebo = cosmetic text churn AND unchanged fig
 
 | score | LLM n | LLM % | human n | human % |
 |---|---|---|---|---|
-| 1 | 7 | 9.7% | 0 | n/a |
+| 1 | 14 | 7.2% | 0 | n/a |
 | 2 | 0 | 0.0% | 0 | n/a |
-| 3 | 14 | 19.4% | 0 | n/a |
+| 3 | 37 | 19.0% | 0 | n/a |
 | 4 | 0 | 0.0% | 0 | n/a |
-| 5 | 13 | 18.1% | 0 | n/a |
-| 6 | 29 | 40.3% | 0 | n/a |
+| 5 | 39 | 20.0% | 0 | n/a |
+| 6 | 72 | 36.9% | 0 | n/a |
 | 7 | 0 | 0.0% | 0 | n/a |
-| 8 | 9 | 12.5% | 0 | n/a |
+| 8 | 33 | 16.9% | 0 | n/a |
 | 9 | 0 | 0.0% | 0 | n/a |
 | 10 | 0 | 0.0% | 0 | n/a |
 
-- LLM ratings: mean 5.0 SD 2.0 | human per-review scores: mean n/a SD n/a (scales differ by ICLR year)
+- LLM ratings: mean 5.2 SD 1.9 | human per-review scores: mean n/a SD n/a (scales differ by ICLR year)
 - mean LLM rating (all scored versions/reps): accepted n/a (n=0) vs rejected n/a (n=0)
 
