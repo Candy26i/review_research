@@ -584,3 +584,82 @@ re-run them after any upstream change. `run_llm_review` checkpoints
 failed calls ARE checkpointed with `parsed_ok=false` (delete those rows to retry),
 missing text files are skipped and never checkpointed. `analyze_scores` is
 pure-local and OVERWRITES its outputs each run.
+
+## E5 resubmission pairs (LLM deltas vs REAL human score deltas)
+
+Ground-truth anchor: ICLR papers rejected in year N and resubmitted in year N+1..3
+with human review scores in BOTH rounds. Per round the manifest carries the latest
+arXiv version visible by that year's decision cutoff (stages `round1`/`round2`), so
+the LLM's round2-minus-round1 score delta can be correlated against the TRUE human
+delta (`human_delta_raw` only within one realized score scale — 2022-2025 are
+mutually compatible — and `human_delta_z`, per-year z-scored, across all years).
+
+Verified live 2026-10-23 on the real data: 36,113 parquet rows -> **184** candidate
+pairs (round 1 rejected, gap 1-3y) -> 184 identity-passed -> **150** score-complete
+(decided round 2, >=1 score both rounds) -> **29** arXiv-matched against the 463k-row
+bulk harvest -> **7** version-selected manifest rows (exclusions: 121 no_bulk_match,
+34 decision2_withdrawn, 15 no version before the round-1 decision, 7 unchanged
+between rounds). Coverage is concentrated in 2024->2025 (24/50 matched, 48%) because
+the bulk harvest only holds OAI datestamps >= 2024-06-01; growing n beyond this means
+re-harvesting older arXiv records, not loosening the matcher.
+
+### Full run (end to end)
+
+```sh
+# 1) Pair finder: pure-local (parquet + bulk harvest, 0 network calls).
+#    OVERWRITES e5_pairs.jsonl (every candidate with exclude_reason),
+#    e5_manifest.jsonl (fresh/ACL schema + e5 extras) and e5_papers.jsonl.
+python3 src/collect/find_resubmissions.py
+
+# 2) LaTeX sources: 7 papers x 2 versions = 14 downloads (1 req / 3 s, ~1 min).
+python3 src/collect/download_sources.py \
+  --manifest data/processed/e5_manifest.jsonl --dest data/raw/sources/ \
+  --log data/processed/e5_downloads.jsonl
+
+# 3) Processing, e5_* logs/dirs mirroring the ACL corpus (extracted trees share
+#    data/raw/extracted/, keyed by arxiv_id+v, so reruns dedupe across corpora).
+python3 src/process/extract_sources.py \
+  --downloads data/processed/e5_downloads.jsonl \
+  --manifest data/processed/e5_manifest.jsonl \
+  --dest data/raw/extracted/ --log data/processed/e5_extracted.jsonl
+python3 src/process/latex_to_text.py \
+  --extracted data/processed/e5_extracted.jsonl \
+  --out-dir data/processed/e5_texts_raw/ --log data/processed/e5_latex_log.jsonl
+python3 src/process/scrub_and_audit.py \
+  --in-dir data/processed/e5_texts_raw/ --manifest data/processed/e5_manifest.jsonl \
+  --papers data/processed/e5_papers.jsonl --out-dir data/processed/e5_texts/ \
+  --log data/processed/e5_scrub_log.jsonl
+
+# 4) Review runs: BOTH models into the SAME log (the checkpoint key includes the
+#    model, so the runs coexist and resume independently). K=3 reps x 14 texts
+#    = 42 calls per model, 84 total.
+python3 src/review/run_llm_review.py --reps 3 --workers 4 \
+  --model deepseek-chat \
+  --manifest data/processed/e5_manifest.jsonl --texts data/processed/e5_texts/ \
+  --log data/processed/e5_reviews_log.jsonl --out-dir data/processed/reviews_e5/
+python3 src/review/run_llm_review.py --reps 3 --workers 4 \
+  --model deepseek-reasoner \
+  --manifest data/processed/e5_manifest.jsonl --texts data/processed/e5_texts/ \
+  --log data/processed/e5_reviews_log.jsonl --out-dir data/processed/reviews_e5/
+
+# 5) Analysis: pure-local, one section per model in the log; OVERWRITES outputs.
+#    (Defaults already point at the e5_* files and the ACL noise-floor summary.)
+python3 src/analysis/analyze_e5.py --json-out results/e5_stats.json
+```
+
+### Approximate cost
+
+84 calls at the pilot's measured ~17.4k prompt tokens/call ≈ 1.5M prompt tokens +
+≤0.2M completion tokens (capped at 2k/call). The deepseek-chat half is ~$0.25 at
+list price ($0.28/M in, $0.42/M out); deepseek-reasoner is pricier per token and
+adds reasoning tokens, but at n=42 calls the whole run stays **~$1-2 total** before
+the prompt-cache discount. Check the current price page before launching.
+
+### Interpretation guardrails
+
+`results/e5_summary.md` writes its own caveats; the two that matter most: (a) n=7 —
+treat every statistic as directional until the pair base grows (the binding
+constraint is bulk-harvest coverage, see funnel above); (b) match-coverage bias —
+only papers touched on arXiv after 2024-06 can enter, over-representing actively
+revised work. `human_delta` ground truth itself is noisy (different committees
+across years), which attenuates correlations toward 0.
