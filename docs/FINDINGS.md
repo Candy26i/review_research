@@ -108,13 +108,18 @@ comparisons misleading.
 −40% appendix-cut); reasoner K=3 (444/444), Gemini text K=2 (296/296). Full tables:
 [`results/e4_probes_summary.md`](../results/e4_probes_summary.md).
 
-| variant (direction, length) | reasoner Δ (p) | gemini Δ (p) |
-|---|---|---|
-| typos (quality↓, len=) | **−0.41** (0.003) ✓ presentation −0.77 | −0.04 (0.76); presentation −0.58 but rating flat |
-| corrupt_numbers (soundness↓, len=) | −0.27 (0.053), wrong subscore | +0.08 (0.62) — **unnoticed** |
-| shuffle_paragraphs (coherence↓, len=) | **+0.29** (0.034) — rating UP | −0.06 (0.67) — flat |
-| pad_filler (content=, len **+31%**) | **−0.92** (<1e-4) | **−2.20** (<1e-4), 92% of papers down |
-| drop_appendix (core=, len **−40%**) | −0.01 (0.95) | +0.04 (0.95) |
+| variant (direction, length) | reasoner Δ (p) | gemini Δ (p) | chat Δ (94% complete) |
+|---|---|---|---|
+| typos (quality↓, len=) | **−0.41** (0.003) ✓ presentation −0.77 | −0.04 (0.76); presentation −0.58 but rating flat | −0.26 (n.s.) |
+| corrupt_numbers (soundness↓, len=) | −0.27 (0.053), wrong subscore | +0.08 (0.62) — **unnoticed** | **−0.39** [−0.73, −0.06] |
+| shuffle_paragraphs (coherence↓, len=) | **+0.29** (0.034) — rating UP | −0.06 (0.67) — flat | −0.09 (n.s.) |
+| pad_filler (content=, len **+31%**) | **−0.92** (<1e-4) | **−2.20** (<1e-4), 92% of papers down | −0.91 |
+| drop_appendix (core=, len **−40%**) | −0.01 (0.95) | +0.04 (0.95) | **−0.39** [−0.71, −0.06] |
+
+(chat arm addendum: it is the ONE arm the mechanical rule flags as **length-sensitive** —
+it penalizes the appendix cut (−0.39) despite unchanged core content — exactly the arm
+whose observational version effect was entirely absorbed by the length covariate.
+Observational and experimental methods converge on the same diagnosis.)
 
 Interpretation:
 1. **The observational length effect is mediation, not verbosity bias — in both arms.**
@@ -133,6 +138,27 @@ Interpretation:
    were silently falsified would sail through with its score intact. By the pre-registered
    mechanical rule both arms are **neither content-sensitive nor length-sensitive**; what
    they reliably punish is conspicuous fluff.
+
+## E2: pairwise comparison rescues weak absolute scorers
+
+The same 91 adjacent version pairs (main corpus), presented as two anonymized submissions
+A/B in both orders, judged once per order ("which is the stronger submission?"); compared
+against the SAME model's absolute-mode scores on the SAME pairs. Full tables:
+[`results/e2_pairwise_summary.md`](../results/e2_pairwise_summary.md).
+
+| | absolute mode (later>earlier) | **pairwise (picks later)** | major-churn pairs | order-flip rate |
+|---|---|---|---|---|
+| deepseek-chat | 38.5% | **68.7%** [61.6, 75.0] | **84.8%** | 19.8% |
+| deepseek-reasoner | 50.5% | **76.9%** [70.3, 82.4] | **92.9%** | **4.4%** |
+
+- **Presentation format, not model capability, was the binding constraint**: the weakest
+  absolute scorer nearly doubles its ordering accuracy when judging pairs side by side.
+- Placebo sanity holds (true-placebo pairs mostly judged "tie"; later-pick 15–18% ≈
+  early-pick), and **margin self-report is well calibrated**: the reasoner's "clear"
+  judgments are 100% correct, "slight" ones near chance.
+- Deployment implication: LLM reviewers are far more trustworthy as *comparators* (triage,
+  revision checking) than as *scorers* — which is also the configuration conferences have
+  not piloted.
 
 ## Contamination / recognition probe
 
@@ -169,10 +195,12 @@ submitted 2026-07..09 — after both models' training windows; full tables in
 
 - **Recognition probe: 0/29 papers claimed recognized** (vs 76% on the ICLR corpus) — the
   post-cutoff design works.
-- **Version effects replicate at matching magnitudes in all three arms**: gemini-think
-  **+0.23/step (p=0.016)**, gemini-no-think **+0.28/step (p=0.010)**, deepseek-reasoner
-  **+0.19/step (p=0.0097)** (main corpus: +0.28 / +0.20 / +0.15). Reliability is the best
-  of the whole study here (ICC 0.77–0.89; gemini-no-think cosmetic placebo 82% unchanged).
+- **Version effects replicate at matching magnitudes in all three reasoning-capable arms**:
+  gemini-think **+0.23/step (p=0.016)**, gemini-no-think **+0.28/step (p=0.010)**,
+  deepseek-reasoner **+0.19/step (p=0.0097)** (main corpus: +0.28 / +0.20 / +0.15).
+  deepseek-chat stays null here (−0.02/step, p=0.84), consistent with its weak main-corpus
+  profile. Reliability is the best of the whole study (ICC 0.60–0.89; gemini-no-think
+  cosmetic placebo 82% unchanged).
 
 Together with the split analysis below, contamination is now excluded by three independent
 lines of evidence: group-split survival, negative interaction, and zero-recognition

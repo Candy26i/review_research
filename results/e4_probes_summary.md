@@ -1,6 +1,6 @@
 # E4: synthetic edit probes - content sensitivity vs length sensitivity
 
-- review log: `data/processed/probe_reviews_log.jsonl` - 740 rows, 739 parsed_ok rating rows used
+- review log: `data/processed/probe_reviews_log.jsonl` - 1183 rows, 1155 parsed_ok rating rows used
 - thresholds (fixed upfront): content-sensitive iff mean degradation delta < -0.30 with 95% CI excluding 0; length-sensitive iff pad_filler delta > +0.15 or drop_appendix delta < -0.15 with 95% CI excluding 0
 
 ## Probe construction context (from the probes log)
@@ -13,6 +13,71 @@
 | typos | 25 | 0 | 1.00 (n=25) |
 | pad_filler | 25 | 0 | 1.31 (n=25) |
 | drop_appendix | 23 | 2 (no appendix heading: 2) | 0.60 (n=23) |
+
+## Model: deepseek-chat
+
+- papers with a scored base: 25 (mean base rating 4.67) | reps per (paper, variant) cell: 1-3
+
+### 1. Per-variant paired effects (variant mean minus the same paper's base mean, across reps)
+
+| variant | n papers | mean delta | 95% CI | delta<0 | delta==0 | delta>0 | mean \|delta\| |
+|---|---|---|---|---|---|---|---|
+| shuffle_paragraphs | 25 | -0.06 | [-0.39, +0.27] | 52.0% | 16.0% | 32.0% | 0.57 |
+| corrupt_numbers | 25 | -0.40 | [-0.73, -0.07] | 64.0% | 16.0% | 20.0% | 0.72 |
+| typos | 25 | -0.27 | [-0.66, +0.12] | 60.0% | 8.0% | 32.0% | 0.77 |
+| pad_filler | 25 | -0.91 | [-1.26, -0.57] | 80.0% | 12.0% | 8.0% | 0.99 |
+| drop_appendix | 23 | -0.39 | [-0.71, -0.07] | 60.9% | 8.7% | 30.4% | 0.70 |
+
+Subscore deltas (same pairing; n in parentheses = papers where both sides report that subscore):
+
+| variant | d soundness | d presentation | d contribution | largest mover | expected | right subscore? |
+|---|---|---|---|---|---|---|
+| shuffle_paragraphs | +0.03 (n=25) | -0.55 (n=25) | -0.02 (n=25) | presentation | - | - |
+| corrupt_numbers | -0.15 (n=25) | -0.42 (n=25) | -0.06 (n=25) | presentation | soundness | NO |
+| typos | -0.11 (n=25) | -0.71 (n=25) | -0.14 (n=25) | presentation | presentation | YES |
+| pad_filler | -0.21 (n=25) | -1.24 (n=25) | -0.21 (n=25) | presentation | - | - |
+| drop_appendix | -0.14 (n=23) | -0.05 (n=23) | -0.14 (n=23) | tie: contribution/soundness | - | - |
+- typos -> presentation should move most: **YES**
+- corrupt_numbers -> soundness should move most: **NO**
+
+### 2. Mixed model: rating ~ C(variant, base reference) + (1|paper), rep-level rows
+
+- n rep-level rows: 416 | papers: 25 | variants: 5 + base
+
+| variant (vs base) | coef | 95% CI | p |
+|---|---|---|---|
+| corrupt_numbers | -0.39 | [-0.73, -0.06] | 0.0208 |
+| drop_appendix | -0.38 | [-0.72, -0.04] | 0.0295 |
+| pad_filler | -0.92 | [-1.26, -0.59] | 0.0000 |
+| shuffle_paragraphs | -0.10 | [-0.43, +0.24] | 0.5694 |
+| typos | -0.25 | [-0.58, +0.09] | 0.1460 |
+
+### 3. The 2x2 verdict: content sensitivity vs length sensitivity
+
+- content sensitivity (mean paired delta over length-preserved degradations shuffle_paragraphs, corrupt_numbers, typos): -0.24 (95% CI [-0.53, +0.05], n=25 papers) | threshold < -0.30 with CI excluding 0 -> not fired
+- length sensitivity: pad_filler -0.91 (95% CI [-1.26, -0.57], n=25) vs > +0.15 -> not fired | drop_appendix -0.39 (95% CI [-0.71, -0.07], n=23) vs < -0.15 -> FIRED
+- pad-minus-drop asymmetry (papers with both, n=23): -0.62 (95% CI [-0.99, -0.24])
+
+|  | length-sensitive: NO | length-sensitive: YES |
+|---|---|---|
+| content-sensitive: YES | genuine quality signal | quality signal + length bias |
+| content-sensitive: NO | insensitive / noise-level | length-driven reviewer **<= this model** |
+
+This model is NOT content-sensitive by the mechanical rule: the mean rating delta across the length-preserved degradations is -0.24 (95% CI [-0.53, +0.05], n=25), which does not cross the -0.30 threshold with a CI excluding 0. It IS length-sensitive: pad_filler moved ratings by -0.91 (95% CI [-1.26, -0.57]) against the +0.15 threshold and drop_appendix by -0.39 (95% CI [-0.71, -0.07]) against the -0.15 threshold, so the trigger fired on drop_appendix. Verdict: content-insensitive but length-sensitive: behaves like a length-driven reviewer.
+
+### 4. Noise context (E0/E1 true-placebo floor)
+
+- true-placebo noise floor for this model (from the e0 summary): mean |delta| 0.43 (n=17 adjacent cosmetic pairs, mean delta -0.31)
+- the floor is a between-adjacent-version quantity from real revisions, so ratios are context, not a significance test.
+
+| effect | mean delta | \|effect\| / noise floor | exceeds floor? |
+|---|---|---|---|
+| content (mean degradation delta) | -0.24 | 0.6x | no |
+| shuffle_paragraphs | -0.06 | 0.1x | no |
+| corrupt_numbers | -0.40 | 0.9x | no |
+| typos | -0.27 | 0.6x | no |
+| pad_filler | -0.91 | 2.1x | YES |
+| drop_appendix | -0.39 | 0.9x | no |
 
 ## Model: deepseek-reasoner
 

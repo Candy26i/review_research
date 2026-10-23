@@ -1,7 +1,100 @@
 # E0: LLM review-score analysis
 
-- log: `data/processed/fresh_reviews_log.jsonl` - 583 rows, 583 parsed_ok rating rows used
+- log: `data/processed/fresh_reviews_log.jsonl` - 778 rows, 778 parsed_ok rating rows used
 - manifest: `data/processed/fresh_manifest.jsonl` (30 papers) | diffs: `data/processed/fresh_version_diffs.jsonl`
+
+## Model: deepseek-chat
+
+- parsed_ok reviews: 195 | papers scored: 29 | paper-versions scored: 65
+
+### 1. Version tracking
+
+- papers with >= 2 scored versions: 28
+- mean Kendall tau-b (all-tied excluded): -0.18 (n=18)
+- tau>0: 25.0% | tau==0 (ties, incl. all-tied): 35.7% | tau<0: 39.3% | all-tied papers: 10
+- tau hist: [-1.0,-0.5):9 [-0.5,+0.0):2 [+0.0,+0.5):1 [+0.5,+1.0]:6 all-tied(nan):10
+
+Adjacent-pair direction (mean rating of v_{i+1} vs v_i):
+
+| churn_class | n | P(>) | P(=) | P(<) |
+|---|---|---|---|---|
+| ALL | 36 | 27.8% | 36.1% | 36.1% |
+| cosmetic | 11 | 27.3% | 18.2% | 54.5% |
+| minor | 7 | 28.6% | 71.4% | 0.0% |
+| major | 17 | 29.4% | 35.3% | 35.3% |
+| unknown | 1 | 0.0% | 0.0% | 100.0% |
+
+Cosmetic pairs (should be '='): 2/11 tied (18.2%).
+
+### 1b. Inferential version-effect tests
+
+- bootstrap 95% CI for the mean finite tau (papers resampled with replacement, 10,000 draws, seed 42): mean -0.18, CI [-0.58, +0.24]
+- per-paper correlation, version position vs mean rating (>= 3 versions, constant-rating papers excluded): mean Pearson 0.19 (n=4, 50.0% positive) | mean Spearman 0.22 (n=4)
+- Page trend test (first 3 versions of the 7 papers with >= 3 versions; H1 = ratings increase along versions): L=87, p=0.2558
+- mixed-effects regression rating ~ version_position + (1|paper) on rep-level ratings (n=192, 28 papers): -0.02 rating points per revision step (95% CI [-0.21, +0.17], p=0.8367)
+- verbosity control rating ~ version_position + log_words + (1|paper): n/a (needs >= 3 papers, >= 2 positions, and scrub-log n_words with variation)
+
+### 1c. Where the effect lives
+
+Adjacent-pair mean rating delta (v_to minus v_from) by stage transition (stages from the manifest):
+
+| stage transition | n | mean delta | mean \|delta\| | share delta==0 |
+|---|---|---|---|---|
+| unknown -> unknown | 36 | -0.06 | 0.67 | 36.1% |
+
+Same deltas by churn_class (true placebo = cosmetic text churn AND unchanged figures):
+
+| subset | n | mean delta | mean \|delta\| | share delta==0 |
+|---|---|---|---|---|
+| cosmetic | 11 | -0.39 | 0.70 | 18.2% |
+| minor | 7 | +0.43 | 0.43 | 71.4% |
+| major | 17 | -0.00 | 0.75 | 35.3% |
+| unknown | 1 | -0.67 | 0.67 | 0.0% |
+| TRUE PLACEBO (cosmetic & figs unchanged) | 8 | -0.17 | 0.58 | 25.0% |
+| cosmetic & figure changes | 3 | -1.00 | 1.00 | 0.0% |
+
+- TRUE-PLACEBO noise floor (text and figures both unchanged): n=8, mean |delta| 0.58, share with delta==0 25.0%. Cosmetic pairs with figure changes are reported separately (n=3); cosmetic pairs without a figs_any_change flag are in neither subset.
+- rating delta vs churn: Spearman rho(churn, |delta|) = 0.09 (p=0.6063, n=35 adjacent pairs)
+
+### 2. Reliability
+
+- test-retest SD across reps (per paper-version, n=65): mean 0.5 | median 0.0
+- ICC(2,1) (targets=paper-versions n=65, raters=rep index k=3, 0 incomplete target(s) dropped): 0.60
+- signal vs noise: between-version SD of per-version means (within paper, n=28) mean 0.5 vs test-retest SD mean 0.5 -> ratio 0.90
+
+### 3. Human anchor
+
+- anchor version = latest pre_submission/during_review (fallback v1); papers with scored anchor: 29 (0 skipped: anchor version not scored)
+
+| subset | n | Pearson r | Spearman rho |
+|---|---|---|---|
+| overall | 0 | n/a | n/a |
+| accepted | 0 | n/a | n/a |
+| rejected | 0 | n/a | n/a |
+
+| accept/reject discrimination | n | ROC AUC |
+|---|---|---|
+| LLM mean rating (anchor) | 0 | n/a |
+| LLM accept-vote share (anchor) | 0 | n/a |
+| human mean_score (reference) | 0 | n/a |
+
+### 4. Distributions
+
+| score | LLM n | LLM % | human n | human % |
+|---|---|---|---|---|
+| 1 | 3 | 1.5% | 0 | n/a |
+| 2 | 0 | 0.0% | 0 | n/a |
+| 3 | 122 | 62.6% | 0 | n/a |
+| 4 | 0 | 0.0% | 0 | n/a |
+| 5 | 44 | 22.6% | 0 | n/a |
+| 6 | 24 | 12.3% | 0 | n/a |
+| 7 | 0 | 0.0% | 0 | n/a |
+| 8 | 2 | 1.0% | 0 | n/a |
+| 9 | 0 | 0.0% | 0 | n/a |
+| 10 | 0 | 0.0% | 0 | n/a |
+
+- LLM ratings: mean 3.8 SD 1.3 | human per-review scores: mean n/a SD n/a (scales differ by ICLR year)
+- mean LLM rating (all scored versions/reps): accepted n/a (n=0) vs rejected n/a (n=0)
 
 ## Model: deepseek-reasoner
 
