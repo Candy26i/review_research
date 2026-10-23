@@ -139,6 +139,24 @@ Interpretation:
    mechanical rule both arms are **neither content-sensitive nor length-sensitive**; what
    they reliably punish is conspicuous fluff.
 
+## Scale replication: ACL 2025, 1,379 papers (27× the main corpus)
+
+All of ACL 2025 (main + findings) matched to arXiv via a bulk OAI harvest: **1,379 papers /
+3,629 versions / 10,860 deepseek-chat reviews (100% parsed, ~$17)**. Score-free corpus
+(ACL reviews are private), so this is pure version tracking. Full tables:
+[`results/acl_scores_summary.md`](../results/acl_scores_summary.md).
+
+- **The version effect replicates across venues at matching magnitude**: +0.10/step
+  (CI +0.08..+0.12, p<1e-4; ICLR estimate for the same model: +0.11). Page trend p<1e-4
+  over the 560 papers with ≥3 versions; 71% of per-paper correlations positive.
+- **Scale resolves the power question**: with 1,375 papers the effect **survives the
+  length control even for deepseek-chat** (+0.07/step, p<1e-4) — the 50-paper ICLR null
+  (+0.01, p=0.85) was under-power, not absence. Every configuration tested now shows a
+  genuine, length-independent (if small) version effect.
+- **Dose–response**: adjacent-pair score delta grows with revision size — cosmetic +0.05
+  < minor +0.10 < major +0.20 — exactly the gradient a quality-tracking signal predicts,
+  and the 615 true-placebo pairs sit at the noise floor (+0.05).
+
 ## E2: pairwise comparison rescues weak absolute scorers
 
 The same 91 adjacent version pairs (main corpus), presented as two anonymized submissions
