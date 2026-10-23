@@ -401,3 +401,83 @@ papers count toward `--target`):
 
 Downstream stages (`download_sources`, `extract_sources`, `latex_to_text`,
 `scrub_and_audit`, review runner) consume these files unchanged.
+
+## E2 pairwise comparison (mock-verified 2026-10-22)
+
+For every adjacent version pair (v_i, v_{i+1}) of the same paper whose scrubbed texts
+both exist, `run_pairwise_review.py` shows the two versions as two anonymized
+submissions (A/B) in ONE prompt and asks which is the STRONGER submission
+(`src/review/prompts/pairwise_v1.md`; verdict JSON: `better` A/B/tie, `margin`
+slight/clear/decisive, `confidence` 1-5). `--orders both` runs each pair twice (early
+as A, then swapped) so position bias is measurable and removable; the logged
+`picked_version` maps the positional verdict back onto early/later/tie.
+`analyze_pairwise.py` then reports later-pick rates by churn class (incl. the
+true-placebo subset), position bias + order consistency, the pairwise-vs-absolute
+cross-tab against `reviews_log.jsonl` on the same pairs, and margin calibration.
+
+Mock end-to-end verified 2026-10-22: 50 papers -> 91 pairs with both texts (93
+adjacent pairs minus the 2 touching withdrawn `2301.12935` v2) x 2 orders = 182
+calls, 182/182 parsed_ok, re-run makes 0 new calls; analysis ns all reconcile (91
+distinct pairs, churn ns 50+20+112 = 182, placebo 34 + cosmetic-with-figs 16 = 50
+cosmetic, section-3 join finds absolute scores for all 91 pairs, 0 excluded).
+
+### Real runs
+
+```sh
+# mock e2e first (no network, same parse/log path; point --log/--out-dir at a tmp dir)
+python3 src/review/run_pairwise_review.py --mock --orders both --reps 1 \
+  --log /tmp/e2mock/log.jsonl --out-dir /tmp/e2mock/reviews
+
+# real: deepseek-chat, 91 pairs x 2 orders = 182 calls
+python3 src/review/run_pairwise_review.py --orders both --reps 1
+
+# real: deepseek-reasoner, same 182 calls (raise the completion cap for reasoning tokens)
+python3 src/review/run_pairwise_review.py --model deepseek-reasoner --max-tokens 16000 \
+  --orders both --reps 1
+
+python3 src/analysis/analyze_pairwise.py   # -> results/e2_pairwise_summary.md
+                                           #    (every model in the log, separately)
+
+# optional fresh-corpus variants (30 papers, 35 pairs x 2 orders = 70 calls/arm)
+python3 src/review/run_pairwise_review.py --orders both --reps 1 \
+  --manifest data/processed/fresh_manifest.jsonl --texts data/processed/fresh_texts/ \
+  --log data/processed/fresh_pairwise_log.jsonl --out-dir data/processed/reviews_fresh/
+python3 src/analysis/analyze_pairwise.py \
+  --log data/processed/fresh_pairwise_log.jsonl \
+  --diffs data/processed/fresh_version_diffs.jsonl \
+  --manifest data/processed/fresh_manifest.jsonl \
+  --reviews-log data/processed/fresh_reviews_log.jsonl \
+  --out results/e2_fresh_pairwise_summary.md
+```
+
+Key setup is the same as E0 (`DEEPSEEK_API_KEY` in the repo-root `.env`). `--limit N`
+caps calls per run for a cautious first ramp-up. Defaults: log
+`data/processed/pairwise_log.jsonl`, raw bodies
+`data/processed/reviews/<model>-pairwise/` (never mixed with E0/E4 raws).
+
+### Approximate cost
+
+Each call carries TWO full papers, so prompts are roughly twice E0's: ~35k input
+tokens/call (mock char/4 estimate: mean ~33k, median ~28k, max ~65k; per-paper texts
+hard-capped at `--max-chars-each` 190000 so two always fit in the 128K context).
+Main corpus, per arm: 182 calls ~ 6.4M prompt tokens. deepseek-chat at list price
+($0.28/M in, $0.42/M out, completions capped at 2k) = **~$2**. deepseek-reasoner at
+its own list price plus reasoning-token completions (16k cap) realistically lands
+around **$5-10** — check the current price page first. Fresh corpus is 70 calls/arm
+(~38% of the main corpus): **~$0.8** chat / **~$2-4** reasoner. List prices ignore
+DeepSeek's prompt-cache discount.
+
+### Resume semantics
+
+`pairwise_log.jsonl` is an append-only checkpoint keyed on
+`key = "<arxiv_id>|v<v_from>v<v_to>|<order>|<model>|t<temperature>|r<rep>"`: re-running
+skips keys already logged, an interrupted run continues where it stopped, and a
+completed run makes 0 calls (mock-verified). The order token is part of the key, so an
+interrupted `--orders both` run resumes per (pair, order), and a new `--model` /
+`--temperature` is a fresh key grid, not an overwrite. `--orders random` draws one
+seeded order per pair that is stable across runs/resumes (same `--seed`). Failed calls
+(HTTP error after retries, or unparseable after 1 parse re-request) ARE checkpointed
+with `parsed_ok=false` — delete those rows from the log to retry. Pairs with a missing
+text file are skipped and never checkpointed. `analyze_pairwise.py` is pure-local,
+keeps only `parsed_ok` rows, tolerates a torn final line from a concurrent append, and
+OVERWRITES `--out` each run.
