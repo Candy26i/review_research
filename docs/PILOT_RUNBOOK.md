@@ -481,3 +481,106 @@ with `parsed_ok=false` — delete those rows from the log to retry. Pairs with a
 text file are skipped and never checkpointed. `analyze_pairwise.py` is pure-local,
 keeps only `parsed_ok` rows, tolerates a torn final line from a concurrent append, and
 OVERWRITES `--out` each run.
+
+## ACL 2025 corpus (all of ACL 2025: long + short + Findings)
+
+Scales the version-tracking design to every paper published at ACL 2025
+(`2025.acl-long`, `2025.acl-short`, `2025.findings-acl`). The Anthology lists only
+published papers, so every row is `decision: "accepted"` with NO review scores —
+like the fresh corpus, this supports version-tracking analyses only. ACL rows carry
+`year`/`iclr_year` **0** on purpose: 0 has no entry in `iclr_timeline.TIMELINES`, so
+every version stage is labeled `unknown` (ACL papers must never pick up an ICLR
+timeline). Two side effects of year 0 are cosmetic, not errors: `match_arxiv` prints
+every match as `implausible dates` (its window becomes [-3, 1]), and
+`strata.spans_stages` is always `false`.
+
+Slice verified live 2026-10-22: collection parsed **3,086** papers from the three
+volume `.bib` exports (1,602 long + 97 short + 1,387 findings); a 10-paper live match
+slice matched 10/10 (9 exact, 1 fuzzy; 7/10 with `latest_version >= 2`) and the
+re-run made 0 queries; one OAI chain + one synthesized v1-only chain produced an
+`acl_manifest.jsonl` row whose schema is exactly `fresh_manifest.jsonl`'s keys plus
+`venue` and `acl_id`, all stages `unknown`.
+
+### Full run (end to end)
+
+```sh
+# 1) Paper lists: 3 Anthology volume fetches, cached under data/raw/anthology/
+#    (re-run = 0 network calls). 3,086 rows -> data/processed/acl_papers.jsonl.
+python3 src/collect/collect_acl.py
+
+# 2) arXiv title matching: 3,086 queries at 1 req / 3 s -> ~2-3 h.
+#    (--years 0 is explicit; the file contains only year-0 rows anyway.)
+python3 src/collect/match_arxiv.py \
+  --in data/processed/acl_papers.jsonl --out data/processed/acl_matches.jsonl \
+  --decisions accepted --years 0
+
+# 3) Version chains: one OAI call per match with latest_version >= 2 (v1-only rows
+#    are synthesized without a call) -> ~1-1.5 h at the slice's 70% multi-version rate.
+python3 src/collect/fetch_versions.py \
+  --matches data/processed/acl_matches.jsonl --out data/processed/acl_chains.jsonl
+
+# 4) Full score-free manifest: keeps every chain with n_versions >= 2, re-attaches
+#    venue/acl_id. Pure-local; OVERWRITES data/processed/acl_manifest.jsonl.
+python3 src/collect/build_acl_manifest.py
+
+# 5) LaTeX sources, every version of every manifest paper (1 req / 3 s) -> ~3 h.
+python3 src/collect/download_sources.py \
+  --manifest data/processed/acl_manifest.jsonl --dest data/raw/sources/ \
+  --log data/processed/acl_downloads.jsonl
+
+# 6) Processing, acl_* logs/dirs mirroring the fresh corpus (extracted trees share
+#    data/raw/extracted/, keyed by arxiv_id, exactly like the fresh run).
+python3 src/process/extract_sources.py \
+  --downloads data/processed/acl_downloads.jsonl \
+  --manifest data/processed/acl_manifest.jsonl \
+  --dest data/raw/extracted/ --log data/processed/acl_extracted.jsonl
+python3 src/process/latex_to_text.py \
+  --extracted data/processed/acl_extracted.jsonl \
+  --out-dir data/processed/acl_texts_raw/ --log data/processed/acl_latex_log.jsonl
+python3 src/process/scrub_and_audit.py \
+  --in-dir data/processed/acl_texts_raw/ --manifest data/processed/acl_manifest.jsonl \
+  --papers data/processed/acl_papers.jsonl --out-dir data/processed/acl_texts/ \
+  --log data/processed/acl_scrub_log.jsonl
+python3 src/process/diff_versions.py \
+  --texts data/processed/acl_texts/ --manifest data/processed/acl_manifest.jsonl \
+  --out data/processed/acl_version_diffs.jsonl
+
+# 7) Review run: deepseek-chat, K=3 reps, ~10,000 calls (ramp up with --limit first,
+#    e.g. --limit 50, inspect the log, then re-run without it to resume).
+python3 src/review/run_llm_review.py --reps 3 --workers 4 \
+  --manifest data/processed/acl_manifest.jsonl --texts data/processed/acl_texts/ \
+  --log data/processed/acl_reviews_log.jsonl --out-dir data/processed/reviews_acl/
+
+# 8) Analysis: pure-local, OVERWRITES both outputs.
+python3 src/analysis/analyze_scores.py \
+  --log data/processed/acl_reviews_log.jsonl \
+  --manifest data/processed/acl_manifest.jsonl \
+  --diffs data/processed/acl_version_diffs.jsonl \
+  --scrub data/processed/acl_scrub_log.jsonl \
+  --out results/acl_scores_summary.md --per-paper-out results/acl_per_paper.jsonl
+```
+
+### Approximate cost
+
+Scaling the pilot's measured rate (~17.4k prompt tokens/call, completions capped at
+2k): ~10,000 calls ~ 175M prompt tokens -> **~$50-55** at the deepseek-chat list price
+($0.28/M in, $0.42/M out), before DeepSeek's prompt-cache discount. Check the current
+price page before launching.
+
+### Resume semantics
+
+Every network stage is safe to re-run and an interrupted run continues where it
+stopped. `collect_acl` caches the raw volume responses under `data/raw/anthology/`
+and appends to `acl_papers.jsonl` checkpointed on `openreview_id` (= the anthology
+ID), so a re-run makes 0 network calls. `match_arxiv` checkpoints on
+`openreview_id` (verified on the slice: re-run = 0 queries; `--retry-none` re-queries
+only `match_method: "none"` rows), `fetch_versions` on `arxiv_id` (plus the XML cache
+under `data/raw/oai_xml/`), `download_sources` on `<arxiv_id>v<v>`.
+`extract_sources` / `latex_to_text` / `scrub_and_audit` are append-only on
+`key = "<arxiv_id>v<v>"` (surgical reset: see the pilot processing section).
+`build_acl_manifest` and `diff_versions` are pure-local and rebuild from scratch, so
+re-run them after any upstream change. `run_llm_review` checkpoints
+`acl_reviews_log.jsonl` on `key = "<arxiv_id>v<v>|<model>|t<temperature>|r<rep>"`;
+failed calls ARE checkpointed with `parsed_ok=false` (delete those rows to retry),
+missing text files are skipped and never checkpointed. `analyze_scores` is
+pure-local and OVERWRITES its outputs each run.
