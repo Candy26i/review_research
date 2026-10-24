@@ -32,7 +32,8 @@ training-data contamination.
 - [x] E2 pairwise comparison: same pairs, same models — later-version pick rate jumps from 38.5%→**68.7%** (chat) and 50.5%→**76.9%** (reasoner, 92.9% on major revisions); LLM reviewers are comparators, not scorers
 - [x] DeepSeek fill-ins: fresh×chat null (−0.02/step); E4×chat flagged **length-sensitive** — converging with the observational length-control result
 - [x] **ACL 2025 scale replication**: 1,379 papers / 3,629 versions / 10,860 reviews ($17) — +0.10/step (p<1e-4) matching ICLR; survives length control at scale; dose-response cosmetic +0.05 < minor +0.10 < major +0.20
-- [ ] E5 human-delta anchoring; write-up
+- [x] E5 human-delta anchoring (25 resubmission pairs via the Kaggle snapshot): **honest null** — LLM deltas do not track human cross-round deltas (agreement 32-36%), separating "perceives revision" (robust) from "matches human re-scoring" (no evidence)
+- [ ] Write-up
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
 - [ ] P2 main runs (E1 monotonicity, E2 pairwise, E3 reliability)

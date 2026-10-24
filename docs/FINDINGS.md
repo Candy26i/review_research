@@ -246,6 +246,26 @@ Grading audit: placebo-subset ns in the report hand-recounted (deepseek-chat 5,
 gemini arms 17 — all match) and probe grading re-derived on 3 random log rows against the
 manifest/ICLR ground truth (all match).
 
+## E5: LLM deltas do NOT track human deltas (honest null, n=25)
+
+Rejected-then-resubmitted ICLR papers (found by cross-year title matching over all 36k
+submissions; both rounds carry real human scores; per-round arXiv versions selected against
+official timelines; full tables in [`results/e5_summary.md`](../results/e5_summary.md)):
+
+- **No correlation** between LLM score change and human score change across rounds
+  (Pearson −0.25/−0.09, n.s.; sign agreement 32–36%; AUC for round-2 re-acceptance
+  0.43–0.57 ≈ chance), while the LLM's mean delta stays positive (+0.23), consistent with
+  the version effect.
+- **Interpretation (two candidate readings, honestly separable):** (a) the LLM misses the
+  quality dimension humans react to; (b) between-round human deltas are themselves
+  dominated by panel noise — round 2 is a different reviewer panel, and the NeurIPS
+  consistency experiments put panel-to-panel variance at the same magnitude as these deltas.
+  n=25 cannot separate these; the dissociation finding (strong within-paper tracking, weak
+  human alignment) makes (a)+(b) jointly likely.
+- This cleanly splits two claims the field tends to conflate: LLM reviewers *perceive that
+  revision happened* (robust), but there is **no evidence their reaction matches how human
+  panels re-score the same revision**.
+
 ## Threats to validity
 
 1. **Text-only extraction misses figure-only revisions** — 74% of adjacent pairs change
