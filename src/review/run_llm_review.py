@@ -46,6 +46,11 @@ MAX_ATTEMPTS = 4
 # DeepSeek list price (USD per million tokens), for the approximate cost line only.
 PRICE_IN_PER_M = 0.28
 PRICE_OUT_PER_M = 0.42
+# Anthropic list prices (USD per million tokens), matched by substring of --model.
+ANTHROPIC_PRICES = {
+    'opus-5-5': (4.00, 20.00), 'sonnet-5-5': (2.00, 10.00), 'haiku-5-5': (0.10, 0.50),
+}
+ANTHROPIC_EFFORTS = {'low', 'medium', 'high', 'xhigh', 'max'}
 
 PARSE_RETRY_LINE = "Previous response was not valid JSON. Respond with the JSON object only."
 
@@ -211,6 +216,58 @@ def http_chat(cfg: argparse.Namespace, api_key: str, messages: list[dict]) -> di
     raise RuntimeError(f"request failed after {MAX_ATTEMPTS} attempts ({last_err})")
 
 
+_anthropic_client = None
+_anthropic_lock = threading.Lock()
+
+
+def get_anthropic_client(api_key: str):
+    global _anthropic_client
+    with _anthropic_lock:
+        if _anthropic_client is None:
+            import anthropic
+            _anthropic_client = anthropic.Anthropic(api_key=api_key, max_retries=3,
+                                                    timeout=600.0)
+    return _anthropic_client
+
+
+def anthropic_chat(cfg: argparse.Namespace, api_key: str, messages: list[dict]) -> dict:
+    """Call the Anthropic Messages API (text-only arm) and convert the response to
+    the OpenAI chat-completion shape the rest of the pipeline expects.
+
+    Temperature is never sent (current Claude models reject non-default values; the
+    key's t-segment stays a label). Thinking is adaptive and cannot be disabled on
+    Opus 5.5; --reasoning-effort maps to output_config.effort (low..max). A safety
+    refusal becomes an error row — no server-side fallback, so the arm never
+    silently switches models."""
+    import anthropic
+    client = get_anthropic_client(api_key)
+    system = messages[0]['content']
+    user = messages[1]['content']
+    if not isinstance(user, str):
+        raise RuntimeError('anthropic arm is text-only (no --images-dir support yet)')
+    kwargs: dict = {"model": cfg.model, "max_tokens": cfg.max_tokens, "system": system,
+                    "messages": [{"role": "user", "content": user}]}
+    if getattr(cfg, 'reasoning_effort', ''):
+        kwargs['output_config'] = {'effort': cfg.reasoning_effort}
+    try:
+        resp = client.messages.create(**kwargs)
+    except anthropic.APIError as exc:
+        raise RuntimeError(f"anthropic API error: {str(exc)[:300]}") from exc
+    if resp.stop_reason == 'refusal':
+        cat = getattr(getattr(resp, 'stop_details', None), 'category', None)
+        raise RuntimeError(f"refusal (category={cat})")
+    text = ''.join(b.text for b in resp.content if getattr(b, 'type', '') == 'text')
+    u = resp.usage
+    return {
+        "id": resp.id, "model": resp.model, "provider": "anthropic",
+        "stop_reason": resp.stop_reason,
+        "choices": [{"index": 0, "message": {"role": "assistant", "content": text},
+                     "finish_reason": resp.stop_reason}],
+        "usage": {"prompt_tokens": u.input_tokens, "completion_tokens": u.output_tokens,
+                  "total_tokens": u.input_tokens + u.output_tokens},
+    }
+
+
 def mock_response(key: str, paper_text: str, model: str, n_images: int = 0) -> dict:
     """Deterministic fake chat-completion body; same shape as the real API response.
     Fake usage charges MOCK_TOKENS_PER_IMAGE prompt tokens per attached image."""
@@ -331,6 +388,8 @@ def run_task(task: dict, cfg: argparse.Namespace, api_key: str | None,
                                           text, image_uris)
             if cfg.mock:
                 body = mock_response(task['key'], text, cfg.model, n_images)
+            elif cfg.provider == 'anthropic':
+                body = anthropic_chat(cfg, api_key, messages)
             else:
                 body = http_chat(cfg, api_key, messages)
             content = body['choices'][0]['message']['content']
@@ -406,6 +465,9 @@ def main() -> None:
     ap.add_argument('--log', default='data/processed/reviews_log.jsonl')
     ap.add_argument('--prompt', default='src/review/prompts/review_v1.md')
     ap.add_argument('--model', default='deepseek-chat')
+    ap.add_argument('--provider', default='openai', choices=('openai', 'anthropic'),
+                    help="'openai' = any OpenAI-compatible /chat/completions endpoint "
+                         "(the default); 'anthropic' = the Anthropic Messages API")
     ap.add_argument('--base-url', default='https://api.deepseek.com')
     ap.add_argument('--api-key-env', default='DEEPSEEK_API_KEY')
     ap.add_argument('--images-dir', default='',
@@ -434,6 +496,14 @@ def main() -> None:
         # a negative value would be a silent Python negative slice in discover_images
         # (dropping trailing figures while still attaching the rest under an img key)
         ap.error('--max-images must be >= 0')
+    if cfg.provider == 'anthropic':
+        if cfg.api_key_env == 'DEEPSEEK_API_KEY':
+            cfg.api_key_env = 'ANTHROPIC_API_KEY'
+        if cfg.images_dir:
+            ap.error('--provider anthropic is text-only for now (drop --images-dir)')
+        if cfg.reasoning_effort and cfg.reasoning_effort not in ANTHROPIC_EFFORTS:
+            ap.error(f"--reasoning-effort for anthropic must be one of "
+                     f"{sorted(ANTHROPIC_EFFORTS)} (thinking cannot be disabled)")
 
     api_key = load_api_key(cfg.api_key_env, cfg.mock)
     system, user_template = load_prompt(cfg.prompt)
@@ -492,7 +562,13 @@ def main() -> None:
     pbar.close()
 
     made = len(tasks)
-    cost = tok_in / 1e6 * PRICE_IN_PER_M + tok_out / 1e6 * PRICE_OUT_PER_M
+    price_in, price_out = PRICE_IN_PER_M, PRICE_OUT_PER_M
+    if cfg.provider == 'anthropic':
+        for frag, (pi, po) in ANTHROPIC_PRICES.items():
+            if frag in cfg.model:
+                price_in, price_out = pi, po
+                break
+    cost = tok_in / 1e6 * price_in + tok_out / 1e6 * price_out
     print("\n=== summary ===")
     print(f"calls made: {made} | skipped (checkpointed): {n_skipped} | failed: {n_failed}")
     print(f"parsed_ok: {n_parsed}/{made} ({(n_parsed / made * 100) if made else 0:.1f}%) "
@@ -502,7 +578,7 @@ def main() -> None:
     if cfg.images_dir:
         print(f"images attached: {n_images_sent} | dropped for the "
               f"{IMAGE_B64_BUDGET // (1024 * 1024)} MB base64 budget: {n_images_dropped}")
-    print(f"approx cost = {tok_in:,}/1M * ${PRICE_IN_PER_M} + {tok_out:,}/1M * ${PRICE_OUT_PER_M} "
+    print(f"approx cost = {tok_in:,}/1M * ${price_in} + {tok_out:,}/1M * ${price_out} "
           f"= ${cost:.4f} (approximate; list price, ignores cache discounts)")
     raw_dirs = ", ".join(str(Path(cfg.out_dir) / lab) for lab in sorted(labels_used or {cfg.model}))
     print(f"log: {cfg.log} | raw: {raw_dirs}")
