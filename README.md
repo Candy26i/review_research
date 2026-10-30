@@ -35,6 +35,7 @@ training-data contamination.
 - [x] E5 human-delta anchoring (25 resubmission pairs via the Kaggle snapshot): **honest null** — LLM deltas do not track human cross-round deltas (agreement 32-36%), separating "perceives revision" (robust) from "matches human re-scoring" (no evidence)
 - [x] Q2 frozen-splice pilot built ([runbook](docs/SPLICE_PILOT.md)): 822 papers / 5 conditions (true, micro, ident, v1self, xdoc), builder + portable tagger + paired-bootstrap analysis, adversarially reviewed; position-only baseline AUC 0.67 — awaiting 4090 training runs
 - [x] **Frontier arm (Claude Opus 5.5, $56)**: version effect replicates (+0.14/step p<1e-4); most reliable scorer yet (ICC 0.87, 84% cosmetic ties) and closest to humans cross-sectionally (accept AUC 0.80 vs cheap arms' 0.57-0.71, humans 0.88); one security paper refused (cyber) in all reps
+- [x] **E4 × frontier (~$55)**: substance-blindness is a capability gradient — Claude is the first arm where every length-preserved degradation is individually significant (corrupt_numbers −0.43, shuffle −0.23) and filler over-punishment shrinks (−0.49 vs −2.16), yet the pre-registered content verdict still doesn't fire and falsified numbers are still misattributed to presentation, not soundness
 - [ ] Write-up
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing

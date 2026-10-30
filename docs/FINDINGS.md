@@ -139,6 +139,39 @@ Interpretation:
    mechanical rule both arms are **neither content-sensitive nor length-sensitive**; what
    they reliably punish is conspicuous fluff.
 
+### E4 at the frontier: Claude Opus 5.5 attenuates — but does not cure — substance-blindness (~$55)
+
+Same 25 papers × 6 variants × K=3 (444/444 parsed). Paired deltas vs each
+paper's base:
+
+| variant | claude-opus-5-5 | best cheap arm | worst cheap arm |
+|---|---|---|---|
+| corrupt_numbers | **−0.43 [−0.72, −0.13]** | chat −0.39 (p=0.02) | gemini +0.08 (invisible) |
+| shuffle_paragraphs | **−0.23 [−0.42, −0.04]** | all n.s. | reasoner **+0.29** (rewarded) |
+| typos | −0.20 [−0.40, −0.00] | reasoner −0.41 | gemini −0.04 (n.s.) |
+| pad_filler | −0.49 [−0.78, −0.20] | chat/reasoner −0.92 | gemini −2.16 |
+| drop_appendix | +0.03 (n.s.) | — | chat −0.38 (length-sensitive) |
+
+Reading:
+- **Every length-preserved degradation is now individually significant** — no
+  cheap arm achieved even one cleanly. Claude is the first arm to penalize
+  paragraph shuffling at all (the reasoner *rewarded* it).
+- **Less style-reactive, more substance-reactive**: filler punishment shrinks
+  from −2.16/−0.92 to −0.49 while corruption detection strengthens — the
+  frontier shifts weight from surface to content.
+- **But the pre-registered content-sensitivity verdict still does not fire**:
+  mean length-preserved degradation −0.28 (CI [−0.49, −0.08]) misses the −0.30
+  threshold by a hair, and only corrupt_numbers (|d| 0.45) exceeds the placebo
+  noise floor (0.36).
+- **And the diagnosis is still wrong**: corrupt_numbers moves presentation
+  (−0.65) more than soundness (−0.33) — Claude notices *something is off* but
+  misattributes falsified results to writing quality, same failure as every
+  cheap arm. Typos attribute correctly (presentation −0.55).
+- Net framing for the paper: substance-blindness is a **capability gradient,
+  not a binary** — the frontier attenuates it but neither clears the
+  pre-registered bar nor diagnoses correctly, so the trained-detector headroom
+  (PaperAudit-Bench-style) remains open at every tier.
+
 ## Scale replication: ACL 2025, 1,379 papers (27× the main corpus)
 
 All of ACL 2025 (main + findings) matched to arXiv via a bulk OAI harvest: **1,379 papers /
