@@ -33,6 +33,7 @@ training-data contamination.
 - [x] DeepSeek fill-ins: fresh×chat null (−0.02/step); E4×chat flagged **length-sensitive** — converging with the observational length-control result
 - [x] **ACL 2025 scale replication**: 1,379 papers / 3,629 versions / 10,860 reviews ($17) — +0.10/step (p<1e-4) matching ICLR; survives length control at scale; dose-response cosmetic +0.05 < minor +0.10 < major +0.20
 - [x] E5 human-delta anchoring (25 resubmission pairs via the Kaggle snapshot): **honest null** — LLM deltas do not track human cross-round deltas (agreement 32-36%), separating "perceives revision" (robust) from "matches human re-scoring" (no evidence)
+- [x] Q2 frozen-splice pilot built ([runbook](docs/SPLICE_PILOT.md)): 822 papers / 5 conditions (true, micro, ident, v1self, xdoc), builder + portable tagger + paired-bootstrap analysis, adversarially reviewed; position-only baseline AUC 0.67 — awaiting 4090 training runs
 - [ ] Write-up
 - [x] Collection pipeline: ICLR↔arXiv matching, version chains, stratified manifest, source downloads
 - [ ] P1 dataset: version chains + edit strata + scrubbing
