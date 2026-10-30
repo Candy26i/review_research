@@ -190,7 +190,7 @@ def main() -> None:
             n_missing += 1
             continue
 
-        authors = authors_by_or.get(paper["openreview_id"], [])
+        authors = authors_by_or.get(paper.get("openreview_id"), [])
         if not authors:
             n_no_authors += 1
         raw = src.read_text(encoding="utf-8", errors="replace")

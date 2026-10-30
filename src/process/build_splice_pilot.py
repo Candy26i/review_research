@@ -137,9 +137,13 @@ def parse_blocks(text: str) -> list[dict]:
     return out
 
 
-def align(b1: list[dict], b2: list[dict]):
+def align(b1: list[dict], b2: list[dict], full_range: bool = False):
     """Returns (unchanged, rewrites, micro): lists of (i, j, ratio) with both
     sides classifiable.
+
+    full_range=True also labels the ambiguous middle (REWRITE_HI..MICRO_LO) as
+    rewrites — required for attribution, where excluding that band leaves a
+    magnitude hole the AI class does not share (QC: band rule alone = 90% acc).
 
     unchanged = normalized-equal 'equal' opcode pairs. Inside each 'replace'
     opcode, candidate (i, j) pairs are assigned globally by DESCENDING ratio so
@@ -183,7 +187,7 @@ def align(b1: list[dict], b2: list[dict]):
                     if n1[i] != n2[j]:
                         micro.append((i, j, r))
                     continue
-                if r > REWRITE_HI:
+                if r > REWRITE_HI and not full_range:
                     continue
                 if n2[j] in v1_norm_set:
                     continue
