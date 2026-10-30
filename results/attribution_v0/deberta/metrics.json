@@ -1,0 +1,75 @@
+{
+  "config": {
+    "data": "data/processed/attribution_v0",
+    "out": "results/attribution_v0/deberta",
+    "model": "microsoft/deberta-v3-base",
+    "fold_unicode": false,
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 512,
+    "lr": 2e-05,
+    "seed": 0,
+    "train_frac": 1.0,
+    "limit": 0
+  },
+  "device": "cuda",
+  "val_auc": 0.9902463356008357,
+  "test": {
+    "auc": 0.9894613339251175,
+    "auc_ci95": [
+      0.9873485128964581,
+      0.9917045506645388
+    ],
+    "f1_ai": 0.8713235294117647,
+    "balanced_acc": 0.9118838382851631,
+    "threshold": 3.02,
+    "n": 15651,
+    "n_ai": 1985
+  },
+  "bands": {
+    "[0.3,0.6)": {
+      "auc": 0.999656996536949,
+      "n": 2181,
+      "n_ai": 288
+    },
+    "[0.6,0.92)": {
+      "auc": 0.9928339135475615,
+      "n": 7178,
+      "n_ai": 1316
+    },
+    "[0.92,1.01)": {
+      "auc": 0.9610340190696781,
+      "n": 6280,
+      "n_ai": 369
+    }
+  },
+  "styles": {
+    "compress": {
+      "auc": 0.9917771502726866,
+      "n_ai": 407
+    },
+    "expand": {
+      "auc": 0.997268238873335,
+      "n_ai": 307
+    },
+    "grammar": {
+      "auc": 0.9721662404941163,
+      "n_ai": 432
+    },
+    "polish": {
+      "auc": 0.9896332819678435,
+      "n_ai": 408
+    },
+    "rewrite": {
+      "auc": 0.9988860867979639,
+      "n_ai": 431
+    }
+  },
+  "baselines": {
+    "surface_lr": {
+      "auc": 0.7503623878931,
+      "n_features": 9
+    },
+    "majority_acc": 0.8731710433838094
+  }
+}
