@@ -172,6 +172,35 @@ Reading:
   pre-registered bar nor diagnoses correctly, so the trained-detector headroom
   (PaperAudit-Bench-style) remains open at every tier.
 
+### The say-do gap: models SEE the corruption and barely act on it
+
+Scanning review texts for corruption-specific complaints (garbled / implausible
+/ doesn't-add-up / abstract-vs-table; `analyze_probe_text.py`,
+[full table](../results/e4_say_do_gap.md)) reveals that E4 was never a pure
+perception failure:
+
+| arm | verbal catch (corrupt) | base FP | rating delta |
+|---|---|---|---|
+| claude-opus-5-5 | **71%** | 17% | −0.43 |
+| deepseek-chat | 47% | 7% | −0.39 |
+| deepseek-reasoner | 36% | 11% | −0.27 (n.s.) |
+| gemini-3.8-flash | 30% | 2% | **+0.08 (zero)** |
+
+Every arm names the corruption in text at far above its false-positive rate —
+Claude literally writes "the abstract claims a CIFAR-10 FID of 5.14 at 10 NFE,
+but the table shows 5.11 or 6.16". Yet the score consequence is tiny
+(frontier: −0.43 on a 10-point scale, 52% of papers unchanged) or absent
+(Gemini: flags it in 30% of reviews and the rating moves **+0.08**).
+
+**Perception is a capability gradient (30%→71%); the consequence policy is
+broken at every tier.** The failure decomposes: models detect falsified
+results, file them under "sloppy presentation", and keep scoring the paper as
+if its claims were true — like a reviewer who writes "the numbers appear
+fabricated" in weaknesses and still votes borderline. For the training
+project, this sharpens the target: the detector must learn not just
+*localization* but *calibrated consequence* (falsified results ⇒ soundness
+collapse), which the injection factory supervises directly.
+
 ## Scale replication: ACL 2025, 1,379 papers (27× the main corpus)
 
 All of ACL 2025 (main + findings) matched to arXiv via a bulk OAI harvest: **1,379 papers /
