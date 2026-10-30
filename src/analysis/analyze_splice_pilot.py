@@ -46,7 +46,7 @@ CONDS = ('true', 'v1self', 'micro', 'ident', 'xdoc')
 
 
 def read_jsonl(path):
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         return [json.loads(line) for line in f if line.strip()]
 
 
@@ -250,7 +250,7 @@ def main() -> None:
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text('\n'.join(lines))
+    out.write_text('\n'.join(lines), encoding='utf-8')
     print('\n'.join(lines))
     print(f'-> {out}')
 

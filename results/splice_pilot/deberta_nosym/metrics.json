@@ -1,0 +1,44 @@
+{
+  "config": {
+    "data": "data/processed/splice_pilot",
+    "out": "results/splice_pilot/deberta_nosym",
+    "model": "microsoft/deberta-v3-base",
+    "context": 1,
+    "strip_symbols": true,
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 384,
+    "lr": 2e-05,
+    "seed": 0,
+    "limit": 0
+  },
+  "device": "cuda",
+  "val_auc": 0.4794497791254867,
+  "test": {
+    "ident": {
+      "auc": 0.4860637533365273,
+      "n": 12779,
+      "n_pos": 475
+    },
+    "micro": {
+      "auc": 0.508711069504874,
+      "n": 12851,
+      "n_pos": 455
+    },
+    "true": {
+      "auc": 0.505466599033351,
+      "n": 12933,
+      "n_pos": 394
+    },
+    "v1self": {
+      "auc": 0.4884655306914508,
+      "n": 12933,
+      "n_pos": 394
+    },
+    "xdoc": {
+      "auc": 0.4955593371017451,
+      "n": 12933,
+      "n_pos": 394
+    }
+  }
+}

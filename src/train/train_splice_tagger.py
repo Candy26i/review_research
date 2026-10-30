@@ -24,7 +24,7 @@ from pathlib import Path
 
 
 def read_jsonl(path):
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         return [json.loads(line) for line in f if line.strip()]
 
 
@@ -124,7 +124,7 @@ def main() -> None:
 
     tok = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=1)
-    model.to(device)
+    model.float().to(device)   # transformers>=5 loads checkpoint dtype (fp16) by default; AdamW needs fp32 master weights
     sep = tok.sep_token or '[SEP]'
 
     def collate(rows):
@@ -207,7 +207,7 @@ def main() -> None:
     conds = sorted({r['cond'] for r in test_all})
     metrics = {'config': vars(args), 'device': device, 'val_auc': best_val,
                'test': {}}
-    with open(out_dir / 'predictions.jsonl', 'w') as f:
+    with open(out_dir / 'predictions.jsonl', 'w', encoding='utf-8') as f:
         for cond in conds:
             rows = [r for r in test_all if r['cond'] == cond]
             scores = score_rows(rows)
@@ -230,7 +230,7 @@ def main() -> None:
             return None
         return x
 
-    with open(out_dir / 'metrics.json', 'w') as f:
+    with open(out_dir / 'metrics.json', 'w', encoding='utf-8') as f:
         json.dump(_san(metrics), f, indent=2, default=str)
     print(f"=== done in {(time.time() - t0) / 60:.1f} min -> {out_dir}")
 

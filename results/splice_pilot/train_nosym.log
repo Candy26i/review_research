@@ -1,0 +1,98 @@
+device: cuda (amp: torch.bfloat16)
+train 48890 rows (1436 pos) | val 5535 | test 64429 rows over 162 papers
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 65983.81it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+mask_predictions.dense.bias             | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+mask_predictions.dense.weight           | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+classifier.weight                       | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+classifier.bias                         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+C:\Users\madis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
+  return t.to(
+epoch 0 step 0/3056 loss 2.0183 [1s]
+epoch 0 step 100/3056 loss 0.7243 [13s]
+epoch 0 step 200/3056 loss 2.0551 [25s]
+epoch 0 step 300/3056 loss 0.6815 [37s]
+epoch 0 step 400/3056 loss 0.7013 [49s]
+epoch 0 step 500/3056 loss 0.7089 [62s]
+epoch 0 step 600/3056 loss 1.9697 [74s]
+epoch 0 step 700/3056 loss 0.7698 [86s]
+epoch 0 step 800/3056 loss 2.0585 [98s]
+epoch 0 step 900/3056 loss 0.7645 [110s]
+epoch 0 step 1000/3056 loss 0.7003 [122s]
+epoch 0 step 1100/3056 loss 3.4347 [134s]
+epoch 0 step 1200/3056 loss 2.0859 [146s]
+epoch 0 step 1300/3056 loss 0.7201 [158s]
+epoch 0 step 1400/3056 loss 0.7028 [170s]
+epoch 0 step 1500/3056 loss 0.6644 [181s]
+epoch 0 step 1600/3056 loss 3.2274 [194s]
+epoch 0 step 1700/3056 loss 0.6777 [206s]
+epoch 0 step 1800/3056 loss 3.0412 [218s]
+epoch 0 step 1900/3056 loss 0.6862 [230s]
+epoch 0 step 2000/3056 loss 0.6565 [242s]
+epoch 0 step 2100/3056 loss 2.0613 [254s]
+epoch 0 step 2200/3056 loss 0.8559 [266s]
+epoch 0 step 2300/3056 loss 0.7844 [279s]
+epoch 0 step 2400/3056 loss 0.6816 [291s]
+epoch 0 step 2500/3056 loss 0.5842 [303s]
+epoch 0 step 2600/3056 loss 3.8059 [315s]
+epoch 0 step 2700/3056 loss 2.0895 [327s]
+epoch 0 step 2800/3056 loss 0.6331 [340s]
+epoch 0 step 2900/3056 loss 2.1554 [352s]
+epoch 0 step 3000/3056 loss 0.7218 [364s]
+=== epoch 0: val AUC 0.4432
+epoch 1 step 0/3056 loss 0.7007 [396s]
+epoch 1 step 100/3056 loss 0.6855 [409s]
+epoch 1 step 200/3056 loss 0.6768 [422s]
+epoch 1 step 300/3056 loss 0.6577 [434s]
+epoch 1 step 400/3056 loss 2.0818 [447s]
+epoch 1 step 500/3056 loss 3.3863 [460s]
+epoch 1 step 600/3056 loss 2.0635 [472s]
+epoch 1 step 700/3056 loss 2.2399 [485s]
+epoch 1 step 800/3056 loss 1.9777 [498s]
+epoch 1 step 900/3056 loss 0.7532 [511s]
+epoch 1 step 1000/3056 loss 0.6724 [524s]
+epoch 1 step 1100/3056 loss 0.6595 [537s]
+epoch 1 step 1200/3056 loss 0.6953 [549s]
+epoch 1 step 1300/3056 loss 2.1669 [562s]
+epoch 1 step 1400/3056 loss 2.0039 [575s]
+epoch 1 step 1500/3056 loss 2.0539 [588s]
+epoch 1 step 1600/3056 loss 0.7497 [601s]
+epoch 1 step 1700/3056 loss 0.7556 [614s]
+epoch 1 step 1800/3056 loss 0.7299 [627s]
+epoch 1 step 1900/3056 loss 2.0031 [640s]
+epoch 1 step 2000/3056 loss 0.6815 [652s]
+epoch 1 step 2100/3056 loss 0.6965 [665s]
+epoch 1 step 2200/3056 loss 2.1119 [678s]
+epoch 1 step 2300/3056 loss 0.7283 [691s]
+epoch 1 step 2400/3056 loss 0.7311 [704s]
+epoch 1 step 2500/3056 loss 0.7299 [717s]
+epoch 1 step 2600/3056 loss 0.7143 [730s]
+epoch 1 step 2700/3056 loss 2.1324 [743s]
+epoch 1 step 2800/3056 loss 2.1188 [756s]
+epoch 1 step 2900/3056 loss 0.7082 [769s]
+epoch 1 step 3000/3056 loss 3.4368 [783s]
+=== epoch 1: val AUC 0.4794
+test[ident]: AUC 0.4861 (n=12779, pos=475)
+test[micro]: AUC 0.5087 (n=12851, pos=455)
+test[true]: AUC 0.5055 (n=12933, pos=394)
+test[v1self]: AUC 0.4885 (n=12933, pos=394)
+test[xdoc]: AUC 0.4956 (n=12933, pos=394)
+=== done in 18.6 min -> results\splice_pilot\deberta_nosym
+EXIT 0
