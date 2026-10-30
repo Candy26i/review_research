@@ -95,9 +95,15 @@ def main() -> None:
                 continue
             split = 'test' if seed64(f"split|{r['arxiv_id']}") % TEST_MOD == 0 else 'train'
             old, new = clean(r['old_text']), clean(r['new_text'])
+            r_ai = word_ratio(old, new)
+            if r_ai < args.min_ratio:
+                # same floor as the human class — below it sit mismatches and
+                # generator refusals (QC found one that slipped the length gate)
+                n_ai_bad += 1
+                continue
             rows.append({'label': 'ai', 'paper': r['arxiv_id'], 'split': split,
                          'section': r.get('section'), 'kind': r.get('kind'),
-                         'ratio': round(word_ratio(old, new), 4),
+                         'ratio': round(r_ai, 4),
                          'style': r['style'], 'model': r['model'],
                          'old_text': old, 'new_text': new})
             n_ai += 1
