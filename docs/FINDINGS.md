@@ -157,6 +157,39 @@ All of ACL 2025 (main + findings) matched to arXiv via a bulk OAI harvest: **1,3
   < minor +0.10 < major +0.20 — exactly the gradient a quality-tracking signal predicts,
   and the 615 true-placebo pairs sit at the noise floor (+0.05).
 
+## Frontier arm: Claude Opus 5.5 replicates E1 ($56)
+
+Monthly Max-plan API credits made a true frontier arm affordable: the main ICLR
+corpus (50 papers × all versions × K=3; 423 calls, 420 parsed, ~$56 list price).
+
+| metric | claude-opus-5-5 | cheap arms | humans |
+|---|---|---|---|
+| version effect (mixedlm) | **+0.14/step, p<1e-4** | +0.11…+0.20 | — |
+| after log-words control | +0.05, p=0.074 | only gemini-text survives at n=50 | — |
+| Kendall τ (non-tied papers) | 0.67 (n=23; 26/49 all-tied) | 0.64 best (gemini) | — |
+| ICC(2,1) | **0.87** | 0.79 best (gemini+figs) | — |
+| test–retest SD | 0.2 | ≥0.3 | — |
+| cosmetic-pair '=' share | 84% | lower in every arm | — |
+| accept/reject AUC | **0.80** | 0.57–0.71 | 0.88 |
+
+Reading:
+- **The version effect replicates at the frontier** (+0.14/step, p<1e-4): "cheap
+  models only" is now excluded as an explanation.
+- **The frontier closes most of the cross-sectional gap**: accept/reject AUC 0.80
+  vs 0.57–0.71 for the cheap arms (humans 0.88), while also being the most
+  reliable scorer measured (ICC 0.87, retest SD 0.2) and the best-behaved on
+  placebo pairs (84% exact ties on cosmetic revisions).
+- Length control at n=50 is marginal (+0.05, p=0.074) — the same n=50 power
+  pattern the ACL replication resolved for the cheap arms; a Haiku-tier ACL-scale
+  run would settle it for this tier.
+- **Scale compression is strongest here**: no 1s or 10s in 420 ratings
+  (histogram 3:53, 5:175, 6:165, 8:27); 26/49 papers get identical ratings
+  across all versions.
+- New frontier-specific failure mode: one security paper (2410.04234) was
+  **refused** by safety classifiers in all 3 reps (category=cyber) — a frontier
+  reviewer can decline to review at all, a reliability dimension cheap arms
+  don't have.
+
 ## E2: pairwise comparison rescues weak absolute scorers
 
 The same 91 adjacent version pairs (main corpus), presented as two anonymized submissions
