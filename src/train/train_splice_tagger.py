@@ -79,6 +79,9 @@ def main() -> None:
     ap.add_argument('--max-len', type=int, default=384)
     ap.add_argument('--lr', type=float, default=2e-5)
     ap.add_argument('--seed', type=int, default=0)
+    ap.add_argument('--train-frac', type=float, default=1.0,
+                    help='train on this fraction of train papers (deterministic '
+                         'paper-hash subsample; the learning-curve escalation)')
     ap.add_argument('--limit', type=int, default=0,
                     help='debug: cap train/eval rows')
     args = ap.parse_args()
@@ -108,6 +111,13 @@ def main() -> None:
                   if seed64(f'val|{p}') % 10 == 0}
     train_rows = [r for r in train_all if r['paper'] not in val_papers]
     val_rows = [r for r in train_all if r['paper'] in val_papers]
+    if args.train_frac < 1.0:
+        papers_all = sorted({r['paper'] for r in train_rows})
+        keep_frac = {p for p in papers_all
+                     if (seed64(f'frac|{p}') % 10000) / 10000 < args.train_frac}
+        train_rows = [r for r in train_rows if r['paper'] in keep_frac]
+        print(f'train-frac {args.train_frac}: {len(keep_frac)}/{len(papers_all)} '
+              'train papers kept')
     if args.limit:
         train_rows, val_rows = train_rows[:args.limit], val_rows[:max(50, args.limit // 4)]
         # cap test by PAPER so every condition keeps its rows and positives

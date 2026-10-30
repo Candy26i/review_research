@@ -246,6 +246,7 @@ def pick(rng: np.random.Generator, pairs: list, k: int) -> list:
 
 
 def main() -> None:
+    global CTX_WORDS
     ap = argparse.ArgumentParser(description='Frozen-splice pilot dataset builder.')
     ap.add_argument('--out-dir', default='data/processed/splice_pilot')
     ap.add_argument('--min-churn', type=float, default=0.02,
@@ -254,7 +255,10 @@ def main() -> None:
                     help='skip pairs above (extraction inconsistency)')
     ap.add_argument('--limit', type=int, default=0, help='papers cap, 0 = all')
     ap.add_argument('--seed', type=int, default=20261029)
+    ap.add_argument('--ctx-words', type=int, default=CTX_WORDS,
+                    help='context window words per side (escalation: 100)')
     args = ap.parse_args()
+    CTX_WORDS = args.ctx_words
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
