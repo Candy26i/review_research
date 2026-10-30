@@ -65,11 +65,28 @@ re-derived ones.
    Lowest-scored ai rows are 1–3-token grammar edits. All ai rows are one
    generator (deepseek-chat), so "ai" here means "deepseek-chat edit".
 
+## Fixes applied (2026-10-30, commit after this note)
+
+- `train_attribution.py`: surface baseline now uses the 9 surface + 5 count
+  features (len ratio, Δcit, Δref, Δdigits, cit/ref-changed flag) and reports
+  both `surface_lr` and `surface_hgb` plus `margin.vs_surface_hgb` and a
+  paper-grouped CV stack of (model, HGB). On the saved deberta predictions:
+  LR-14 0.817, HGB-14 0.902, model 0.9895. Earlier runs' metrics.json keep
+  the old 9-feature `surface_lr` 0.750; re-run to get the new block.
+- `build_attribution_dataset.py`: `--min-ratio` now applied to the ai class
+  too (symmetric); refusal-text rows dropped (detector hits exactly the one
+  slipped row in 80k, zero human hits).
+- `make_ai_edits.py`: `looks_like_refusal()` text check added to the
+  generator's QC so future logs reject it at the source.
+- Rebuild (`python3 src/process/build_attribution_dataset.py`, Mac) will
+  remove 44 train / 12 test ai rows (one of them the refusal); expected
+  headline change ≤ 0.0003.
+
 ## Recommended before this goes in a paper
 
-- Add HGB surface baseline + report margin vs it; report the lookalike-floor
-  AUC (0.986) alongside the headline.
-- Fix the asymmetric min-ratio filter and the refusal filter; rebuild.
+- Report margin vs `surface_hgb` and the lookalike-floor AUC (0.986)
+  alongside the headline.
+- Rebuild the dataset with the symmetric filters (Mac has the raw logs).
 - Second generator (another model family) for a held-out-generator test.
 - A human-copyedit control (e.g. Grammarly-style or professional-edit pairs)
   to separate "LLM" from "polished".

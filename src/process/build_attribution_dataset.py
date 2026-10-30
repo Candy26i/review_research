@@ -34,6 +34,7 @@ sys.path.insert(0, 'src/collect')
 sys.path.insert(0, 'src/process')
 from util import read_jsonl  # noqa: E402
 from build_splice_pilot import align, parse_blocks, seed64, word_ratio  # noqa: E402
+from make_ai_edits import looks_like_refusal  # noqa: E402
 
 TEST_MOD = 5  # paper_hash % 5 == 0 -> test
 WS_RE = re.compile(r'\s+')
@@ -91,6 +92,12 @@ def main() -> None:
     if Path(args.ai_log).exists():
         for r in read_jsonl(args.ai_log):
             if r.get('error') or not r.get('new_text'):
+                n_ai_bad += 1
+                continue
+            if looks_like_refusal(r['new_text']):
+                # text-level refusal check (a deepseek "I'm not able to apply
+                # this edit" row passed the API stop_reason gate); the ratio
+                # floor below catches most of these but not a long refusal
                 n_ai_bad += 1
                 continue
             split = 'test' if seed64(f"split|{r['arxiv_id']}") % TEST_MOD == 0 else 'train'

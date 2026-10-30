@@ -103,8 +103,32 @@ def surface_features(r) -> list[float]:
             float(len(wn)), float(len(wo))]
 
 
+def count_features(r) -> list[float]:
+    """Count deltas the generator prompts make class-conditional ("keep every
+    number and citation marker"): QC 2026-10-30 found human edits change the
+    <cit.>/<ref> count in 21% of rows vs 0.4% of ai rows. Included so the
+    cheap baseline is a fair ceiling, not a strawman."""
+    old, new = r['old_text'], r['new_text']
+    def n(s, tok):
+        return s.count(tok)
+    def digits(s):
+        return sum(c.isdigit() for c in s)
+    return [len(new) / max(1, len(old)),
+            float(n(new, '<cit.>') - n(old, '<cit.>')),
+            float(n(new, '<ref>') - n(old, '<ref>')),
+            float(digits(new) - digits(old)),
+            float(n(new, '<cit.>') != n(old, '<cit.>') or n(new, '<ref>') != n(old, '<ref>'))]
+
+
 def surface_baseline(train_rows, test_rows) -> dict:
+    """Two cheap baselines on the same 9 surface + 5 count features:
+      surface_lr   linear (the original, kept for continuity)
+      surface_hgb  HistGradientBoosting — the honest cheap-feature ceiling.
+    QC 2026-10-30: on attribution_v0 the linear model gives 0.75 but a tree
+    on the same cues gives 0.90; the headline margin must be quoted against
+    the tree, not the line."""
     try:
+        from sklearn.ensemble import HistGradientBoostingClassifier
         from sklearn.linear_model import LogisticRegression
         from sklearn.preprocessing import StandardScaler
     except ImportError:
@@ -112,14 +136,21 @@ def surface_baseline(train_rows, test_rows) -> dict:
     if len({r['y'] for r in train_rows}) < 2 or len({r['y'] for r in test_rows}) < 2:
         return {'note': 'single-class split (debug --limit?); baseline skipped'}
     import numpy as np
-    Xtr = np.array([surface_features(r) for r in train_rows])
-    Xte = np.array([surface_features(r) for r in test_rows])
+    Xtr = np.array([surface_features(r) + count_features(r) for r in train_rows])
+    Xte = np.array([surface_features(r) + count_features(r) for r in test_rows])
+    ytr = [r['y'] for r in train_rows]
+    yte = [r['y'] for r in test_rows]
     sc = StandardScaler().fit(Xtr)
-    clf = LogisticRegression(max_iter=2000, class_weight='balanced')
-    clf.fit(sc.transform(Xtr), [r['y'] for r in train_rows])
-    s = clf.predict_proba(sc.transform(Xte))[:, 1].tolist()
-    return {'auc': auc_score([r['y'] for r in test_rows], s),
-            'n_features': Xtr.shape[1]}
+    lr = LogisticRegression(max_iter=2000, class_weight='balanced')
+    lr.fit(sc.transform(Xtr), ytr)
+    s_lr = lr.predict_proba(sc.transform(Xte))[:, 1].tolist()
+    hgb = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.05,
+                                         class_weight='balanced', random_state=0)
+    hgb.fit(Xtr, ytr)
+    s_hgb = hgb.predict_proba(Xte)[:, 1].tolist()
+    return {'surface_lr': {'auc': auc_score(yte, s_lr), 'n_features': Xtr.shape[1]},
+            'surface_hgb': {'auc': auc_score(yte, s_hgb), 'n_features': Xtr.shape[1]},
+            'scores_hgb': s_hgb}
 
 
 RATIO_BANDS = ((0.30, 0.60), (0.60, 0.92), (0.92, 1.01))
@@ -331,9 +362,38 @@ def main() -> None:
 
     # surface baseline — the number to beat
     sb = surface_baseline(train_rows, test_rows)
-    metrics['baselines']['surface_lr'] = sb
+    s_hgb = sb.pop('scores_hgb', None)
+    metrics['baselines'].update(sb)
     metrics['baselines']['majority_acc'] = max(sum(ys), len(ys) - sum(ys)) / len(ys)
-    print(f'surface-LR baseline: {sb}')
+    if 'surface_hgb' in sb:
+        a = metrics['test']['auc']
+        metrics['margin'] = {'vs_surface_lr': a - sb['surface_lr']['auc'],
+                             'vs_surface_hgb': a - sb['surface_hgb']['auc']}
+        print(f"surface baselines: LR {sb['surface_lr']['auc']:.4f} | "
+              f"HGB {sb['surface_hgb']['auc']:.4f} (the number to beat) | "
+              f"margin vs HGB {metrics['margin']['vs_surface_hgb']:+.4f}")
+        # does the cheap ceiling add anything on top of the model? paper-grouped
+        # 5-fold CV logistic stack of (model logit, HGB logit) on test, out-of-fold
+        try:
+            import numpy as np
+            from sklearn.linear_model import LogisticRegression
+            from sklearn.model_selection import GroupKFold
+            papers = [r['paper'] for r in test_rows]
+            if len(set(papers)) >= 5:
+                X = np.array([[m, math.log(max(h, 1e-6) / max(1 - h, 1e-6))]
+                              for m, h in zip(scores, s_hgb)])
+                oof = np.zeros(len(ys))
+                for tr_i, te_i in GroupKFold(n_splits=5).split(X, ys, papers):
+                    clf = LogisticRegression(class_weight='balanced').fit(X[tr_i], np.array(ys)[tr_i])
+                    oof[te_i] = clf.decision_function(X[te_i])
+                metrics['baselines']['stack_model_plus_hgb_cv_auc'] = auc_score(ys, oof.tolist())
+                print(f"grouped-CV stack(model + HGB): AUC "
+                      f"{metrics['baselines']['stack_model_plus_hgb_cv_auc']:.4f} "
+                      f"(vs model alone {a:.4f}: if equal, the model subsumes the cheap cues)")
+        except ImportError:
+            pass
+    else:
+        print(f'surface baseline: {sb}')
 
     with open(out_dir / 'predictions.jsonl', 'w', encoding='utf-8') as f:
         for r, s in zip(test_rows, scores):

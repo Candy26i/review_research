@@ -62,6 +62,22 @@ PREAMBLE_RE = re.compile(
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 
 
+REFUSAL_RE = re.compile(
+    r"^\s*(i('m| am)\s+(not\s+able|unable)\s+to|i\s+can(not|'t)\s+(apply|edit|rewrite|help|assist|do)|"
+    r"(sorry|apologi[sz]e)[,.!]|as an ai\b|the text you('ve| have)\s+(shared|provided)\s+(is|appears)|"
+    r"this (text|paragraph|content)\s+(is not|isn't|does not appear|doesn't appear)\s+(a|to be a)\s+)",
+    re.I)
+
+
+def looks_like_refusal(text: str) -> bool:
+    """Text-level refusal detector. The API-level check (stop_reason ==
+    'refusal') missed a deepseek row that began "I'm not able to apply this
+    edit as requested. The text you've shared is a PDDL domain definition..."
+    (QC 2026-10-30). Only the opening ~200 chars are inspected so a paragraph
+    that merely *mentions* an apology is not rejected."""
+    return bool(REFUSAL_RE.search(text[:200]))
+
+
 def clean_output(text: str) -> str:
     s = text.strip()
     s = PREAMBLE_RE.sub('', s).strip()
@@ -146,7 +162,9 @@ def run_one(task: dict, cfg, api_key: str | None) -> dict:
         new = clean_output(raw)
         row['usage'] = usage
         ratio = len(new.split()) / max(1, len(task['old_text'].split()))
-        if norm(new) == norm(task['old_text']):
+        if looks_like_refusal(new):
+            row['error'] = 'refusal text: ' + new[:80]
+        elif norm(new) == norm(task['old_text']):
             row['error'] = 'unchanged'
         elif not (lo <= ratio <= hi):
             row['error'] = f'length ratio {ratio:.2f} outside [{lo},{hi}]'
