@@ -1,0 +1,69 @@
+device: cuda (amp: torch.bfloat16)
+train-frac 0.5: keeping 311 of 595 train papers
+train 25472 rows (751 pos) | val 5535 | test 64429 rows over 162 papers
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 49485.89it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+mask_predictions.dense.weight           | UNEXPECTED | 
+mask_predictions.dense.bias             | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+classifier.bias                         | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+classifier.weight                       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+C:\Users\madis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
+  return t.to(
+epoch 0 step 0/1592 loss 3.3399 [1s]
+epoch 0 step 100/1592 loss 2.0557 [12s]
+epoch 0 step 200/1592 loss 0.6801 [24s]
+epoch 0 step 300/1592 loss 0.7336 [36s]
+epoch 0 step 400/1592 loss 0.6143 [49s]
+epoch 0 step 500/1592 loss 0.7674 [61s]
+epoch 0 step 600/1592 loss 0.6404 [73s]
+epoch 0 step 700/1592 loss 1.9900 [85s]
+epoch 0 step 800/1592 loss 0.7429 [97s]
+epoch 0 step 900/1592 loss 0.7788 [109s]
+epoch 0 step 1000/1592 loss 0.5913 [120s]
+epoch 0 step 1100/1592 loss 0.6638 [132s]
+epoch 0 step 1200/1592 loss 2.0526 [144s]
+epoch 0 step 1300/1592 loss 5.0755 [156s]
+epoch 0 step 1400/1592 loss 0.7620 [167s]
+epoch 0 step 1500/1592 loss 2.0403 [180s]
+=== epoch 0: val AUC 0.6213
+epoch 1 step 0/1592 loss 0.6432 [215s]
+epoch 1 step 100/1592 loss 0.6989 [228s]
+epoch 1 step 200/1592 loss 3.4491 [241s]
+epoch 1 step 300/1592 loss 0.7234 [253s]
+epoch 1 step 400/1592 loss 2.1362 [266s]
+epoch 1 step 500/1592 loss 0.7540 [279s]
+epoch 1 step 600/1592 loss 0.7216 [292s]
+epoch 1 step 700/1592 loss 0.6816 [304s]
+epoch 1 step 800/1592 loss 0.7085 [316s]
+epoch 1 step 900/1592 loss 0.6968 [329s]
+epoch 1 step 1000/1592 loss 0.6784 [341s]
+epoch 1 step 1100/1592 loss 0.6857 [354s]
+epoch 1 step 1200/1592 loss 0.6717 [367s]
+epoch 1 step 1300/1592 loss 0.6501 [380s]
+epoch 1 step 1400/1592 loss 0.6576 [393s]
+epoch 1 step 1500/1592 loss 2.1046 [406s]
+=== epoch 1: val AUC 0.5916
+test[ident]: AUC 0.4187 (n=12779, pos=475)
+test[micro]: AUC 0.5923 (n=12851, pos=455)
+test[true]: AUC 0.6123 (n=12933, pos=394)
+test[v1self]: AUC 0.6055 (n=12933, pos=394)
+test[xdoc]: AUC 0.5987 (n=12933, pos=394)
+=== done in 12.0 min -> results\splice_pilot\deberta_ctx1_half
+EXIT 0

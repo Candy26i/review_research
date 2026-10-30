@@ -1,0 +1,45 @@
+{
+  "config": {
+    "data": "data/processed/splice_pilot",
+    "out": "results/splice_pilot/deberta_ctx1_half",
+    "model": "microsoft/deberta-v3-base",
+    "context": 1,
+    "strip_symbols": false,
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 384,
+    "lr": 2e-05,
+    "seed": 0,
+    "train_frac": 0.5,
+    "limit": 0
+  },
+  "device": "cuda",
+  "val_auc": 0.6212739124737946,
+  "test": {
+    "ident": {
+      "auc": 0.418665987954281,
+      "n": 12779,
+      "n_pos": 475
+    },
+    "micro": {
+      "auc": 0.5922834023027634,
+      "n": 12851,
+      "n_pos": 455
+    },
+    "true": {
+      "auc": 0.6122850007469082,
+      "n": 12933,
+      "n_pos": 394
+    },
+    "v1self": {
+      "auc": 0.6055494673876389,
+      "n": 12933,
+      "n_pos": 394
+    },
+    "xdoc": {
+      "auc": 0.5987060472847558,
+      "n": 12933,
+      "n_pos": 394
+    }
+  }
+}

@@ -118,6 +118,15 @@ change-ratio / kind / section-bucket slices.
   `micro` is clearly above 0.5, manually diff the top-20 highest-scored micro
   positives to tell real micro-edit signal from extraction-drift artifact
 - `ident` is a code-path sanity check only — its positives are byte-identical
-  replacements, so ≈0.5 is guaranteed and says nothing about other artifact
-  channels
-- `nosym` run ≪ default run → the signal was numeric/symbolic, not style
+  replacements, so no text/inference code path can separate them; it says
+  nothing about other artifact channels. **≈0.5 is NOT guaranteed**: the ident
+  document is byte-for-byte the `v1self` document, and its positives are a
+  sample of the *unchanged-in-v2, byte-equal* paragraphs — a biased subset
+  (shorter, later in the document, more captions/appendix) that any model
+  with `v1self`-style edit-proneness signal scores low. Pilot: ident 0.43
+  with v1self 0.64; the position/surface LR baselines alone give 0.44 on
+  ident. Only ident ≫ 0.5 would indicate a code-path leak.
+- `nosym` run ≪ default run → the signal was numeric/symbolic, not style —
+  but first check that the nosym model actually trained (score std > 0, val
+  AUC > 0.5): with digits masked the pilot's seed-0 run collapsed to a
+  constant logit, which also yields ≈0.5 everywhere and proves nothing
