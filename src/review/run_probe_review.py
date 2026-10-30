@@ -143,6 +143,9 @@ def main() -> None:
                     help='append-only output log (also the checkpoint, keyed on "key")')
     ap.add_argument('--prompt', default='src/review/prompts/review_v1.md')
     ap.add_argument('--model', default='deepseek-reasoner')
+    ap.add_argument('--provider', default='openai', choices=('openai', 'anthropic'),
+                    help="'openai' = OpenAI-compatible endpoint (default); "
+                         "'anthropic' = the Anthropic Messages API")
     ap.add_argument('--base-url', default='https://api.deepseek.com')
     ap.add_argument('--api-key-env', default='DEEPSEEK_API_KEY')
     ap.add_argument('--reps', type=int, default=3)
@@ -157,6 +160,8 @@ def main() -> None:
                     help='score only these variant names (default: all in the probes log)')
     cfg = ap.parse_args()
     cfg.model_label = f"{cfg.model}-probes"  # run_task raw-dir label; log 'model' stays raw
+    if cfg.provider == 'anthropic' and cfg.api_key_env == 'DEEPSEEK_API_KEY':
+        cfg.api_key_env = 'ANTHROPIC_API_KEY'
 
     api_key = load_api_key(cfg.api_key_env, cfg.mock)
     system, user_template = load_prompt(cfg.prompt)
