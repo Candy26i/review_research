@@ -225,8 +225,12 @@ def get_anthropic_client(api_key: str):
     with _anthropic_lock:
         if _anthropic_client is None:
             import anthropic
-            _anthropic_client = anthropic.Anthropic(api_key=api_key, max_retries=3,
-                                                    timeout=600.0)
+            # Accept-Encoding gzip: the bundled httpx2 is incompatible with the
+            # installed zstandard (Decompressor.decompress lacks output_buffer_limit),
+            # so zstd responses fail as "Connection error".
+            _anthropic_client = anthropic.Anthropic(
+                api_key=api_key, max_retries=3, timeout=600.0,
+                default_headers={'Accept-Encoding': 'gzip'})
     return _anthropic_client
 
 
