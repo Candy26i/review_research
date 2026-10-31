@@ -20,6 +20,11 @@ Portable: cuda > mps > cpu. On the 4090 box, from the repo root:
 Ablation:
   python3 src/train/train_attribution.py --fold-unicode \
       --out results/attribution_v0/deberta_nfkc
+Cross-generator held-out eval (train once with --save-model, then):
+  python3 src/train/train_attribution.py \
+      --eval-only results/attribution_v0/deberta/model \
+      --test-file data/processed/attribution_xgen/test.jsonl \
+      --out results/attribution_v0/deberta_xgen
 """
 from __future__ import annotations
 
@@ -153,6 +158,34 @@ def surface_baseline(train_rows, test_rows) -> dict:
             'scores_hgb': s_hgb}
 
 
+def surface_refit_cv(test_rows) -> dict:
+    """Paper-grouped 5-fold CV HGB fit ON the test set itself. On a
+    cross-generator --test-file the transferred surface_hgb only measures
+    baseline *transfer*; the honest cheap ceiling for that set is a refit
+    (xgen QC 2026-10-31) — quote the margin against this too."""
+    try:
+        from sklearn.ensemble import HistGradientBoostingClassifier
+        from sklearn.model_selection import GroupKFold
+    except ImportError:
+        return {}
+    import numpy as np
+    ys = np.array([r['y'] for r in test_rows])
+    papers = [r['paper'] for r in test_rows]
+    if len(set(ys.tolist())) < 2 or len(set(papers)) < 5:
+        return {}
+    X = np.array([surface_features(r) + count_features(r) for r in test_rows])
+    oof = np.zeros(len(ys))
+    for tr_i, te_i in GroupKFold(n_splits=5).split(X, ys, papers):
+        if len(set(ys[tr_i].tolist())) < 2:
+            return {}
+        hgb = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.05,
+                                             class_weight='balanced', random_state=0)
+        hgb.fit(X[tr_i], ys[tr_i])
+        oof[te_i] = hgb.predict_proba(X[te_i])[:, 1]
+    return {'surface_hgb_refit_cv': {'auc': auc_score(ys.tolist(), oof.tolist()),
+                                     'n_features': X.shape[1]}}
+
+
 RATIO_BANDS = ((0.30, 0.60), (0.60, 0.92), (0.92, 1.01))
 
 
@@ -175,6 +208,15 @@ def main() -> None:
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--train-frac', type=float, default=1.0,
                     help='fraction of train papers (deterministic hash subsample)')
+    ap.add_argument('--test-file', default='',
+                    help='override <data>/test.jsonl (e.g. a cross-generator '
+                         'held-out set); train/val/baseline still use --data')
+    ap.add_argument('--eval-only', default='',
+                    help='path to a dir saved by --save-model: skip training, '
+                         'load those weights and just evaluate')
+    ap.add_argument('--save-model', action='store_true',
+                    help='save the best checkpoint to <out>/model for later '
+                         '--eval-only runs (cross-generator tests)')
     ap.add_argument('--limit', type=int, default=0, help='debug: cap rows')
     args = ap.parse_args()
 
@@ -206,7 +248,8 @@ def main() -> None:
             out.append(r)
         return out
     train_all = prep(read_jsonl(data_dir / 'train.jsonl'))
-    test_rows = prep(read_jsonl(data_dir / 'test.jsonl'))
+    test_path = Path(args.test_file) if args.test_file else data_dir / 'test.jsonl'
+    test_rows = prep(read_jsonl(test_path))
     val_papers = {p for p in {r['paper'] for r in train_all}
                   if seed64(f'val|{p}') % 10 == 0}
     train_rows = [r for r in train_all if r['paper'] not in val_papers]
@@ -230,8 +273,9 @@ def main() -> None:
     print(f'train {len(train_rows)} rows ({n_pos} ai) | val {len(val_rows)} | '
           f'test {len(test_rows)} rows over {len({r["paper"] for r in test_rows})} papers')
 
-    tok = AutoTokenizer.from_pretrained(args.model)
-    model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=1)
+    model_src = args.eval_only or args.model
+    tok = AutoTokenizer.from_pretrained(model_src)
+    model = AutoModelForSequenceClassification.from_pretrained(model_src, num_labels=1)
     model.float().to(device)   # transformers>=5 loads checkpoint dtype (fp16); AdamW needs fp32
 
     def collate(rows):
@@ -241,14 +285,16 @@ def main() -> None:
         labels = torch.tensor([float(r['y']) for r in rows])
         return enc, labels
 
-    loader = DataLoader(train_rows, batch_size=args.batch, shuffle=True,
-                        collate_fn=collate)
-    opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
-    total_steps = len(loader) * args.epochs
-    sched = get_linear_schedule_with_warmup(opt, int(0.06 * total_steps), total_steps)
-    pos_weight = torch.tensor([(len(train_rows) - n_pos) / max(1, n_pos)]).to(device)
-    loss_fn = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    scaler = torch.amp.GradScaler('cuda') if amp_dtype == torch.float16 else None
+    n_epochs = 0 if args.eval_only else args.epochs
+    if n_epochs:
+        loader = DataLoader(train_rows, batch_size=args.batch, shuffle=True,
+                            collate_fn=collate)
+        opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
+        total_steps = len(loader) * args.epochs
+        sched = get_linear_schedule_with_warmup(opt, int(0.06 * total_steps), total_steps)
+        pos_weight = torch.tensor([(len(train_rows) - n_pos) / max(1, n_pos)]).to(device)
+        loss_fn = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+        scaler = torch.amp.GradScaler('cuda') if amp_dtype == torch.float16 else None
 
     @torch.no_grad()
     def score_rows(rows, bs=None):
@@ -268,7 +314,7 @@ def main() -> None:
     best_val, best_state = -1.0, None
     bad_steps = 0
     t0 = time.time()
-    for epoch in range(args.epochs):
+    for epoch in range(n_epochs):
         for step, (enc, labels) in enumerate(loader):
             enc = {k: v.to(device) for k, v in enc.items()}
             labels = labels.to(device)
@@ -307,11 +353,17 @@ def main() -> None:
 
     if best_state is not None:
         model.load_state_dict(best_state)
-    else:
+    elif not args.eval_only:
         print('WARNING: val AUC was nan in every epoch; scoring with last weights')
+    if args.save_model and not args.eval_only:
+        model.save_pretrained(out_dir / 'model')
+        tok.save_pretrained(out_dir / 'model')
+        print(f"checkpoint saved -> {out_dir / 'model'}")
 
     # threshold: maximize F1(ai) on val
     val_scores = score_rows(val_rows)
+    if args.eval_only:
+        best_val = auc_score([r['y'] for r in val_rows], val_scores)
     cands = sorted(set(round(s, 2) for s in val_scores))
     best_f1, thresh = -1.0, 0.0
     for t in cands:
@@ -360,15 +412,34 @@ def main() -> None:
         metrics['styles'][st] = {'auc': sa, 'n_ai': len(st_idx)}
         print(f'style {st}: AUC {sa:.4f} (n_ai={len(st_idx)})')
 
+    # per-generator: when the test set mixes generator models (cross-gen sets)
+    gens = sorted({r.get('model') for r in test_rows if r.get('model')})
+    if len(gens) > 1:
+        metrics['generators'] = {}
+        for g in gens:
+            g_idx = [k for k, r in enumerate(test_rows) if r.get('model') == g]
+            idx = human_idx + g_idx
+            ga = auc_score([ys[k] for k in idx], [scores[k] for k in idx])
+            metrics['generators'][g] = {'auc': ga, 'n_ai': len(g_idx)}
+            print(f'generator {g}: AUC {ga:.4f} (n_ai={len(g_idx)})')
+
     # surface baseline — the number to beat
     sb = surface_baseline(train_rows, test_rows)
     s_hgb = sb.pop('scores_hgb', None)
     metrics['baselines'].update(sb)
     metrics['baselines']['majority_acc'] = max(sum(ys), len(ys) - sum(ys)) / len(ys)
+    rf = surface_refit_cv(test_rows)
+    metrics['baselines'].update(rf)
+    if 'surface_hgb_refit_cv' in rf:
+        print(f"surface HGB refit on test (paper-grouped 5-fold CV): "
+              f"{rf['surface_hgb_refit_cv']['auc']:.4f} — the within-set cheap ceiling")
     if 'surface_hgb' in sb:
         a = metrics['test']['auc']
         metrics['margin'] = {'vs_surface_lr': a - sb['surface_lr']['auc'],
                              'vs_surface_hgb': a - sb['surface_hgb']['auc']}
+        if 'surface_hgb_refit_cv' in rf:
+            metrics['margin']['vs_surface_hgb_refit_cv'] = (
+                a - rf['surface_hgb_refit_cv']['auc'])
         print(f"surface baselines: LR {sb['surface_lr']['auc']:.4f} | "
               f"HGB {sb['surface_hgb']['auc']:.4f} (the number to beat) | "
               f"margin vs HGB {metrics['margin']['vs_surface_hgb']:+.4f}")
@@ -400,6 +471,7 @@ def main() -> None:
             f.write(json.dumps({
                 'paper': r['paper'], 'label': r['label'], 'score': s,
                 'ratio': r['ratio'], 'style': r.get('style'),
+                'model': r.get('model'),
                 'section': r.get('section'), 'kind': r.get('kind'),
             }, ensure_ascii=False) + '\n')
 

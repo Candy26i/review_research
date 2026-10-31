@@ -121,7 +121,7 @@ def main() -> None:
     seen: set[tuple] = set()
     deduped: list[dict] = []
     for r in rows:
-        key = (r['label'], r['old_text'], r['new_text'])
+        key = (r['label'], r.get('model'), r['old_text'], r['new_text'])
         if key in seen:
             continue
         seen.add(key)

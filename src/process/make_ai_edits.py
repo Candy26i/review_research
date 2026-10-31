@@ -36,6 +36,10 @@ from util import append_jsonl, done_keys, read_jsonl  # noqa: E402
 from build_splice_pilot import parse_blocks, norm, seed64  # noqa: E402
 from run_llm_review import load_api_key  # noqa: E402
 
+# keep in sync with build_attribution_dataset.TEST_MOD (importing it would be
+# circular: the builder imports looks_like_refusal from this module)
+TEST_MOD = 5
+
 SYSTEM = ("You are editing one paragraph from an academic paper. Apply the "
           "requested edit and return ONLY the revised paragraph — no preamble, "
           "no quotes, no commentary.")
@@ -57,8 +61,11 @@ EDIT_STYLES = {
 }
 
 PREAMBLE_RE = re.compile(
-    r"^(here('s| is)\b[^\n]*:\s*|sure[,!][^\n]*\n+|certainly[,!][^\n]*\n+|"
-    r"revised paragraph:?\s*|\*\*revised[^\n]*\*\*\s*)", re.I)
+    r"^(here('s| is)\b[^\n]{0,120}?:\s*|"
+    r"(sure|certainly|of course)[,!][^\n]{0,120}?(:\s*|\n+)|"
+    r"(the )?(revised|edited|rewritten|updated|tightened|expanded|compressed) "
+    r"(paragraph|text|version)[^\n]{0,60}?:\s*|"
+    r"\*\*(revised|edited|rewritten|updated|here)[^\n]*\*\*:?\s*)", re.I)
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 
 
@@ -69,19 +76,33 @@ REFUSAL_RE = re.compile(
     re.I)
 
 
+# non-anchored hedges within the opening window: Claude-style refusals often
+# open mid-sentence ("I apologize, but this appears to be...") where the
+# start-anchored deepseek patterns above never fire (xgen QC 2026-10-31)
+HEDGE_RE = re.compile(
+    r"\b(i apologi[sz]e\b|i('m| am) sorry\b|i won('t|t) be able to|"
+    r"i can(not|'t) (assist|help|comply)|unable to (apply|edit|rewrite|comply)|"
+    r"(text|paragraph|content|input) (you('ve| have)? (shared|provided)|appears to be))",
+    re.I)
+
+
 def looks_like_refusal(text: str) -> bool:
     """Text-level refusal detector. The API-level check (stop_reason ==
     'refusal') missed a deepseek row that began "I'm not able to apply this
     edit as requested. The text you've shared is a PDDL domain definition..."
     (QC 2026-10-30). Only the opening ~200 chars are inspected so a paragraph
     that merely *mentions* an apology is not rejected."""
-    return bool(REFUSAL_RE.search(text[:200]))
+    head = text[:200]
+    return bool(REFUSAL_RE.search(head) or HEDGE_RE.search(head))
 
 
 def clean_output(text: str) -> str:
     s = text.strip()
-    s = PREAMBLE_RE.sub('', s).strip()
-    if s.startswith('"') and s.endswith('"'):
+    prev = None
+    while prev != s:   # stacked preambles ("Sure! Here's the revised text:")
+        prev = s
+        s = PREAMBLE_RE.sub('', s).strip()
+    if len(s) >= 2 and s[0] in '"“' and s[-1] in '"”':
         s = s[1:-1].strip()
     if s.startswith('```'):
         s = re.sub(r'^```[a-zA-Z]*\s*\n?|\n?```\s*$', '', s).strip()
@@ -127,6 +148,8 @@ def call_anthropic(cfg, api_key: str, style_prompt: str, paragraph: str) -> tupl
                 api_key=api_key, max_retries=3, timeout=240.0,
                 default_headers={'Accept-Encoding': 'gzip'})
     try:
+        # NB: no temperature — the Claude 5 API dropped user-set sampling
+        # params (SDK 2.x Messages.create no longer accepts them)
         resp = _anthropic_client.messages.create(
             model=cfg.model, max_tokens=cfg.max_tokens, system=SYSTEM,
             messages=[{"role": "user", "content": f"{style_prompt}\n\n{paragraph}"}])
@@ -134,6 +157,10 @@ def call_anthropic(cfg, api_key: str, style_prompt: str, paragraph: str) -> tupl
         raise RuntimeError(f'anthropic API error: {str(exc)[:300]}') from exc
     if resp.stop_reason == 'refusal':
         raise RuntimeError('refusal')
+    if resp.stop_reason != 'end_turn':
+        # claude 5 thinks by default and thinking spends the max_tokens budget:
+        # a 'max_tokens' stop means truncated (or all-thinking, empty) text
+        raise RuntimeError(f'stop_reason {resp.stop_reason} (truncation?)')
     text = ''.join(b.text for b in resp.content if getattr(b, 'type', '') == 'text')
     u = resp.usage
     return text, {'prompt_tokens': u.input_tokens, 'completion_tokens': u.output_tokens}
@@ -187,6 +214,10 @@ def main() -> None:
     ap.add_argument('--model', default='deepseek-chat')
     ap.add_argument('--base-url', default='https://api.deepseek.com')
     ap.add_argument('--api-key-env', default='DEEPSEEK_API_KEY')
+    ap.add_argument('--only-split', default='any', choices=('any', 'test', 'train'),
+                    help="restrict to papers on one side of the builder's "
+                         "paper-level split hash — lets a second generator "
+                         "produce a held-out (cross-generator) test set only")
     ap.add_argument('--paras-per-paper', type=int, default=4)
     ap.add_argument('--max-papers', type=int, default=0, help='0 = all')
     ap.add_argument('--limit', type=int, default=0, help='max API calls (0 = no cap)')
@@ -196,8 +227,16 @@ def main() -> None:
     ap.add_argument('--seed', type=int, default=20261030)
     ap.add_argument('--mock', action='store_true')
     cfg = ap.parse_args()
-    if cfg.provider == 'anthropic' and cfg.api_key_env == 'DEEPSEEK_API_KEY':
-        cfg.api_key_env = 'ANTHROPIC_API_KEY'
+    if cfg.provider == 'anthropic':
+        if cfg.out_log == ap.get_default('out_log'):
+            ap.error('anthropic runs must set --out-log: the default log is the '
+                     'deepseek v0 ai class, and mixing generators there would '
+                     'void the "trained only on deepseek" premise')
+        if cfg.temperature != 1.0:
+            ap.error('claude 5 models reject user-set sampling params; '
+                     'drop --temperature')
+        if cfg.api_key_env == 'DEEPSEEK_API_KEY':
+            cfg.api_key_env = 'ANTHROPIC_API_KEY'
     api_key = load_api_key(cfg.api_key_env, cfg.mock)
 
     papers = read_jsonl(cfg.manifest)
@@ -208,6 +247,10 @@ def main() -> None:
 
     tasks, n_skipped, n_missing = [], 0, 0
     for p in papers:
+        if cfg.only_split != 'any':
+            is_test = seed64(f"split|{p['arxiv_id']}") % TEST_MOD == 0
+            if (cfg.only_split == 'test') != is_test:
+                continue
         safe_id = p['arxiv_id'].replace('/', '_')
         v1 = min(v['v'] for v in p['versions'])
         path = Path(cfg.texts) / safe_id / f'v{v1}.md'
@@ -232,8 +275,17 @@ def main() -> None:
                           'section': blocks[i]['section'], 'kind': blocks[i]['kind'],
                           'old_text': blocks[i]['text'],
                           'old_words': len(blocks[i]['text'].split())})
-    if cfg.limit and len(tasks) > cfg.limit:
-        tasks = tasks[:cfg.limit]
+    if cfg.limit:
+        # --limit is a TOTAL budget for this model: rows already in the log
+        # (incl. error rows) count toward it, so an interrupted run resumed
+        # with the same command completes the subset instead of growing it
+        n_done_model = sum(1 for k in done if k.endswith(f'|{cfg.model}'))
+        budget = max(0, cfg.limit - n_done_model)
+        if len(tasks) > budget:
+            # seeded shuffle so a capped run samples across papers rather than
+            # taking a manifest prefix (oldest papers first = era-skewed)
+            np.random.default_rng(cfg.seed).shuffle(tasks)
+            tasks = tasks[:budget]
     print(f'papers: {len(papers)} (texts missing: {n_missing}) | tasks: {len(tasks)} new, '
           f'{n_skipped} checkpointed | model={cfg.model} mock={cfg.mock}')
 
