@@ -1,23 +1,23 @@
 device: cuda (amp: torch.bfloat16)
-train 57628 rows (7497 ai) | val 6853 | test 15651 rows over 550 papers
-Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 32995.84it/s]
+train 57590 rows (7459 ai) | val 6847 | test 15639 rows over 550 papers
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 65989.05it/s]
 [transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
 Key                                     | Status     | 
 ----------------------------------------+------------+-
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
 mask_predictions.dense.weight           | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
 mask_predictions.classifier.weight      | UNEXPECTED | 
 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
-lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
 mask_predictions.dense.bias             | UNEXPECTED | 
-mask_predictions.LayerNorm.weight       | UNEXPECTED | 
-mask_predictions.classifier.bias        | UNEXPECTED | 
-mask_predictions.LayerNorm.bias         | UNEXPECTED | 
-lm_predictions.lm_head.bias             | UNEXPECTED | 
 lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+pooler.dense.weight                     | MISSING    | 
 classifier.weight                       | MISSING    | 
 pooler.dense.bias                       | MISSING    | 
-pooler.dense.weight                     | MISSING    | 
 classifier.bias                         | MISSING    | 
 
 Notes:
@@ -25,54 +25,54 @@ Notes:
 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
 C:\Users\madis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
   return t.to(
-epoch 0 step 0/3602 loss 0.9621 [1s]
-epoch 0 step 200/3602 loss 0.6213 [42s]
-epoch 0 step 400/3602 loss 0.2545 [83s]
-epoch 0 step 600/3602 loss 0.4239 [125s]
-epoch 0 step 800/3602 loss 0.2965 [166s]
-epoch 0 step 1000/3602 loss 0.5919 [207s]
-epoch 0 step 1200/3602 loss 0.5303 [249s]
-epoch 0 step 1400/3602 loss 0.1959 [290s]
-epoch 0 step 1600/3602 loss 0.1378 [331s]
-epoch 0 step 1800/3602 loss 0.1249 [372s]
-epoch 0 step 2000/3602 loss 0.0524 [413s]
-epoch 0 step 2200/3602 loss 0.4809 [454s]
-epoch 0 step 2400/3602 loss 0.3390 [496s]
-epoch 0 step 2600/3602 loss 0.0852 [537s]
-epoch 0 step 2800/3602 loss 0.8469 [578s]
-epoch 0 step 3000/3602 loss 1.0728 [620s]
-epoch 0 step 3200/3602 loss 1.0287 [660s]
-epoch 0 step 3400/3602 loss 0.5315 [702s]
-epoch 0 step 3600/3602 loss 0.1402 [743s]
-=== epoch 0: val AUC 0.9870
-epoch 1 step 0/3602 loss 0.4026 [795s]
-epoch 1 step 200/3602 loss 0.0925 [838s]
-epoch 1 step 400/3602 loss 0.0410 [882s]
-epoch 1 step 600/3602 loss 0.1314 [926s]
-epoch 1 step 800/3602 loss 0.2849 [970s]
-epoch 1 step 1000/3602 loss 0.1994 [1013s]
-epoch 1 step 1200/3602 loss 0.0249 [1057s]
-epoch 1 step 1400/3602 loss 0.0388 [1102s]
-epoch 1 step 1600/3602 loss 0.1373 [1145s]
-epoch 1 step 1800/3602 loss 0.5778 [1189s]
-epoch 1 step 2000/3602 loss 0.0280 [1232s]
-epoch 1 step 2200/3602 loss 0.0371 [1276s]
-epoch 1 step 2400/3602 loss 0.1890 [1320s]
-epoch 1 step 2600/3602 loss 0.5927 [1364s]
-epoch 1 step 2800/3602 loss 0.0080 [1408s]
-epoch 1 step 3000/3602 loss 0.0679 [1451s]
-epoch 1 step 3200/3602 loss 0.2455 [1495s]
-epoch 1 step 3400/3602 loss 0.0440 [1538s]
-epoch 1 step 3600/3602 loss 0.0843 [1582s]
-=== epoch 1: val AUC 0.9897
-test: AUC 0.9893 [0.9870,0.9916] | F1(ai) 0.8700 | balanced acc 0.9227
-band [0.3,0.6): AUC 0.9996 (n=2181)
-band [0.6,0.92): AUC 0.9920 (n=7178)
-band [0.92,1.01): AUC 0.9632 (n=6280)
-style compress: AUC 0.9903 (n_ai=407)
-style expand: AUC 0.9954 (n_ai=307)
-style grammar: AUC 0.9742 (n_ai=432)
-style polish: AUC 0.9898 (n_ai=408)
-style rewrite: AUC 0.9987 (n_ai=431)
-surface-LR baseline: {'auc': 0.7512086661965325, 'n_features': 9}
-=== done in 30.2 min -> results\attribution_v0\deberta_nfkc
+epoch 0 step 0/3600 loss 1.8755 [1s]
+epoch 0 step 200/3600 loss 0.4851 [43s]
+epoch 0 step 400/3600 loss 0.0189 [85s]
+epoch 0 step 600/3600 loss 0.8721 [127s]
+epoch 0 step 800/3600 loss 0.0581 [169s]
+epoch 0 step 1000/3600 loss 0.1044 [212s]
+epoch 0 step 1200/3600 loss 0.3192 [254s]
+epoch 0 step 1400/3600 loss 0.1855 [296s]
+epoch 0 step 1600/3600 loss 0.4169 [338s]
+epoch 0 step 1800/3600 loss 0.3043 [380s]
+epoch 0 step 2000/3600 loss 0.1269 [421s]
+epoch 0 step 2200/3600 loss 0.2516 [464s]
+epoch 0 step 2400/3600 loss 0.5684 [506s]
+epoch 0 step 2600/3600 loss 0.2061 [548s]
+epoch 0 step 2800/3600 loss 0.3800 [590s]
+epoch 0 step 3000/3600 loss 0.0947 [632s]
+epoch 0 step 3200/3600 loss 0.1317 [674s]
+epoch 0 step 3400/3600 loss 0.2906 [716s]
+=== epoch 0: val AUC 0.9856
+epoch 1 step 0/3600 loss 0.2311 [809s]
+epoch 1 step 200/3600 loss 0.3520 [853s]
+epoch 1 step 400/3600 loss 0.0534 [899s]
+epoch 1 step 600/3600 loss 0.0912 [943s]
+epoch 1 step 800/3600 loss 0.3988 [987s]
+epoch 1 step 1000/3600 loss 0.2918 [1031s]
+epoch 1 step 1200/3600 loss 0.1285 [1076s]
+epoch 1 step 1400/3600 loss 0.0061 [1120s]
+epoch 1 step 1600/3600 loss 0.0450 [1165s]
+epoch 1 step 1800/3600 loss 0.2253 [1209s]
+epoch 1 step 2000/3600 loss 0.0369 [1252s]
+epoch 1 step 2200/3600 loss 0.0108 [1297s]
+epoch 1 step 2400/3600 loss 0.1970 [1341s]
+epoch 1 step 2600/3600 loss 0.1372 [1386s]
+epoch 1 step 2800/3600 loss 0.0467 [1430s]
+epoch 1 step 3000/3600 loss 0.1706 [1475s]
+epoch 1 step 3200/3600 loss 0.3435 [1519s]
+epoch 1 step 3400/3600 loss 0.1128 [1563s]
+=== epoch 1: val AUC 0.9887
+test: AUC 0.9889 [0.9867,0.9912] | F1(ai) 0.8671 | balanced acc 0.9304
+band [0.3,0.6): AUC 0.9995 (n=2181)
+band [0.6,0.92): AUC 0.9921 (n=7178)
+band [0.92,1.01): AUC 0.9587 (n=6280)
+style compress: AUC 0.9907 (n_ai=404)
+style expand: AUC 0.9945 (n_ai=306)
+style grammar: AUC 0.9722 (n_ai=431)
+style polish: AUC 0.9902 (n_ai=405)
+style rewrite: AUC 0.9989 (n_ai=427)
+surface baselines: LR 0.8164 | HGB 0.9006 (the number to beat) | margin vs HGB +0.0883
+grouped-CV stack(model + HGB): AUC 0.9890 (vs model alone 0.9889: if equal, the model subsumes the cheap cues)
+=== done in 30.7 min -> results\attribution_v0\deberta_nfkc
+EXIT2=0

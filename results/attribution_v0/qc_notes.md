@@ -90,3 +90,33 @@ re-derived ones.
 - Second generator (another model family) for a held-out-generator test.
 - A human-copyedit control (e.g. Grammarly-style or professional-edit pairs)
   to separate "LLM" from "polished".
+
+## v0.2 re-run (2026-10-30, 4090) — symmetric filters, new baseline block
+
+Dataset rebuilt on the Mac with the symmetric `--min-ratio` + refusal filter
+(commit a2cb89c): train 64,437 (−44 ai), test 15,639 (−12 ai), zero ai rows
+with ratio < 0.30. Both runs re-trained from scratch (same seed/hyper-params;
+the v0.1 numbers are in git history at d574b2b).
+
+| run | test AUC [CI95] | F1(ai) | bal-acc | bands 0.3/0.6/0.92 | grammar | LR-14 | HGB-14 | margin vs HGB | stack CV |
+|---|---|---|---|---|---|---|---|---|---|
+| deberta v0.1 | 0.9895 [0.9873, 0.9917] | 0.871 | 0.912 | 0.9997 / 0.9928 / 0.9610 | 0.972 | — | — | — | — |
+| **deberta v0.2** | **0.9891 [0.9869, 0.9914]** | 0.862 | 0.907 | 0.9994 / 0.9925 / 0.9590 | 0.974 | 0.816 | 0.901 | **+0.088** | 0.9893 (+0.0002) |
+| nfkc v0.1 | 0.9893 [0.9870, 0.9916] | 0.870 | 0.923 | 0.9996 / 0.9920 / 0.9632 | 0.974 | — | — | — | — |
+| **nfkc v0.2** | **0.9889 [0.9867, 0.9912]** | 0.867 | 0.930 | 0.9995 / 0.9921 / 0.9587 | 0.972 | 0.816 | 0.901 | **+0.088** | 0.9890 (+0.0001) |
+
+- Headline moved −0.0004 (standard) / −0.0004 (nfkc), i.e. a fresh training
+  run's seed noise, well inside the ±0.002 CI; the 56 removed rows were all
+  easy positives (band [0.3,0.6) is unchanged at 0.999), so nothing in the
+  v0.1 result depended on them.
+- `margin.vs_surface_hgb` = +0.088 on both runs, matching the post-hoc QC
+  estimate (+0.09). `vs_surface_lr` = +0.173 with the 14-feature LR (0.816);
+  the old +0.24 vs the 9-feature LR should no longer be quoted.
+- Paper-grouped 5-fold stack of (DeBERTa logit, HGB logit) = 0.9893 vs
+  DeBERTa alone 0.9891 (nfkc 0.9890 vs 0.9889): adding the 14 cheap features
+  on top of the model buys ≤ 0.0002, so DeBERTa has absorbed the entire
+  cheap-cue signal. The remaining +0.088 is pair-level content the counts
+  cannot express.
+- NFKC ablation still null (−0.0002), per-style ordering unchanged
+  (grammar 0.973 < polish 0.990 < compress 0.991 < expand 0.993–0.995 <
+  rewrite 0.998).
