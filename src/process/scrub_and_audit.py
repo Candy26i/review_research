@@ -199,7 +199,8 @@ def main() -> None:
 
         dst = out_dir / safe_id / f"v{vnum}.md"
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(text, encoding="utf-8", newline=chr(10))  # LF on every OS
+        with open(dst, "w", encoding="utf-8", newline=chr(10)) as f:  # LF on every OS
+            f.write(text)
 
         append_jsonl(args.log, {
             "key": key,

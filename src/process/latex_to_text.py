@@ -740,9 +740,13 @@ def pylatexenc_convert(text: str) -> str:
     # No SIGALRM (Windows): run the conversion in a killable worker process so
     # a pathological document gets the same budget instead of hanging the run.
     global _POOL
-    if _POOL is None:
+    try:
+        if _POOL is None:
+            _POOL = ProcessPoolExecutor(max_workers=1)
+        fut = _POOL.submit(_convert_plain, text)
+    except BrokenProcessPool:  # worker died while idle: one retry on a fresh pool
         _POOL = ProcessPoolExecutor(max_workers=1)
-    fut = _POOL.submit(_convert_plain, text)
+        fut = _POOL.submit(_convert_plain, text)
     try:
         return fut.result(timeout=CONVERT_TIMEOUT_S)
     except FutureTimeout:
@@ -929,7 +933,12 @@ def main() -> None:
 
     rows = read_jsonl(args.extracted)
     if args.shard:
-        si, sn = (int(x) for x in args.shard.split('/'))
+        try:
+            si, sn = (int(x) for x in args.shard.split('/'))
+        except ValueError:
+            ap.error('--shard must look like i/n')
+        if not 0 <= si < sn:
+            ap.error('--shard i/n needs 0 <= i < n')
         rows = [r for k, r in enumerate(rows) if k % sn == si]
     done = done_keys(args.log, 'key')
     for extra in args.done_log:
@@ -979,7 +988,8 @@ def main() -> None:
             out_path.parent.mkdir(parents=True, exist_ok=True)
             # newline='': no LF -> CRLF translation on Windows (CRLF sources
             # would otherwise turn every line into its own paragraph)
-            out_path.write_text(md, encoding='utf-8', newline='')
+            with open(out_path, 'w', encoding='utf-8', newline='') as f:
+                f.write(md)
             log['n_chars'] = len(md)
             log['ok'] = True
         except Exception as exc:  # never let one document kill the run
