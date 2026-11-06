@@ -17,10 +17,14 @@ Run from repo root: python3 src/process/latex_to_text.py
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import signal
 import sys
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import TimeoutError as FutureTimeout
+from concurrent.futures.process import BrokenProcessPool
 from pathlib import Path
 
 from tqdm import tqdm
@@ -33,7 +37,7 @@ from pylatexenc.latex2text import LatexNodes2Text  # noqa: E402
 MAX_FILE_BYTES = 8 * 1024 * 1024      # never inline a single file bigger than this
 MAX_FLAT_CHARS = 30 * 1024 * 1024     # stop inlining once the flattened doc hits this
 MAX_DEPTH = 24                        # \input nesting cap (cycle-safe anyway)
-CONVERT_TIMEOUT_S = 240               # per-document pylatexenc budget
+CONVERT_TIMEOUT_S = int(os.environ.get('LATEX_TIMEOUT_S', 240))               # per-document pylatexenc budget
 FALLBACK_RATIO = 0.4                  # pylatexenc output below this share of detex -> fallback
 NEVER_INLINE = {'.sty', '.cls', '.bst', '.def', '.clo', '.bbx', '.cbx', '.dtx'}
 
@@ -714,6 +718,13 @@ class _Timeout(Exception):
     pass
 
 
+_POOL = None
+
+
+def _convert_plain(text: str) -> str:
+    return LatexNodes2Text(math_mode='text', keep_comments=False).latex_to_text(text)
+
+
 def pylatexenc_convert(text: str) -> str:
     l2t = LatexNodes2Text(math_mode='text', keep_comments=False)
     if hasattr(signal, 'SIGALRM'):
@@ -726,7 +737,23 @@ def pylatexenc_convert(text: str) -> str:
         finally:
             signal.setitimer(signal.ITIMER_REAL, 0)
             signal.signal(signal.SIGALRM, old)
-    return l2t.latex_to_text(text)
+    # No SIGALRM (Windows): run the conversion in a killable worker process so
+    # a pathological document gets the same budget instead of hanging the run.
+    global _POOL
+    if _POOL is None:
+        _POOL = ProcessPoolExecutor(max_workers=1)
+    fut = _POOL.submit(_convert_plain, text)
+    try:
+        return fut.result(timeout=CONVERT_TIMEOUT_S)
+    except FutureTimeout:
+        for proc in list(getattr(_POOL, '_processes', {}).values()):
+            proc.kill()
+        _POOL.shutdown(wait=False, cancel_futures=True)
+        _POOL = None
+        raise _Timeout(f'pylatexenc exceeded {CONVERT_TIMEOUT_S}s')
+    except BrokenProcessPool:
+        _POOL = None
+        raise
 
 
 def pdf_to_text(path: Path) -> str:
@@ -893,10 +920,20 @@ def main() -> None:
     ap.add_argument('--out-dir', default='data/processed/texts_raw/')
     ap.add_argument('--log', default='data/processed/latex_log.jsonl')
     ap.add_argument('--limit', type=int, default=0, help='max docs this run (0 = no cap)')
+    ap.add_argument('--shard', default='',
+                    help='"i/n": process only rows with index %% n == i (run n '
+                         'copies with separate --log files, then concatenate)')
+    ap.add_argument('--done-log', nargs='*', default=[],
+                    help='extra checkpoint logs whose keys count as done')
     args = ap.parse_args()
 
     rows = read_jsonl(args.extracted)
+    if args.shard:
+        si, sn = (int(x) for x in args.shard.split('/'))
+        rows = [r for k, r in enumerate(rows) if k % sn == si]
     done = done_keys(args.log, 'key')
+    for extra in args.done_log:
+        done |= done_keys(extra, 'key')
     out_root = Path(args.out_dir)
 
     n_proc = n_ckpt = n_notok = n_fail = 0
@@ -940,7 +977,9 @@ def main() -> None:
             safe_id = aid.replace('/', '_')
             out_path = out_root / safe_id / f'v{v}.md'
             out_path.parent.mkdir(parents=True, exist_ok=True)
-            out_path.write_text(md, encoding='utf-8')
+            # newline='': no LF -> CRLF translation on Windows (CRLF sources
+            # would otherwise turn every line into its own paragraph)
+            out_path.write_text(md, encoding='utf-8', newline='')
             log['n_chars'] = len(md)
             log['ok'] = True
         except Exception as exc:  # never let one document kill the run

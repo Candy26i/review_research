@@ -1,0 +1,35 @@
+{
+ "papers": {
+  "match": 2817,
+  "missing_text": 155,
+  "unverifiable": 28,
+  "mismatch": 1
+ },
+ "by_split": {
+  "test": {
+   "unverifiable": 11,
+   "match": 548,
+   "missing_text": 25
+  },
+  "train": {
+   "match": 2269,
+   "missing_text": 130,
+   "unverifiable": 17,
+   "mismatch": 1
+  }
+ },
+ "paper_match_rate": 0.9996,
+ "v0_ai_rows": 10274,
+ "rows_reproduced": 10261,
+ "row_match_rate": 0.9987,
+ "rows_text_present_but_not_sampled": 0,
+ "kept_papers": 2845,
+ "mismatched": [
+  {
+   "paper": "2109.06332",
+   "split": "train",
+   "v0_rows": 3,
+   "reproduced": 1
+  }
+ ]
+}

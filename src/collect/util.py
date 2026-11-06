@@ -78,8 +78,15 @@ def read_jsonl(path: str | Path) -> list[dict]:
 def append_jsonl(path: str | Path, obj: dict) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    line = json.dumps(obj, ensure_ascii=False)
+    try:
+        line.encode("utf-8")
+    except UnicodeEncodeError:
+        # lone surrogates (tar member names with undecodable bytes): fall back
+        # to ASCII escapes, which json.loads round-trips exactly
+        line = json.dumps(obj, ensure_ascii=True)
     with path.open("a") as f:
-        f.write(json.dumps(obj, ensure_ascii=False) + "\n")
+        f.write(line + "\n")
 
 
 def done_keys(path: str | Path, key: str) -> set:
