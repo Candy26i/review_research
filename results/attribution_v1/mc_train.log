@@ -1,0 +1,105 @@
+device: cuda (amp: torch.bfloat16)
+classes (6): {'Qwen/Qwen3-32B-AWQ': 5763, 'claude-haiku-5-5': 7768, 'deepseek-chat': 7963, 'gemini-3.8-flash': 2039, 'gpt-5.4-mini-2026-03-17': 7046, 'human': 55497}
+train 77024 | val 9052 | test known 20811 / probe 1570
+Loading weights:   0%|          | 0/198 [00:00<?, ?it/s]Loading weights: 100%|██████████| 198/198 [00:00<00:00, 49506.54it/s]
+[transformers] [1mDebertaV2ForSequenceClassification LOAD REPORT[0m from: microsoft/deberta-v3-base
+Key                                     | Status     | 
+----------------------------------------+------------+-
+mask_predictions.dense.weight           | UNEXPECTED | 
+mask_predictions.classifier.weight      | UNEXPECTED | 
+lm_predictions.lm_head.dense.weight     | UNEXPECTED | 
+lm_predictions.lm_head.dense.bias       | UNEXPECTED | 
+mask_predictions.classifier.bias        | UNEXPECTED | 
+mask_predictions.dense.bias             | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | 
+lm_predictions.lm_head.bias             | UNEXPECTED | 
+lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | 
+mask_predictions.LayerNorm.bias         | UNEXPECTED | 
+mask_predictions.LayerNorm.weight       | UNEXPECTED | 
+classifier.weight                       | MISSING    | 
+pooler.dense.weight                     | MISSING    | 
+classifier.bias                         | MISSING    | 
+pooler.dense.bias                       | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+C:\Users\madis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
+  return t.to(
+epoch 0 step 0/4814 loss 1.8224 [1s]
+epoch 0 step 200/4814 loss 1.7919 [44s]
+epoch 0 step 400/4814 loss 1.5082 [86s]
+epoch 0 step 600/4814 loss 1.6144 [129s]
+epoch 0 step 800/4814 loss 0.8596 [172s]
+epoch 0 step 1000/4814 loss 1.6880 [214s]
+epoch 0 step 1200/4814 loss 0.9618 [257s]
+epoch 0 step 1400/4814 loss 1.3316 [299s]
+epoch 0 step 1600/4814 loss 1.2858 [340s]
+epoch 0 step 1800/4814 loss 1.5085 [383s]
+epoch 0 step 2000/4814 loss 0.9971 [425s]
+epoch 0 step 2200/4814 loss 1.0145 [467s]
+epoch 0 step 2400/4814 loss 1.2615 [509s]
+epoch 0 step 2600/4814 loss 1.0058 [552s]
+epoch 0 step 2800/4814 loss 1.1115 [595s]
+epoch 0 step 3000/4814 loss 0.8515 [637s]
+epoch 0 step 3200/4814 loss 0.6482 [680s]
+epoch 0 step 3400/4814 loss 0.5939 [721s]
+epoch 0 step 3600/4814 loss 0.4443 [762s]
+epoch 0 step 3800/4814 loss 0.6009 [803s]
+epoch 0 step 4000/4814 loss 0.8495 [843s]
+epoch 0 step 4200/4814 loss 1.3026 [885s]
+epoch 0 step 4400/4814 loss 0.7545 [925s]
+epoch 0 step 4600/4814 loss 0.5848 [966s]
+epoch 0 step 4800/4814 loss 1.1912 [1008s]
+=== epoch 0: val macro-ovr-AUC 0.9497
+epoch 1 step 0/4814 loss 0.8982 [1079s]
+epoch 1 step 200/4814 loss 0.7350 [1123s]
+epoch 1 step 400/4814 loss 0.5882 [1167s]
+epoch 1 step 600/4814 loss 0.7663 [1210s]
+epoch 1 step 800/4814 loss 0.9147 [1254s]
+epoch 1 step 1000/4814 loss 0.8428 [1301s]
+epoch 1 step 1200/4814 loss 0.5972 [1344s]
+epoch 1 step 1400/4814 loss 0.9783 [1388s]
+epoch 1 step 1600/4814 loss 1.1175 [1431s]
+epoch 1 step 1800/4814 loss 1.0134 [1476s]
+epoch 1 step 2000/4814 loss 0.3997 [1519s]
+epoch 1 step 2200/4814 loss 0.5812 [1562s]
+epoch 1 step 2400/4814 loss 1.0939 [1606s]
+epoch 1 step 2600/4814 loss 0.9987 [1650s]
+epoch 1 step 2800/4814 loss 0.7679 [1693s]
+epoch 1 step 3000/4814 loss 0.7382 [1736s]
+epoch 1 step 3200/4814 loss 1.0968 [1779s]
+epoch 1 step 3400/4814 loss 1.3396 [1823s]
+epoch 1 step 3600/4814 loss 1.2540 [1866s]
+epoch 1 step 3800/4814 loss 1.0831 [1910s]
+epoch 1 step 4000/4814 loss 0.5705 [1953s]
+epoch 1 step 4200/4814 loss 1.2637 [1996s]
+epoch 1 step 4400/4814 loss 0.3444 [2040s]
+epoch 1 step 4600/4814 loss 0.3283 [2084s]
+epoch 1 step 4800/4814 loss 0.6534 [2128s]
+=== epoch 1: val macro-ovr-AUC 0.9534
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.68s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.68s/it]
+checkpoint saved -> results\attribution_v1\mc\model
+Qwen/Qwen3-32B-AWQ           ovr-AUC 0.9821 | F1 0.7558 | n 1367
+claude-haiku-5-5             ovr-AUC 0.9507 | F1 0.6198 | n 1820
+deepseek-chat                ovr-AUC 0.9215 | F1 0.4796 | n 1893
+gemini-3.8-flash             ovr-AUC 0.9429 | F1 0.4166 | n 495
+gpt-5.4-mini-2026-03-17      ovr-AUC 0.9153 | F1 0.4903 | n 1703
+human                        ovr-AUC 0.9901 | F1 0.9475 | n 13533
+confusion rows=true cols=pred, order: ['Qwen/Qwen3-32B-AWQ', 'claude-haiku-5-5', 'deepseek-chat', 'gemini-3.8-flash', 'gpt-5.4-mini-2026-03-17', 'human']
+Qwen/Qwen3-32B-AWQ           [1108, 63, 34, 66, 82, 14]  recall%  81.1   4.6   2.5   4.8   6.0   1.0
+claude-haiku-5-5             [74, 1124, 167, 43, 386, 26]  recall%   4.1  61.8   9.2   2.4  21.2   1.4
+deepseek-chat                [83, 289, 777, 69, 620, 55]  recall%   4.4  15.3  41.0   3.6  32.8   2.9
+gemini-3.8-flash             [135, 52, 49, 196, 57, 6]  recall%  27.3  10.5   9.9  39.6  11.5   1.2
+gpt-5.4-mini-2026-03-17      [80, 163, 152, 36, 1174, 98]  recall%   4.7   9.6   8.9   2.1  68.9   5.8
+human                        [85, 116, 168, 36, 767, 12361]  recall%   0.6   0.9   1.2   0.3   5.7  91.3
+which-generator | AI rows only: acc 0.6161 (n=7278, chance 0.20)
+surface HGB (multi-class, 14 feats): macro ovr-AUC 0.8444 | AI-only acc 0.4229 — numbers to beat
+binary collapse: known 0.9901 | +unseen probes 0.9907
+  unseen claude-sonnet-5-5 vs human: AUC 0.9924
+  unseen deepseek-reasoner vs human: AUC 0.9932
+  unseen gpt-5.5-2026-04-23 vs human: AUC 0.9942
+probe claude-sonnet-5-5 (n=500): claude-haiku-5-5 56%, gpt-5.4-mini-2026-03-17 22%, deepseek-chat 16%
+probe deepseek-reasoner (n=525): deepseek-chat 38%, gpt-5.4-mini-2026-03-17 29%, claude-haiku-5-5 19%
+probe gpt-5.5-2026-04-23 (n=545): gpt-5.4-mini-2026-03-17 35%, claude-haiku-5-5 25%, deepseek-chat 23%
+=== done in 39.7 min -> results\attribution_v1\mc

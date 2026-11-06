@@ -1,0 +1,178 @@
+{
+  "config": {
+    "data": "data/processed/attribution_v1",
+    "out": "results/attribution_v1/mc",
+    "model": "microsoft/deberta-v3-base",
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 512,
+    "lr": 2e-05,
+    "seed": 0,
+    "min_train_rows": 500,
+    "exclude_models": "",
+    "limit": 0,
+    "save_model": true
+  },
+  "device": "cuda",
+  "classes": [
+    "Qwen/Qwen3-32B-AWQ",
+    "claude-haiku-5-5",
+    "deepseek-chat",
+    "gemini-3.8-flash",
+    "gpt-5.4-mini-2026-03-17",
+    "human"
+  ],
+  "val_macro_ovr_auc": 0.9534083359888418,
+  "test": {
+    "macro_f1": 0.6182582039347336,
+    "per_class": {
+      "Qwen/Qwen3-32B-AWQ": {
+        "ovr_auc": 0.9820912365968512,
+        "f1": 0.7557980900409277,
+        "support": 1367
+      },
+      "claude-haiku-5-5": {
+        "ovr_auc": 0.9507351081860059,
+        "f1": 0.6197959746346843,
+        "support": 1820
+      },
+      "deepseek-chat": {
+        "ovr_auc": 0.9214737030340915,
+        "f1": 0.47962962962962963,
+        "support": 1893
+      },
+      "gemini-3.8-flash": {
+        "ovr_auc": 0.9429447059689233,
+        "f1": 0.4165781083953241,
+        "support": 495
+      },
+      "gpt-5.4-mini-2026-03-17": {
+        "ovr_auc": 0.915253389854572,
+        "f1": 0.490290248486114,
+        "support": 1703
+      },
+      "human": {
+        "ovr_auc": 0.9901161018529061,
+        "f1": 0.9474571724217223,
+        "support": 13533
+      }
+    },
+    "ai_only": {
+      "acc": 0.6161033250893102,
+      "n": 7278,
+      "chance": 0.2,
+      "recall": {
+        "Qwen/Qwen3-32B-AWQ": 0.8134601316752011,
+        "claude-haiku-5-5": 0.6203296703296703,
+        "deepseek-chat": 0.4178552562070787,
+        "gemini-3.8-flash": 0.39595959595959596,
+        "gpt-5.4-mini-2026-03-17": 0.7375220199647681
+      }
+    },
+    "binary_collapse_auc": 0.9901161018529061,
+    "binary_collapse_auc_with_probes": 0.9906789072228371,
+    "probe_auc_vs_human": {
+      "claude-sonnet-5-5": 0.9923928175570826,
+      "deepseek-reasoner": 0.9932085589722477,
+      "gpt-5.5-2026-04-23": 0.9941854671252128
+    },
+    "n_known": 20811,
+    "n_probe": 1570
+  },
+  "baselines": {
+    "surface_hgb_mc": {
+      "macro_ovr_auc": 0.8443520326854353,
+      "ai_only_acc": 0.4229183841714757,
+      "n_features": 14
+    }
+  },
+  "confusion": {
+    "order": [
+      "Qwen/Qwen3-32B-AWQ",
+      "claude-haiku-5-5",
+      "deepseek-chat",
+      "gemini-3.8-flash",
+      "gpt-5.4-mini-2026-03-17",
+      "human"
+    ],
+    "rows_true": [
+      [
+        1108,
+        63,
+        34,
+        66,
+        82,
+        14
+      ],
+      [
+        74,
+        1124,
+        167,
+        43,
+        386,
+        26
+      ],
+      [
+        83,
+        289,
+        777,
+        69,
+        620,
+        55
+      ],
+      [
+        135,
+        52,
+        49,
+        196,
+        57,
+        6
+      ],
+      [
+        80,
+        163,
+        152,
+        36,
+        1174,
+        98
+      ],
+      [
+        85,
+        116,
+        168,
+        36,
+        767,
+        12361
+      ]
+    ]
+  },
+  "probes": {
+    "claude-sonnet-5-5": {
+      "claude-haiku-5-5": 0.558,
+      "gpt-5.4-mini-2026-03-17": 0.218,
+      "deepseek-chat": 0.158,
+      "Qwen/Qwen3-32B-AWQ": 0.028,
+      "gemini-3.8-flash": 0.02,
+      "human": 0.018
+    },
+    "deepseek-reasoner": {
+      "deepseek-chat": 0.379047619047619,
+      "gpt-5.4-mini-2026-03-17": 0.2876190476190476,
+      "claude-haiku-5-5": 0.19047619047619047,
+      "Qwen/Qwen3-32B-AWQ": 0.07047619047619047,
+      "gemini-3.8-flash": 0.05333333333333334,
+      "human": 0.01904761904761905
+    },
+    "gpt-5.5-2026-04-23": {
+      "gpt-5.4-mini-2026-03-17": 0.3504587155963303,
+      "claude-haiku-5-5": 0.24770642201834864,
+      "deepseek-chat": 0.23119266055045873,
+      "Qwen/Qwen3-32B-AWQ": 0.09541284403669725,
+      "gemini-3.8-flash": 0.060550458715596334,
+      "human": 0.014678899082568808
+    }
+  },
+  "notes": [
+    "gemini-3.8-flash is a 23% manifest-prefix (era-biased) partial family: quote its row as preliminary until the class is completed or --exclude-models it"
+  ]
+}

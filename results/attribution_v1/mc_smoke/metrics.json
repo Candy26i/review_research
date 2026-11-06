@@ -1,0 +1,163 @@
+{
+  "config": {
+    "data": "data/processed/attribution_v1",
+    "out": "results/attribution_v1/mc_smoke",
+    "model": "microsoft/deberta-v3-base",
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 512,
+    "lr": 2e-05,
+    "seed": 0,
+    "min_train_rows": 500,
+    "exclude_models": "",
+    "limit": 600,
+    "save_model": false
+  },
+  "device": "cuda",
+  "classes": [
+    "Qwen/Qwen3-32B-AWQ",
+    "claude-haiku-5-5",
+    "deepseek-chat",
+    "gemini-3.8-flash",
+    "gpt-5.4-mini-2026-03-17",
+    "human"
+  ],
+  "val_macro_ovr_auc": 0.6125037632659187,
+  "test": {
+    "macro_f1": 0.13212608987256874,
+    "per_class": {
+      "Qwen/Qwen3-32B-AWQ": {
+        "ovr_auc": 0.8052069675969282,
+        "f1": 0.0,
+        "support": 19
+      },
+      "claude-haiku-5-5": {
+        "ovr_auc": 0.6163342830009497,
+        "f1": 0.0,
+        "support": 27
+      },
+      "deepseek-chat": {
+        "ovr_auc": 0.6189082580480977,
+        "f1": 0.0,
+        "support": 29
+      },
+      "gemini-3.8-flash": {
+        "ovr_auc": 0.6874695270599708,
+        "f1": 0.0,
+        "support": 7
+      },
+      "gpt-5.4-mini-2026-03-17": {
+        "ovr_auc": 0.4879672299027138,
+        "f1": 0.0,
+        "support": 21
+      },
+      "human": {
+        "ovr_auc": 0.7643782957961658,
+        "f1": 0.7927565392354124,
+        "support": 197
+      }
+    },
+    "ai_only": {
+      "acc": 0.27184466019417475,
+      "n": 103,
+      "chance": 0.2,
+      "recall": {
+        "Qwen/Qwen3-32B-AWQ": 0.0,
+        "claude-haiku-5-5": 0.3333333333333333,
+        "deepseek-chat": 0.0,
+        "gemini-3.8-flash": 0.0,
+        "gpt-5.4-mini-2026-03-17": 0.9047619047619048
+      }
+    },
+    "binary_collapse_auc": 0.7643782957961658,
+    "binary_collapse_auc_with_probes": 0.7735699524487871,
+    "probe_auc_vs_human": {
+      "claude-sonnet-5-5": 0.7326372865712967,
+      "deepseek-reasoner": 0.7980491689061411,
+      "gpt-5.5-2026-04-23": 0.8008306414397784
+    },
+    "n_known": 300,
+    "n_probe": 150
+  },
+  "baselines": {
+    "surface_hgb_mc": {
+      "macro_ovr_auc": 0.7626636702934456,
+      "ai_only_acc": 0.33980582524271846,
+      "n_features": 14
+    }
+  },
+  "confusion": {
+    "order": [
+      "Qwen/Qwen3-32B-AWQ",
+      "claude-haiku-5-5",
+      "deepseek-chat",
+      "gemini-3.8-flash",
+      "gpt-5.4-mini-2026-03-17",
+      "human"
+    ],
+    "rows_true": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        19
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        27
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        29
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        7
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        21
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        197
+      ]
+    ]
+  },
+  "probes": {
+    "claude-sonnet-5-5": {
+      "human": 1.0
+    },
+    "deepseek-reasoner": {
+      "human": 1.0
+    },
+    "gpt-5.5-2026-04-23": {
+      "human": 1.0
+    }
+  },
+  "notes": [
+    "gemini-3.8-flash is a 23% manifest-prefix (era-biased) partial family: quote its row as preliminary until the class is completed or --exclude-models it"
+  ]
+}
