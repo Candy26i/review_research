@@ -28,6 +28,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, 'src/collect')
@@ -38,13 +39,61 @@ from make_ai_edits import looks_like_refusal  # noqa: E402
 
 TEST_MOD = 5  # paper_hash % 5 == 0 -> test
 WS_RE = re.compile(r'\s+')
-LEAD_MARKER_RE = re.compile(r'^(?:caption:\s*|\*\s+|<cit\.>\s*)+', re.I)
+# generators echo the task prompt's caption label ("Figure caption: ..."), a
+# prefix the detex pipeline never writes (sonnet 26.7% of caption rows)
+LEAD_MARKER_RE = re.compile(
+    r'^(?:(?:figure|table|fig\.?|algorithm)\s+caption:\s*|caption:\s*'
+    r'|\*\s+|<cit\.>\s*)+', re.I)
+# typographic codepoints are PIPELINE artifacts, not author style: the human
+# side comes through detex (straight quotes), the AI side through APIs whose
+# models emit smart punctuation (qwen U+2019 12%, gpt-5.5 6.5%, gemini em dash
+# 6.1% vs human 0.15-0.4%) — a codepoint-level which-generator leak. NFKC on
+# top folds unicode sub/superscripts (haiku 1.2% introduces x₁ for x_1).
+TYPO_MAP = str.maketrans({
+    '‘': "'", '’': "'", '‚': "'", '‛': "'",
+    '“': '"', '”': '"', '„': '"', '‟': '"',
+    '–': '-', '—': '-',
+    # dash/sign siblings (review round 2): NFKC folds U+207B superscript
+    # minus INTO U+2212, so leaving it unmapped converts one ai-only tell
+    # into another (649 ai rows vs 0 human before this entry)
+    '−': '-', '‐': '-', '‒': '-', '―': '-',
+    '′': "'",  # prime (NFKC folds double-prime to two of these)
+    '⁄': '/',  # fraction slash — MANUFACTURED by NFKC from vulgar ½
+    # detex passes LaTeX `...' quoting through as literal backticks — the
+    # HUMAN-side quote artifact (0.59% vs ai 0.035% introduced); folding only
+    # the AI side's smart quotes would leave a one-sided human tell
+    '`': "'",
+})
+# LaTeX non-breaking space glued to our placeholder ("Figure~<ref>") — qwen
+# reproduces the LaTeX convention the detex pipeline already unfolded
+NBSP_TILDE_RE = re.compile(r'~(?=<(?:cit\.|ref)>)')
+# markup forms the pipeline's OUTPUT convention never introduces: a generator
+# that mangles the <cit.> placeholder (gpt-5.4-mini writes bare <cit> in 3.3%
+# of rows) or re-introduces LaTeX math/markdown (\( is the $-gate's sibling:
+# 307 ai rows vs 0 human) is reacting to OUR placeholder/detex format — a
+# construction artifact, dropped symmetrically when introduced in new.
+# ('**' does occur in detex old_texts — the filter still only drops
+# INTRODUCTIONS, both classes, so no one-sided leak either way.)
+MARKUP_INTRO = ('\\cite{', '\\ref{', '<sub>', '<sup>', '**',
+                '\\(', '\\[', '\\begin{')
+CIT_MANGLE_RE = re.compile(r'<cit(?!\.>)|\(cit\.?\)|\[cit\.?\]')
 
 
 def clean(text: str) -> str:
     """Symmetric surface normalization (both classes, both sides)."""
-    s = WS_RE.sub(' ', text).strip()
+    s = unicodedata.normalize('NFKC', text).translate(TYPO_MAP)
+    s = s.replace("''", '"')  # LaTeX ``...'' / '' close-quotes -> straight "
+    s = NBSP_TILDE_RE.sub(' ', s)
+    s = WS_RE.sub(' ', s).strip()
     return LEAD_MARKER_RE.sub('', s).strip()
+
+
+def markup_introduced(old: str, new: str) -> bool:
+    """True when new_text introduces a pipeline-foreign markup form."""
+    for tok in MARKUP_INTRO:
+        if tok in new and tok not in old:
+            return True
+    return bool(CIT_MANGLE_RE.search(new)) and not CIT_MANGLE_RE.search(old)
 
 
 def main() -> None:
@@ -84,11 +133,14 @@ def main() -> None:
         n_papers += 1
         split = 'test' if seed64(f"split|{p['arxiv_id']}") % TEST_MOD == 0 else 'train'
         for i, j, r in pairs:
+            old_c, new_c = clean(b1[i]['text']), clean(b2[j]['text'])
+            # ratio recomputed on CLEANED text so its provenance matches the
+            # ai class (align()'s raw-text r stays the selection criterion)
             rows.append({'label': 'human', 'paper': p['arxiv_id'], 'split': split,
                          'section': b1[i]['section'], 'kind': b1[i]['kind'],
-                         'ratio': round(r, 4), 'style': None, 'model': None,
-                         'old_text': clean(b1[i]['text']),
-                         'new_text': clean(b2[j]['text'])})
+                         'ratio': round(word_ratio(old_c, new_c), 4),
+                         'style': None, 'model': None,
+                         'old_text': old_c, 'new_text': new_c})
 
     # ---- ai class: generator output (same papers, same split hash)
     n_ai = n_ai_bad = 0
@@ -129,6 +181,12 @@ def main() -> None:
     # human 0.032%, deepseek 0.029%) — a pure surface tell, dropped BOTH sides
     n_math = sum(('$' in r['old_text']) != ('$' in r['new_text']) for r in rows)
     rows = [r for r in rows if ('$' in r['old_text']) == ('$' in r['new_text'])]
+    # markup-form introductions (symmetric; see MARKUP_INTRO above)
+    n_markup_h = sum(r['label'] == 'human' and
+                     markup_introduced(r['old_text'], r['new_text']) for r in rows)
+    n_markup_a = sum(r['label'] == 'ai' and
+                     markup_introduced(r['old_text'], r['new_text']) for r in rows)
+    rows = [r for r in rows if not markup_introduced(r['old_text'], r['new_text'])]
     seen: set[tuple] = set()
     deduped: list[dict] = []
     for r in rows:
@@ -168,7 +226,8 @@ def main() -> None:
     print(f'human-source papers: {n_papers} (texts missing: {n_missing}) | '
           f'ai rows kept: {n_ai} (rejected: {n_ai_bad})')
     print(f'dropped: {n_noop} no-ops after cleaning, {n_math} math-markup '
-          f'asymmetries, {n_dupes} dupes, {n_contested} contested-label, '
+          f'asymmetries, {n_markup_h}+{n_markup_a} markup-intro (human+ai), '
+          f'{n_dupes} dupes, {n_contested} contested-label, '
           f'{n_contested_m} model-contested rows -> {out_dir}')
 
 
