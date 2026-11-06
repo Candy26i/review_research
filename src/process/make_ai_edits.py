@@ -126,12 +126,23 @@ def call_openai(cfg, api_key: str, style_prompt: str, paragraph: str) -> tuple[s
             continue
         if resp.status_code in RETRY_STATUSES:
             last = f'HTTP {resp.status_code}'
-            time.sleep(min(float(resp.headers.get('Retry-After', 4 * (attempt + 1))), 90))
+            try:   # Retry-After may be an HTTP-date, not seconds
+                ra = float(resp.headers.get('Retry-After', ''))
+            except ValueError:
+                ra = 4.0 * (attempt + 1)
+            time.sleep(min(ra, 90))
             continue
         if resp.status_code != 200:
             raise RuntimeError(f'HTTP {resp.status_code}: {resp.text[:300]}')
         body = resp.json()
-        return body['choices'][0]['message']['content'], body.get('usage', {}) or {}
+        choice = body['choices'][0]
+        fr = choice.get('finish_reason')
+        if fr not in (None, 'stop'):
+            # 'length' = max_tokens truncation — gemini 2.5 thinks by default
+            # and thinking spends the same budget (same gap the anthropic path
+            # had; one truncated deepseek row already slipped into v0 train)
+            raise RuntimeError(f'finish_reason {fr} (truncation?)')
+        return choice['message']['content'], body.get('usage', {}) or {}
     raise RuntimeError(f'request failed after retries ({last})')
 
 
@@ -191,6 +202,10 @@ def run_one(task: dict, cfg, api_key: str | None) -> dict:
         ratio = len(new.split()) / max(1, len(task['old_text'].split()))
         if looks_like_refusal(new):
             row['error'] = 'refusal text: ' + new[:80]
+        elif ('$' in new) != ('$' in task['old_text']):
+            # LaTeX-ifying plain math is a generator fingerprint (xgen QC);
+            # the builder drops these symmetrically — reject at source too
+            row['error'] = 'math-markup asymmetry'
         elif norm(new) == norm(task['old_text']):
             row['error'] = 'unchanged'
         elif not (lo <= ratio <= hi):
@@ -225,13 +240,16 @@ def main() -> None:
     ap.add_argument('--temperature', type=float, default=1.0)
     ap.add_argument('--max-tokens', type=int, default=2000)
     ap.add_argument('--seed', type=int, default=20261030)
+    ap.add_argument('--abort-after', type=int, default=30,
+                    help='abort after this many CONSECUTIVE failures (daily-'
+                         'quota guard: stops grinding out error rows); 0 = off')
     ap.add_argument('--mock', action='store_true')
     cfg = ap.parse_args()
+    if cfg.model != 'deepseek-chat' and cfg.out_log == ap.get_default('out_log'):
+        ap.error('non-deepseek generators must set --out-log: the default log '
+                 'is the deepseek v0 ai class, and mixing generators there '
+                 'would void the "trained only on deepseek" premise')
     if cfg.provider == 'anthropic':
-        if cfg.out_log == ap.get_default('out_log'):
-            ap.error('anthropic runs must set --out-log: the default log is the '
-                     'deepseek v0 ai class, and mixing generators there would '
-                     'void the "trained only on deepseek" premise')
         if cfg.temperature != 1.0:
             ap.error('claude 5 models reject user-set sampling params; '
                      'drop --temperature')
@@ -290,19 +308,28 @@ def main() -> None:
           f'{n_skipped} checkpointed | model={cfg.model} mock={cfg.mock}')
 
     lock = threading.Lock()
-    n_ok = n_fail = tok_in = tok_out = 0
+    n_ok = n_fail = n_consec = tok_in = tok_out = 0
     pbar = tqdm(total=len(tasks), desc='ai edits', unit='call')
     with ThreadPoolExecutor(max_workers=cfg.workers) as ex:
         futures = [ex.submit(run_one, t, cfg, api_key) for t in tasks]
         for fut in as_completed(futures):
+            if fut.cancelled():
+                continue
             row = fut.result()
             with lock:
                 append_jsonl(cfg.out_log, row)
                 n_ok += row['error'] is None
                 n_fail += row['error'] is not None
+                n_consec = 0 if row['error'] is None else n_consec + 1
                 tok_in += (row['usage'] or {}).get('prompt_tokens', 0) or 0
                 tok_out += (row['usage'] or {}).get('completion_tokens', 0) or 0
                 pbar.update(1)
+            if cfg.abort_after and n_consec >= cfg.abort_after:
+                print(f'\n!! {n_consec} consecutive failures — aborting '
+                      '(quota exhausted?). Cancelled tasks are NOT logged and '
+                      'retry next run; prune the error rows first.', flush=True)
+                ex.shutdown(wait=False, cancel_futures=True)
+                break
     pbar.close()
     print(f'\nok: {n_ok} | failed/rejected: {n_fail} | tokens in/out: {tok_in:,}/{tok_out:,}')
     print(f'log: {cfg.out_log}')

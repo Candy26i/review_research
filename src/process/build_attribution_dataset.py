@@ -51,7 +51,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description='Edit-attribution dataset builder.')
     ap.add_argument('--manifest', default='data/processed/pre2022_manifest.jsonl')
     ap.add_argument('--texts', default='data/processed/pre2022_texts/')
-    ap.add_argument('--ai-log', default='data/processed/ai_edits_log.jsonl')
+    ap.add_argument('--ai-log', nargs='+',
+                    default=['data/processed/ai_edits_log.jsonl'],
+                    help='one or more generator logs (a multi-generator build '
+                         'passes each family\'s log)')
     ap.add_argument('--out-dir', default='data/processed/attribution_v0')
     ap.add_argument('--min-ratio', type=float, default=0.30,
                     help='human pairs below this similarity are likely '
@@ -89,8 +92,11 @@ def main() -> None:
 
     # ---- ai class: generator output (same papers, same split hash)
     n_ai = n_ai_bad = 0
-    if Path(args.ai_log).exists():
-        for r in read_jsonl(args.ai_log):
+    for log_path in args.ai_log:
+        if not Path(log_path).exists():
+            sys.exit(f'ai log missing: {log_path} — refusing to build a '
+                     'partial dataset (check paths relative to the repo root)')
+        for r in read_jsonl(log_path):
             if r.get('error') or not r.get('new_text'):
                 n_ai_bad += 1
                 continue
@@ -118,6 +124,11 @@ def main() -> None:
     # ---- symmetric filters: no-ops, exact dupes, contradictory-label pairs
     n_noop = sum(r['old_text'] == r['new_text'] for r in rows)
     rows = [r for r in rows if r['old_text'] != r['new_text']]
+    # math-markup asymmetry: generators that LaTeX-ify plain math introduce
+    # '$' the source pipeline almost never does (haiku 1.5%, gemini pilot;
+    # human 0.032%, deepseek 0.029%) — a pure surface tell, dropped BOTH sides
+    n_math = sum(('$' in r['old_text']) != ('$' in r['new_text']) for r in rows)
+    rows = [r for r in rows if ('$' in r['old_text']) == ('$' in r['new_text'])]
     seen: set[tuple] = set()
     deduped: list[dict] = []
     for r in rows:
@@ -133,6 +144,17 @@ def main() -> None:
     contested = {k for k, labels in by_pair.items() if len(labels) > 1}
     n_contested = sum((r['old_text'], r['new_text']) in contested for r in deduped)
     rows = [r for r in deduped if (r['old_text'], r['new_text']) not in contested]
+    # model-contested: the SAME (old,new) produced by two different generators
+    # is undecidable for which-generator attribution — drop those ai rows
+    by_pair_m: dict[tuple, set] = {}
+    for r in rows:
+        if r['label'] == 'ai':
+            by_pair_m.setdefault((r['old_text'], r['new_text']), set()).add(r['model'])
+    contested_m = {k for k, ms in by_pair_m.items() if len(ms) > 1}
+    n_contested_m = sum(r['label'] == 'ai' and
+                        (r['old_text'], r['new_text']) in contested_m for r in rows)
+    rows = [r for r in rows if not (r['label'] == 'ai' and
+                                    (r['old_text'], r['new_text']) in contested_m)]
 
     for split in ('train', 'test'):
         part = [r for r in rows if r['split'] == split]
@@ -145,8 +167,9 @@ def main() -> None:
               f'{len({r["paper"] for r in part})} papers')
     print(f'human-source papers: {n_papers} (texts missing: {n_missing}) | '
           f'ai rows kept: {n_ai} (rejected: {n_ai_bad})')
-    print(f'dropped: {n_noop} no-ops after cleaning, {n_dupes} dupes, '
-          f'{n_contested} contested-label rows -> {out_dir}')
+    print(f'dropped: {n_noop} no-ops after cleaning, {n_math} math-markup '
+          f'asymmetries, {n_dupes} dupes, {n_contested} contested-label, '
+          f'{n_contested_m} model-contested rows -> {out_dir}')
 
 
 if __name__ == '__main__':
