@@ -9,3 +9,6 @@ results/raw/
 *.pdf
 !docs/**/*.pdf
 .ipynb_checkpoints/
+
+# model checkpoints (--save-model), never commit
+results/**/model/

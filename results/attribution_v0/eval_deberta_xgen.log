@@ -1,0 +1,20 @@
+device: cuda (amp: torch.bfloat16)
+train 57590 rows (7459 ai) | val 6847 | test 16101 rows over 550 papers
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 57589.00it/s]
+C:\Users\madis\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\nn\modules\module.py:1329: UserWarning: expandable_segments not supported on this platform (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\c10/cuda/CUDAAllocatorConfig.h:28.)
+  return t.to(
+test: AUC 0.9885 [0.9862,0.9909] | F1(ai) 0.8766 | balanced acc 0.9150
+band [0.3,0.6): AUC 0.9983 (n=2709)
+band [0.6,0.92): AUC 0.9903 (n=7261)
+band [0.92,1.01): AUC 0.9517 (n=6131)
+style compress: AUC 0.9898 (n_ai=494)
+style expand: AUC 0.9857 (n_ai=368)
+style grammar: AUC 0.9801 (n_ai=543)
+style polish: AUC 0.9942 (n_ai=516)
+style rewrite: AUC 0.9924 (n_ai=513)
+generator claude-haiku-5-5: AUC 0.9885 (n_ai=1906)
+generator claude-sonnet-5-5: AUC 0.9886 (n_ai=528)
+surface HGB refit on test (paper-grouped 5-fold CV): 0.9204 — the within-set cheap ceiling
+surface baselines: LR 0.8715 | HGB 0.8838 (the number to beat) | margin vs HGB +0.1047
+grouped-CV stack(model + HGB): AUC 0.9892 (vs model alone 0.9885: if equal, the model subsumes the cheap cues)
+=== done in 3.3 min -> results\attribution_v0\deberta_xgen

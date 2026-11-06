@@ -1,0 +1,102 @@
+{
+  "config": {
+    "data": "data/processed/attribution_v0",
+    "out": "results/attribution_v0/deberta_xgen",
+    "model": "microsoft/deberta-v3-base",
+    "fold_unicode": false,
+    "epochs": 2,
+    "batch": 16,
+    "max_len": 512,
+    "lr": 2e-05,
+    "seed": 0,
+    "train_frac": 1.0,
+    "test_file": "data/processed/attribution_xgen/test.jsonl",
+    "eval_only": "results/attribution_v0/deberta/model",
+    "save_model": false,
+    "limit": 0
+  },
+  "device": "cuda",
+  "val_auc": 0.9902100585220946,
+  "test": {
+    "auc": 0.9884992183187628,
+    "auc_ci95": [
+      0.9862332608193933,
+      0.9909187950359492
+    ],
+    "f1_ai": 0.8765721594542741,
+    "balanced_acc": 0.9149965619011998,
+    "threshold": 2.93,
+    "n": 16101,
+    "n_ai": 2434
+  },
+  "bands": {
+    "[0.3,0.6)": {
+      "auc": 0.9983051593590421,
+      "n": 2709,
+      "n_ai": 816
+    },
+    "[0.6,0.92)": {
+      "auc": 0.9903023288311654,
+      "n": 7261,
+      "n_ai": 1399
+    },
+    "[0.92,1.01)": {
+      "auc": 0.951698735178354,
+      "n": 6131,
+      "n_ai": 219
+    }
+  },
+  "styles": {
+    "compress": {
+      "auc": 0.9897985602602564,
+      "n_ai": 494
+    },
+    "expand": {
+      "auc": 0.9857111783063616,
+      "n_ai": 368
+    },
+    "grammar": {
+      "auc": 0.9801023583712619,
+      "n_ai": 543
+    },
+    "polish": {
+      "auc": 0.9942300046000012,
+      "n_ai": 516
+    },
+    "rewrite": {
+      "auc": 0.9923716024042204,
+      "n_ai": 513
+    }
+  },
+  "baselines": {
+    "surface_lr": {
+      "auc": 0.8715030038047251,
+      "n_features": 14
+    },
+    "surface_hgb": {
+      "auc": 0.8838189849549133,
+      "n_features": 14
+    },
+    "majority_acc": 0.8488292652630272,
+    "surface_hgb_refit_cv": {
+      "auc": 0.920418699529885,
+      "n_features": 14
+    },
+    "stack_model_plus_hgb_cv_auc": 0.9892055662028966
+  },
+  "generators": {
+    "claude-haiku-5-5": {
+      "auc": 0.9884699405765268,
+      "n_ai": 1906
+    },
+    "claude-sonnet-5-5": {
+      "auc": 0.9886049065322132,
+      "n_ai": 528
+    }
+  },
+  "margin": {
+    "vs_surface_lr": 0.11699621451403763,
+    "vs_surface_hgb": 0.10468023336384946,
+    "vs_surface_hgb_refit_cv": 0.06808051878887778
+  }
+}
