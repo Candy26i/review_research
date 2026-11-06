@@ -132,6 +132,14 @@ def call_openai(cfg, api_key: str, style_prompt: str, paragraph: str) -> tuple[s
                 ra = 4.0 * (attempt + 1)
             time.sleep(min(ra, 90))
             continue
+        if resp.status_code == 400:
+            # OpenAI gpt-5+ parameter drift: adapt once and retry
+            if 'max_completion_tokens' in resp.text and 'max_tokens' in payload:
+                payload['max_completion_tokens'] = payload.pop('max_tokens')
+                continue
+            if "'temperature'" in resp.text and 'temperature' in payload:
+                payload.pop('temperature')
+                continue
         if resp.status_code != 200:
             raise RuntimeError(f'HTTP {resp.status_code}: {resp.text[:300]}')
         body = resp.json()
