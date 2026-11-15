@@ -12,3 +12,6 @@ results/raw/
 
 # model checkpoints (--save-model), never commit
 results/**/model/
+
+# local runtimes for the harness experiment (Node, dsh)
+.tools/

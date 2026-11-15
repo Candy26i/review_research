@@ -1,0 +1,48 @@
+# Patch overlay for the E1 harness arm (dsh 0.2.2-rc.1, headless profile).
+# Applied with:  dsh --profile headless --patch src/review/harness_lockdown.yml
+#
+# Removes every capability that would break the experiment or reach the host:
+#   - web search / fetch: a reviewer that can look the paper up is contaminated
+#     (and DeepSeek bills Search/Fetch per request)
+#   - shell, background jobs, model-written workflow scripts: paper text is untrusted input
+#   - file tools and the working-directory tool: the read-only sandbox does not confine
+#     reads, and `cd` resolves any host path (it would also reveal the real project path)
+#   - instruction-file and skill discovery: nothing is read from the host
+#   - automatic goal continuation and parallel subagents: bound the cost of one run
+# What stays is the treatment: the harness system prompt (about 0.9k chars once the
+# workflow paragraph is gone), its remaining tool catalog (goal, todo, subagent, skill
+# and agent-messaging tools), the runtime-context block, and the agent loop.
+- id: tool-web
+  disabled: true
+- id: web
+  disabled: true
+- id: web-search-deepseek
+  disabled: true
+- id: web-deepseek-api
+  disabled: true
+- id: web-fetch-http
+  disabled: true
+- id: tool-bash
+  disabled: true
+- id: tool-jobs
+  disabled: true
+- id: tool-fs
+  disabled: true
+- id: tool-fs-search
+  disabled: true
+- id: tool-workflow
+  disabled: true
+- id: tool-working-directory
+  disabled: true
+- id: agent-instructions
+  config:
+    maxBytes: 0
+- id: skill-filesystem
+  config:
+    includeDefaultRoots: false
+    watch: false
+- id: goal-round-driver
+  disabled: true
+- id: subagent
+  config:
+    maxActiveSubagents: 1
