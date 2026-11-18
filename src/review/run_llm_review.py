@@ -179,8 +179,20 @@ def encode_image_uris(paths: list[str]) -> list[str]:
 
 # ---------------------------------------------------------------- API calls
 
+# OpenAI-hosted gpt-5+ models renamed max_tokens and reject a temperature field. The
+# first HTTP 400 that says so adapts the payload; the adaptation is remembered per
+# (base_url, model) so later calls in this process start adapted. DeepSeek and Gemini
+# never return these errors, so their requests are unchanged.
+_PARAM_ADAPT: dict[tuple[str, str], set[str]] = {}
+_PARAM_LOCK = threading.Lock()
+# Set by the main loop (cost cap, run of failures, Ctrl-C): tasks that have not started
+# yet return None instead of calling the API; calls already in flight are still logged.
+STOP = threading.Event()
+
+
 def http_chat(cfg: argparse.Namespace, api_key: str, messages: list[dict]) -> dict:
-    """POST /chat/completions with retries on 429/5xx/connection; no retry on HTTP 400."""
+    """POST /chat/completions with retries on 429/5xx/connection; no retry on HTTP 400
+    except the two OpenAI parameter adaptations (same handling as make_ai_edits)."""
     url = cfg.base_url.rstrip('/') + '/chat/completions'
     payload = {
         "model": cfg.model,
@@ -192,28 +204,70 @@ def http_chat(cfg: argparse.Namespace, api_key: str, messages: list[dict]) -> di
     # thinking control (Gemini OpenAI-compat honors reasoning_effort; 'none' disables)
     if getattr(cfg, 'reasoning_effort', ''):
         payload["reasoning_effort"] = cfg.reasoning_effort
+    if getattr(cfg, 'service_tier', ''):
+        payload["service_tier"] = cfg.service_tier
+    if getattr(cfg, 'prompt_cache_mode', ''):
+        # OpenAI gpt-5.6+ bills implicit cache WRITES at 1.25x input; 'explicit' with no
+        # breakpoints writes nothing, which is what a one-review-per-text run wants.
+        payload["prompt_cache_options"] = {"mode": cfg.prompt_cache_mode}
+    adapt_key = (cfg.base_url, cfg.model)
+    with _PARAM_LOCK:
+        adapted = set(_PARAM_ADAPT.get(adapt_key, ()))
+    if 'max_completion_tokens' in adapted:
+        payload['max_completion_tokens'] = payload.pop('max_tokens')
+    if 'no_temperature' in adapted:
+        payload.pop('temperature', None)
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    is_openai = 'api.openai.com' in cfg.base_url
+    flex = getattr(cfg, 'service_tier', '') == 'flex'
+    # flex: slower, and a documented 429 "resource unavailable" / 408 that needs patience
+    max_attempts = 8 if flex else MAX_ATTEMPTS
+    timeout = 900 if flex else 600
+    retry_statuses = RETRY_STATUSES | {408} if flex else RETRY_STATUSES
     last_err = "unknown error"
-    for attempt in range(MAX_ATTEMPTS):
+    attempt = 0
+    while attempt < max_attempts:
         try:
-            resp = requests.post(url, json=payload, headers=headers, timeout=600)
+            resp = requests.post(url, json=payload, headers=headers, timeout=timeout)
         except requests.RequestException as exc:
             last_err = f"connection error: {type(exc).__name__}"
-            time.sleep(5.0 * (attempt + 1))
+            attempt += 1
+            time.sleep(5.0 * attempt)
             continue
-        if resp.status_code in RETRY_STATUSES:
+        if resp.status_code == 429 and 'insufficient_quota' in resp.text:
+            raise RuntimeError(f"HTTP 429 insufficient_quota: {resp.text[:300]}")
+        if resp.status_code in retry_statuses:
             last_err = f"HTTP {resp.status_code}"
+            attempt += 1
+            default_wait = min(120.0, 5.0 * 2 ** (attempt - 1)) if flex else 5.0 * attempt
             try:
-                wait = float(resp.headers.get('Retry-After', 5.0 * (attempt + 1)))
+                wait = float(resp.headers.get('Retry-After', default_wait))
             except ValueError:
-                wait = 5.0 * (attempt + 1)
+                wait = default_wait
             time.sleep(min(wait, 120))
             continue
+        if resp.status_code == 400 and is_openai:
+            # parameter adaptation: does not count as an attempt
+            tag = None
+            if 'max_completion_tokens' in resp.text and 'max_tokens' in payload:
+                payload['max_completion_tokens'] = payload.pop('max_tokens')
+                tag = 'max_completion_tokens'
+            elif "'temperature'" in resp.text and 'temperature' in payload:
+                payload.pop('temperature')
+                tag = 'no_temperature'
+            if tag:
+                with _PARAM_LOCK:
+                    _PARAM_ADAPT.setdefault(adapt_key, set()).add(tag)
+                continue
         if resp.status_code != 200:
             # 400 and other non-retryable statuses: fail immediately with the body text.
             raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:500]}")
-        return resp.json()
-    raise RuntimeError(f"request failed after {MAX_ATTEMPTS} attempts ({last_err})")
+        body = resp.json()
+        if is_openai:
+            # keep a record of what was sent (everything except the messages)
+            body['_request'] = {k: v for k, v in payload.items() if k != 'messages'}
+        return body
+    raise RuntimeError(f"request failed after {max_attempts} attempts ({last_err})")
 
 
 _anthropic_client = None
@@ -350,7 +404,9 @@ def validate_review(review: dict) -> tuple[dict, bool]:
 # ---------------------------------------------------------------- per-task worker
 
 def run_task(task: dict, cfg: argparse.Namespace, api_key: str | None,
-             system: str, user_template: str, prompt_sha: str) -> dict:
+             system: str, user_template: str, prompt_sha: str) -> dict | None:
+    if STOP.is_set():
+        return None
     text_path = Path(task['text_path'])
     raw_bytes = text_path.read_bytes()
     text_sha = hashlib.sha256(raw_bytes).hexdigest()
@@ -398,6 +454,10 @@ def run_task(task: dict, cfg: argparse.Namespace, api_key: str | None,
                 body = http_chat(cfg, api_key, messages)
             content = body['choices'][0]['message']['content']
             row['usage'] = body.get('usage', {}) or {}
+            if isinstance(body.get('_request'), dict):  # OpenAI host only
+                row['request'] = body['_request']
+                row['service_tier'] = body.get('service_tier')
+                row['finish_reason'] = body['choices'][0].get('finish_reason')
             try:
                 review, coerced = validate_review(json.loads(strip_fences(content)))
             except (ValueError, KeyError, TypeError) as exc:
@@ -493,6 +553,24 @@ def main() -> None:
     ap.add_argument('--reasoning-effort', default='',
                     help="set the OpenAI-compat reasoning_effort ('none' disables thinking "
                          "on Gemini); empty = omit the field (provider default)")
+    ap.add_argument('--retry-failed', action='store_true',
+                    help='on resume, retry keys whose rows all failed (up to two failed rows '
+                         'per key); default keeps the old rule: any logged key is done')
+    ap.add_argument('--stop-after-failures', type=int, default=0,
+                    help='stop starting new calls after N consecutive failed rows (0 = off)')
+    ap.add_argument('--max-cost-usd', type=float, default=0.0,
+                    help='stop starting new calls once this invocation has spent this much, '
+                         'priced with --price-in/--price-out (0 = off)')
+    ap.add_argument('--price-in', type=float, default=0.0,
+                    help='USD per 1M prompt tokens, for --max-cost-usd and the cost line')
+    ap.add_argument('--price-out', type=float, default=0.0,
+                    help='USD per 1M completion tokens (reasoning included)')
+    ap.add_argument('--service-tier', default='', choices=('', 'default', 'flex'),
+                    help="OpenAI service_tier (e.g. 'flex' = batch-rate pricing, slower); "
+                         "empty = omit the field")
+    ap.add_argument('--prompt-cache-mode', default='', choices=('', 'implicit', 'explicit'),
+                    help="OpenAI prompt_cache_options.mode; 'explicit' (no breakpoints) avoids "
+                         "the 1.25x cache-write rate on gpt-5.6+; empty = omit the field")
     ap.add_argument('--mock', action='store_true', help='no network; deterministic fake responses')
     ap.add_argument('--seed', type=int, default=42)
     cfg = ap.parse_args()
@@ -518,6 +596,15 @@ def main() -> None:
     rows = read_jsonl(cfg.manifest)
     papers = select_papers(rows, cfg.sample_papers)
     done = done_keys(cfg.log, 'key')
+    if cfg.retry_failed:
+        ok_keys: set = set()
+        n_bad: Counter = Counter()
+        for r in read_jsonl(cfg.log):
+            if r.get('parsed_ok') and r.get('error') is None:
+                ok_keys.add(r.get('key'))
+            else:
+                n_bad[r.get('key')] += 1
+        done = ok_keys | {k for k, n in n_bad.items() if n >= 2}
     tasks, n_skipped, n_missing = build_tasks(cfg, papers, done)
 
     random.Random(cfg.seed).shuffle(tasks)  # blinding against order effects
@@ -541,40 +628,74 @@ def main() -> None:
     n_images_sent = n_images_dropped = 0
     labels_used: set[str] = set()
 
+    n_stopped = n_consec_fail = 0
+    stop_reason = ''
     pbar = tqdm(total=len(tasks), desc='reviews', unit='call')
     with ThreadPoolExecutor(max_workers=cfg.workers) as ex:
         futures = [ex.submit(run_task, t, cfg, api_key, system, user_template, prompt_sha)
                    for t in tasks]
-        for fut in as_completed(futures):
-            row = fut.result()
-            with lock:
-                append_jsonl(cfg.log, row)
-                if row['error'] is not None or not row['parsed_ok']:
-                    n_failed += 1
-                if row['parsed_ok']:
-                    n_parsed += 1
-                    hist[row['rating']] += 1
-                n_coerced += bool(row['coerced'])
-                n_trunc += bool(row['truncated'])
-                usage = row.get('usage') or {}
-                tok_in += usage.get('prompt_tokens', 0) or 0
-                tok_out += usage.get('completion_tokens', 0) or 0
-                n_images_sent += row.get('n_images', 0)
-                n_images_dropped += row.get('n_images_dropped', 0)
-                labels_used.add(row['model'])
-                pbar.update(1)
+        seen: set = set()
+        while True:
+            try:
+                for fut in as_completed(futures):
+                    if fut in seen:
+                        continue
+                    seen.add(fut)
+                    row = fut.result()
+                    if row is None:  # never started: STOP was set
+                        n_stopped += 1
+                        pbar.update(1)
+                        continue
+                    with lock:
+                        append_jsonl(cfg.log, row)
+                        failed_now = row['error'] is not None or not row['parsed_ok']
+                        if failed_now:
+                            n_failed += 1
+                        n_consec_fail = n_consec_fail + 1 if failed_now else 0
+                        if row['parsed_ok']:
+                            n_parsed += 1
+                            hist[row['rating']] += 1
+                        n_coerced += bool(row['coerced'])
+                        n_trunc += bool(row['truncated'])
+                        usage = row.get('usage') or {}
+                        tok_in += usage.get('prompt_tokens', 0) or 0
+                        tok_out += usage.get('completion_tokens', 0) or 0
+                        n_images_sent += row.get('n_images', 0)
+                        n_images_dropped += row.get('n_images_dropped', 0)
+                        labels_used.add(row['model'])
+                        pbar.update(1)
+                        if not STOP.is_set():
+                            spent = tok_in / 1e6 * cfg.price_in + tok_out / 1e6 * cfg.price_out
+                            if cfg.stop_after_failures and n_consec_fail >= cfg.stop_after_failures:
+                                stop_reason = f"{n_consec_fail} consecutive failed calls"
+                            elif cfg.max_cost_usd and spent >= cfg.max_cost_usd:
+                                stop_reason = f"cost cap reached (${spent:.2f})"
+                            if stop_reason:
+                                STOP.set()
+                                print(f"\nSTOP: {stop_reason}; no new calls will start",
+                                      file=sys.stderr)
+                break
+            except KeyboardInterrupt:
+                STOP.set()
+                stop_reason = stop_reason or 'interrupted'
+                print("\ninterrupted: no new calls will start; logging the calls in flight",
+                      file=sys.stderr)
     pbar.close()
 
-    made = len(tasks)
+    made = len(tasks) - n_stopped
     price_in, price_out = PRICE_IN_PER_M, PRICE_OUT_PER_M
     if cfg.provider == 'anthropic':
         for frag, (pi, po) in ANTHROPIC_PRICES.items():
             if frag in cfg.model:
                 price_in, price_out = pi, po
                 break
+    if cfg.price_in or cfg.price_out:
+        price_in, price_out = cfg.price_in, cfg.price_out
     cost = tok_in / 1e6 * price_in + tok_out / 1e6 * price_out
     print("\n=== summary ===")
     print(f"calls made: {made} | skipped (checkpointed): {n_skipped} | failed: {n_failed}")
+    if stop_reason:
+        print(f"STOPPED EARLY: {stop_reason} | tasks not started: {n_stopped}")
     print(f"parsed_ok: {n_parsed}/{made} ({(n_parsed / made * 100) if made else 0:.1f}%) "
           f"| coerced: {n_coerced} | truncated: {n_trunc}")
     print("rating histogram: " + ", ".join(f"{r}: {hist.get(r, 0)}" for r in ALLOWED_RATINGS))
