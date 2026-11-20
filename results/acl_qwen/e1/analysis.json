@@ -1,0 +1,455 @@
+{
+  "model": "Qwen3-30B-A3B Q4_K_M, thinking off, temperature 1",
+  "combined_log_sha256": "ce22eafab7b7ca053f7c3194b99ff8a40096e2851516059176c53ba7a0a393ec",
+  "all_available": {
+    "reviews": 10881,
+    "papers": 1379,
+    "versions": 3627,
+    "mean_rating": 8.336090432864626,
+    "rating_sd": 0.9728821874434103,
+    "histogram": {
+      "3": 3,
+      "5": 60,
+      "6": 401,
+      "8": 8090,
+      "10": 2327
+    },
+    "high_score_share": 0.957356860582667,
+    "accept_vote_share": 0.9988971601874828,
+    "rating_accept_threshold_share": 0.9942100909842845,
+    "accept_vs_rating_threshold_disagreements": 51,
+    "repeat_sd_mean": 0.39336856699750966,
+    "repeat_sd_median": 0.0,
+    "exact_three_repeat_agreement": 0.6628067273228564,
+    "repeat_range_at_least_two": 0.33388475323959194,
+    "icc21": 0.5098267851553265,
+    "icc23": 0.7572983693588217,
+    "multi_version_papers": 1379,
+    "all_tied_papers": 658,
+    "mean_finite_tau": 0.16976468260519367,
+    "finite_tau_n": 721,
+    "tau_ci95": [
+      0.10925875512014972,
+      0.22803654111598906
+    ],
+    "tau_positive_share": 0.29441624365482233,
+    "tau_tied_share": 0.52356780275562,
+    "tau_negative_share": 0.18201595358955766,
+    "adjacent_pairs": 2248,
+    "adjacent_up_share": 0.2615658362989324,
+    "adjacent_tie_share": 0.5493772241992882,
+    "adjacent_down_share": 0.18905693950177935,
+    "adjacent_mean_delta": 0.07888493475682087,
+    "adjacent_mean_absolute_delta": 0.4009489916963227,
+    "last_minus_first_mean": 0.12859560067681897,
+    "last_minus_first_ci95": [
+      0.09330432680686489,
+      0.16437031665458063
+    ],
+    "within_paper_between_version_sd_mean": 0.3110957789350045,
+    "signal_noise_ratio": 0.7908506297529716
+  },
+  "primary_complete_chains": {
+    "reviews": 10866,
+    "papers": 1377,
+    "versions": 3622,
+    "mean_rating": 8.336002208724462,
+    "rating_sd": 0.9727183261884226,
+    "histogram": {
+      "3": 3,
+      "5": 60,
+      "6": 400,
+      "8": 8080,
+      "10": 2323
+    },
+    "high_score_share": 0.9573900239278483,
+    "accept_vote_share": 0.9988956377691883,
+    "rating_accept_threshold_share": 0.9942020982882386,
+    "accept_vs_rating_threshold_disagreements": 51,
+    "repeat_sd_mean": 0.39327398990149337,
+    "repeat_sd_median": 0.0,
+    "exact_three_repeat_agreement": 0.6628934290447267,
+    "repeat_range_at_least_two": 0.3337934842628382,
+    "icc21": 0.5097653416368261,
+    "icc23": 0.7572531764813271,
+    "multi_version_papers": 1377,
+    "all_tied_papers": 658,
+    "mean_finite_tau": 0.17049212736775649,
+    "finite_tau_n": 719,
+    "tau_ci95": [
+      0.11035181419276437,
+      0.22909608098957218
+    ],
+    "tau_positive_share": 0.29411764705882354,
+    "tau_tied_share": 0.524328249818446,
+    "tau_negative_share": 0.18155410312273057,
+    "adjacent_pairs": 2245,
+    "adjacent_up_share": 0.26146993318485523,
+    "adjacent_tie_share": 0.5496659242761692,
+    "adjacent_down_share": 0.1888641425389755,
+    "adjacent_mean_delta": 0.07928730512249443,
+    "adjacent_mean_absolute_delta": 0.4005939123979213,
+    "last_minus_first_mean": 0.12926652142338418,
+    "last_minus_first_ci95": [
+      0.09319777293633505,
+      0.1655773420479303
+    ],
+    "within_paper_between_version_sd_mean": 0.3105834204287069,
+    "signal_noise_ratio": 0.7897380157444466
+  },
+  "primary_regressions": {
+    "mixedlm": {
+      "formula": "rating ~ pos + (1|paper)",
+      "n": 10866,
+      "papers": 1377,
+      "coefficient": 0.07992057714355487,
+      "ci95": [
+        0.06518130010086894,
+        0.0946598541862408
+      ],
+      "p": 2.2201783320847236e-26,
+      "converged": true,
+      "warnings": [],
+      "log_words_coefficient": null
+    },
+    "mixedlm_length_control": {
+      "formula": "rating ~ pos + log_words + (1|paper)",
+      "n": 10866,
+      "papers": 1377,
+      "coefficient": 0.03670206960556007,
+      "ci95": [
+        0.021280759357662285,
+        0.05212337985345786
+      ],
+      "p": 3.0917008161124724e-06,
+      "converged": true,
+      "warnings": [],
+      "log_words_coefficient": 0.7223820092769976
+    },
+    "paper_fe": {
+      "coefficient": 0.08330470628649948,
+      "ci95": [
+        0.06285019856937066,
+        0.10375921400362831
+      ],
+      "p": 2.8452097588077034e-15,
+      "n_versions": 3622,
+      "papers": 1377
+    },
+    "paper_fe_length_control": {
+      "coefficient": 0.027929544071772297,
+      "ci95": [
+        0.00791684023742992,
+        0.04794224790611468
+      ],
+      "p": 0.006266472073300917,
+      "n_versions": 3622,
+      "papers": 1377
+    }
+  },
+  "baseline_only": {
+    "reviews": 10110,
+    "papers": 1288,
+    "versions": 3370,
+    "mean_rating": 8.34490603363007,
+    "rating_sd": 0.9750225506386138,
+    "histogram": {
+      "3": 2,
+      "5": 47,
+      "6": 383,
+      "8": 7476,
+      "10": 2202
+    },
+    "high_score_share": 0.9572700296735905,
+    "accept_vote_share": 0.9989119683481701,
+    "rating_accept_threshold_share": 0.9951533135509396,
+    "accept_vs_rating_threshold_disagreements": 38,
+    "repeat_sd_mean": 0.3967626711151988,
+    "repeat_sd_median": 0.0,
+    "exact_three_repeat_agreement": 0.6596439169139466,
+    "repeat_range_at_least_two": 0.3370919881305638,
+    "icc21": 0.5082778095260562,
+    "icc23": 0.7561573874639377,
+    "multi_version_papers": 1288,
+    "all_tied_papers": 616,
+    "mean_finite_tau": 0.17565819072592728,
+    "finite_tau_n": 672,
+    "tau_ci95": [
+      0.1126807614117128,
+      0.2364299101136497
+    ],
+    "tau_positive_share": 0.2950310559006211,
+    "tau_tied_share": 0.5240683229813664,
+    "tau_negative_share": 0.18090062111801242,
+    "adjacent_pairs": 2082,
+    "adjacent_up_share": 0.25936599423631124,
+    "adjacent_tie_share": 0.5557156580211335,
+    "adjacent_down_share": 0.18491834774255522,
+    "adjacent_mean_delta": 0.08117195004803074,
+    "adjacent_mean_absolute_delta": 0.39369196285622804,
+    "last_minus_first_mean": 0.13121118012422361,
+    "last_minus_first_ci95": [
+      0.09394409937888197,
+      0.16847826086956522
+    ],
+    "within_paper_between_version_sd_mean": 0.310563349558014,
+    "signal_noise_ratio": 0.7827433681830489
+  },
+  "baseline_regressions": {
+    "mixedlm": {
+      "formula": "rating ~ pos + (1|paper)",
+      "n": 10110,
+      "papers": 1288,
+      "coefficient": 0.08092374683517108,
+      "ci95": [
+        0.06541891303153194,
+        0.09642858063881021
+      ],
+      "p": 1.4618186957920883e-24,
+      "converged": true,
+      "warnings": [],
+      "log_words_coefficient": null
+    },
+    "mixedlm_length_control": {
+      "formula": "rating ~ pos + log_words + (1|paper)",
+      "n": 10110,
+      "papers": 1288,
+      "coefficient": 0.026522638546040887,
+      "ci95": [
+        0.0102754499982011,
+        0.04276982709388068
+      ],
+      "p": 0.0013765041585148262,
+      "converged": true,
+      "warnings": [],
+      "log_words_coefficient": 0.9545215417169055
+    },
+    "paper_fe": {
+      "coefficient": 0.08417061611374406,
+      "ci95": [
+        0.06248436966690221,
+        0.10585686256058591
+      ],
+      "p": 5.106440025429477e-14,
+      "n_versions": 3370,
+      "papers": 1288
+    },
+    "paper_fe_length_control": {
+      "coefficient": 0.024564312274475898,
+      "ci95": [
+        0.0036981033111345533,
+        0.04543052123781724
+      ],
+      "p": 0.021073586748581785,
+      "n_versions": 3370,
+      "papers": 1288
+    }
+  },
+  "by_runtime_profile": {
+    "128k-yarn4": {
+      "reviews": 66,
+      "papers": 8,
+      "versions": 22,
+      "mean_rating": 8.166666666666666,
+      "rating_sd": 0.8872313605703346,
+      "histogram": {
+        "5": 1,
+        "6": 2,
+        "8": 54,
+        "10": 9
+      },
+      "high_score_share": 0.9545454545454546,
+      "accept_vote_share": 1.0,
+      "rating_accept_threshold_share": 0.9848484848484849,
+      "accept_vs_rating_threshold_disagreements": 1,
+      "repeat_sd_mean": 0.5511070751355519,
+      "repeat_sd_median": 0.0,
+      "exact_three_repeat_agreement": 0.5454545454545454,
+      "repeat_range_at_least_two": 0.45454545454545453,
+      "icc21": 0.12580943570767836,
+      "icc23": 0.3015521064301558,
+      "multi_version_papers": 8,
+      "all_tied_papers": 2,
+      "mean_finite_tau": -0.29229928958189827,
+      "finite_tau_n": 6,
+      "tau_ci95": [
+        -0.8333333333333334,
+        0.31881182152921284
+      ],
+      "tau_positive_share": 0.25,
+      "tau_tied_share": 0.375,
+      "tau_negative_share": 0.375,
+      "adjacent_pairs": 14,
+      "adjacent_up_share": 0.2857142857142857,
+      "adjacent_tie_share": 0.2857142857142857,
+      "adjacent_down_share": 0.42857142857142855,
+      "adjacent_mean_delta": -0.07142857142857142,
+      "adjacent_mean_absolute_delta": 0.5,
+      "last_minus_first_mean": -0.125,
+      "last_minus_first_ci95": [
+        -0.5833333333333335,
+        0.3749999999999998
+      ],
+      "within_paper_between_version_sd_mean": 0.3850597250973847,
+      "signal_noise_ratio": 0.6987021986656119
+    },
+    "32k": {
+      "reviews": 96,
+      "papers": 12,
+      "versions": 32,
+      "mean_rating": 8.21875,
+      "rating_sd": 0.848566903357469,
+      "histogram": {
+        "5": 1,
+        "6": 2,
+        "8": 79,
+        "10": 14
+      },
+      "high_score_share": 0.96875,
+      "accept_vote_share": 1.0,
+      "rating_accept_threshold_share": 0.9895833333333334,
+      "accept_vs_rating_threshold_disagreements": 1,
+      "repeat_sd_mean": 0.4149705059800436,
+      "repeat_sd_median": 0.0,
+      "exact_three_repeat_agreement": 0.65625,
+      "repeat_range_at_least_two": 0.34375,
+      "icc21": 0.29708468301712143,
+      "icc23": 0.5590711175616833,
+      "multi_version_papers": 12,
+      "all_tied_papers": 3,
+      "mean_finite_tau": -0.1550967924738227,
+      "finite_tau_n": 9,
+      "tau_ci95": [
+        -0.6608667954085287,
+        0.3621152008443224
+      ],
+      "tau_positive_share": 0.4166666666666667,
+      "tau_tied_share": 0.25,
+      "tau_negative_share": 0.3333333333333333,
+      "adjacent_pairs": 20,
+      "adjacent_up_share": 0.25,
+      "adjacent_tie_share": 0.4,
+      "adjacent_down_share": 0.35,
+      "adjacent_mean_delta": -0.1333333333333333,
+      "adjacent_mean_absolute_delta": 0.4999999999999999,
+      "last_minus_first_mean": -0.22222222222222218,
+      "last_minus_first_ci95": [
+        -0.6111111111111112,
+        0.11111111111111123
+      ],
+      "within_paper_between_version_sd_mean": 0.4013506296108565,
+      "signal_noise_ratio": 0.9671786881888852
+    },
+    "64k-yarn2": {
+      "reviews": 609,
+      "papers": 71,
+      "versions": 203,
+      "mean_rating": 8.226600985221674,
+      "rating_sd": 0.9569079384645087,
+      "histogram": {
+        "3": 1,
+        "5": 11,
+        "6": 14,
+        "8": 481,
+        "10": 102
+      },
+      "high_score_share": 0.9573070607553367,
+      "accept_vote_share": 0.9983579638752053,
+      "rating_accept_threshold_share": 0.9802955665024631,
+      "accept_vs_rating_threshold_disagreements": 11,
+      "repeat_sd_mean": 0.31652304924829666,
+      "repeat_sd_median": 0.0,
+      "exact_three_repeat_agreement": 0.729064039408867,
+      "repeat_range_at_least_two": 0.2660098522167488,
+      "icc21": 0.5920095672587149,
+      "icc23": 0.8131928304595955,
+      "multi_version_papers": 71,
+      "all_tied_papers": 37,
+      "mean_finite_tau": 0.22081467236109686,
+      "finite_tau_n": 34,
+      "tau_ci95": [
+        -0.007488317050343582,
+        0.4456701141591868
+      ],
+      "tau_positive_share": 0.2676056338028169,
+      "tau_tied_share": 0.5774647887323944,
+      "tau_negative_share": 0.15492957746478872,
+      "adjacent_pairs": 132,
+      "adjacent_up_share": 0.29545454545454547,
+      "adjacent_tie_share": 0.5,
+      "adjacent_down_share": 0.20454545454545456,
+      "adjacent_mean_delta": 0.09090909090909091,
+      "adjacent_mean_absolute_delta": 0.48989898989898983,
+      "last_minus_first_mean": 0.16901408450704222,
+      "last_minus_first_ci95": [
+        0.01408450704225351,
+        0.3286384976525821
+      ],
+      "within_paper_between_version_sd_mean": 0.29716619104985625,
+      "signal_noise_ratio": 0.9388453439823401
+    },
+    "baseline-32k-native": {
+      "reviews": 10110,
+      "papers": 1288,
+      "versions": 3370,
+      "mean_rating": 8.34490603363007,
+      "rating_sd": 0.9750225506386138,
+      "histogram": {
+        "3": 2,
+        "5": 47,
+        "6": 383,
+        "8": 7476,
+        "10": 2202
+      },
+      "high_score_share": 0.9572700296735905,
+      "accept_vote_share": 0.9989119683481701,
+      "rating_accept_threshold_share": 0.9951533135509396,
+      "accept_vs_rating_threshold_disagreements": 38,
+      "repeat_sd_mean": 0.3967626711151988,
+      "repeat_sd_median": 0.0,
+      "exact_three_repeat_agreement": 0.6596439169139466,
+      "repeat_range_at_least_two": 0.3370919881305638,
+      "icc21": 0.5082778095260562,
+      "icc23": 0.7561573874639377,
+      "multi_version_papers": 1288,
+      "all_tied_papers": 616,
+      "mean_finite_tau": 0.17565819072592728,
+      "finite_tau_n": 672,
+      "tau_ci95": [
+        0.1126807614117128,
+        0.2364299101136497
+      ],
+      "tau_positive_share": 0.2950310559006211,
+      "tau_tied_share": 0.5240683229813664,
+      "tau_negative_share": 0.18090062111801242,
+      "adjacent_pairs": 2082,
+      "adjacent_up_share": 0.25936599423631124,
+      "adjacent_tie_share": 0.5557156580211335,
+      "adjacent_down_share": 0.18491834774255522,
+      "adjacent_mean_delta": 0.08117195004803074,
+      "adjacent_mean_absolute_delta": 0.39369196285622804,
+      "last_minus_first_mean": 0.13121118012422361,
+      "last_minus_first_ci95": [
+        0.09394409937888197,
+        0.16847826086956522
+      ],
+      "within_paper_between_version_sd_mean": 0.310563349558014,
+      "signal_noise_ratio": 0.7827433681830489
+    }
+  },
+  "historical_descriptive_overlap": {
+    "common_versions": 3620,
+    "qwen_mean": 8.336740331491713,
+    "deepseek_historical_mean": 3.8647726519337016,
+    "version_mean_spearman": 0.254019995085537,
+    "caveat": "Different regenerated versus unavailable historical texts; historical means rounded; no causal model ranking."
+  },
+  "limitations": [
+    "All ACL manifest papers are accepted; no human scores or rejected controls.",
+    "A later arXiv version is a revision proxy, not verified higher quality.",
+    "Regenerated text; original historical inputs unavailable. Runtime/source conversion differences are explicit.",
+    "Historical churn and figure-diff files absent; do not infer cosmetic-edit/placebo performance.",
+    "One narrative field spelling warning retained; all numeric scores valid.",
+    "Length control is observational, not a causal test of verbosity bias."
+  ]
+}

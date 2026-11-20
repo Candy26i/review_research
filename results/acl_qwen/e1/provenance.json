@@ -1,0 +1,608 @@
+{
+  "source_combined_sha256": "ce22eafab7b7ca053f7c3194b99ff8a40096e2851516059176c53ba7a0a393ec",
+  "source_manifest_sha256": "de483b2f087d5d7ad2e48bdc438a76cdfe5ea9263ebaad3ac4454ee65fbccaa2",
+  "original_evidence_sha256": {
+    "final_audit.json": "4f07d971dcad49a223924116511c827c99aa36aa1ddf7eda8bd8a3c511d13245",
+    "independent_final_audit.json": "1d93dc4c5a97b4762d1a5d55392ade4d8afd1007a2c91cb485e707212ade594f",
+    "input_audit.json": "65e7d17033b4032cbf5a4099375d28c2cdbf09baf0f57a95b9f6140f3a5fe8c2",
+    "unavailable_versions.json": "599aaf8990cfdf2136f95bf6a0cd4e3a42a58925439c7c7e7c91f21417f41f45",
+    "baseline_preservation_audit.json": "1c4893fc8896851b9bf2b675f542382190b72a59922e3339161a596e156bf57a"
+  },
+  "evidence": {
+    "final_audit.json": {
+      "stage": "verified",
+      "expected_papers": 1379,
+      "expected_versions": 3629,
+      "expected_reviews": 10887,
+      "valid_reviews": 10881,
+      "missing_reviews": 6,
+      "unavailable_reviews": 6,
+      "recoverable_remaining": 0,
+      "complete_papers": 1377,
+      "complete_versions": 3627,
+      "input_provenance": "regenerated",
+      "runtime_profiles": "baseline plus explicitly labeled recovery profiles",
+      "distinct_observations": 10881,
+      "verified_text_versions": 3627,
+      "runtime_configs": {
+        "qwen3-30b-q4km-regenerated-full-think-off": {
+          "config_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-full-think-off/config.json",
+          "sha256": "3dd0e94e91df6e7f6804d91663e0a2328735272d23751df18b9877d30d6916d0",
+          "runtime": {
+            "model_sha256": "0d003f6662faee786ed5da3e31b29c978de5ae5d275c8794c606a7f3c01aa8f5",
+            "revision": "e4d4bafdfb96a411a163846265362aceb0b9c63a",
+            "build": "b12428",
+            "command": [
+              ".tools/llama/b12428/llama-server.exe",
+              "-m",
+              ".tools/models/Qwen3-30B-A3B-Q4_K_M.gguf",
+              "--alias",
+              "qwen-e1",
+              "--host",
+              "127.0.0.1",
+              "--port",
+              "18080",
+              "-ngl",
+              "99",
+              "-c",
+              "32768",
+              "-np",
+              "1",
+              "--jinja",
+              "--chat-template-kwargs",
+              "{\"enable_thinking\":false}",
+              "--no-context-shift",
+              "-fa",
+              "on",
+              "-ctk",
+              "q8_0",
+              "-ctv",
+              "q8_0",
+              "-b",
+              "512",
+              "-ub",
+              "128",
+              "-lv",
+              "4"
+            ],
+            "assets": {
+              "build": "b12428",
+              "assets": {
+                "cudart-llama-bin-win-cuda-12.4-x64.zip": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+                "llama-b12428-bin-win-cuda-12.4-x64.zip": "f16b22ade49824faba82f8d9a95e670fad9a8b420cacf2bbfbd692fdc7d7ff12"
+              }
+            }
+          }
+        },
+        "qwen3-30b-q4km-regenerated-recovery-64k-yarn2-think-off": {
+          "config_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-recovery-64k-yarn2-think-off/config.json",
+          "sha256": "a52124b08843fa59fa9f44474185ffd2023089cda83295f744f6ecf9000bcc5d",
+          "runtime": {
+            "model_sha256": "0d003f6662faee786ed5da3e31b29c978de5ae5d275c8794c606a7f3c01aa8f5",
+            "revision": "e4d4bafdfb96a411a163846265362aceb0b9c63a",
+            "build": "b12428",
+            "command": [
+              ".tools/llama/b12428/llama-server.exe",
+              "-m",
+              ".tools/models/Qwen3-30B-A3B-Q4_K_M.gguf",
+              "--alias",
+              "qwen-e1",
+              "--host",
+              "127.0.0.1",
+              "--port",
+              "18080",
+              "-ngl",
+              "99",
+              "-c",
+              "65536",
+              "-np",
+              "1",
+              "--jinja",
+              "--chat-template-kwargs",
+              "{\"enable_thinking\":false}",
+              "--no-context-shift",
+              "-fa",
+              "on",
+              "-ctk",
+              "q8_0",
+              "-ctv",
+              "q8_0",
+              "-b",
+              "512",
+              "-ub",
+              "128",
+              "-lv",
+              "4",
+              "--rope-scaling",
+              "yarn",
+              "--rope-scale",
+              "2",
+              "--yarn-orig-ctx",
+              "32768",
+              "--cache-ram",
+              "2048",
+              "--fit",
+              "off"
+            ],
+            "assets": {
+              "build": "b12428",
+              "assets": {
+                "cudart-llama-bin-win-cuda-12.4-x64.zip": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+                "llama-b12428-bin-win-cuda-12.4-x64.zip": "f16b22ade49824faba82f8d9a95e670fad9a8b420cacf2bbfbd692fdc7d7ff12"
+              }
+            },
+            "profile": "64k-yarn2",
+            "context": 65536,
+            "rope_scaling": "yarn",
+            "rope_scale": 2,
+            "cpu_moe_layers": 0
+          }
+        },
+        "qwen3-30b-q4km-regenerated-recovery-32k-think-off": {
+          "config_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-recovery-32k-think-off/config.json",
+          "sha256": "df7df602de520babcf3f10ec7d58afe8e4904816c57858c99bb50923e15c28c9",
+          "runtime": {
+            "model_sha256": "0d003f6662faee786ed5da3e31b29c978de5ae5d275c8794c606a7f3c01aa8f5",
+            "revision": "e4d4bafdfb96a411a163846265362aceb0b9c63a",
+            "build": "b12428",
+            "command": [
+              ".tools/llama/b12428/llama-server.exe",
+              "-m",
+              ".tools/models/Qwen3-30B-A3B-Q4_K_M.gguf",
+              "--alias",
+              "qwen-e1",
+              "--host",
+              "127.0.0.1",
+              "--port",
+              "18080",
+              "-ngl",
+              "99",
+              "-c",
+              "32768",
+              "-np",
+              "1",
+              "--jinja",
+              "--chat-template-kwargs",
+              "{\"enable_thinking\":false}",
+              "--no-context-shift",
+              "-fa",
+              "on",
+              "-ctk",
+              "q8_0",
+              "-ctv",
+              "q8_0",
+              "-b",
+              "512",
+              "-ub",
+              "128",
+              "-lv",
+              "4",
+              "--cache-ram",
+              "2048",
+              "--fit",
+              "off"
+            ],
+            "assets": {
+              "build": "b12428",
+              "assets": {
+                "cudart-llama-bin-win-cuda-12.4-x64.zip": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+                "llama-b12428-bin-win-cuda-12.4-x64.zip": "f16b22ade49824faba82f8d9a95e670fad9a8b420cacf2bbfbd692fdc7d7ff12"
+              }
+            },
+            "profile": "32k",
+            "context": 32768,
+            "rope_scaling": "native",
+            "rope_scale": null,
+            "cpu_moe_layers": 0
+          }
+        },
+        "qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off": {
+          "config_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off/config.json",
+          "sha256": "7998f114d4004115d2ec7494f001e15ebf6b8dd0d98bf6650c0635c1e4ad3928",
+          "runtime": {
+            "model_sha256": "0d003f6662faee786ed5da3e31b29c978de5ae5d275c8794c606a7f3c01aa8f5",
+            "revision": "e4d4bafdfb96a411a163846265362aceb0b9c63a",
+            "build": "b12428",
+            "command": [
+              ".tools/llama/b12428/llama-server.exe",
+              "-m",
+              ".tools/models/Qwen3-30B-A3B-Q4_K_M.gguf",
+              "--alias",
+              "qwen-e1",
+              "--host",
+              "127.0.0.1",
+              "--port",
+              "18080",
+              "-ngl",
+              "99",
+              "-c",
+              "131072",
+              "-np",
+              "1",
+              "--jinja",
+              "--chat-template-kwargs",
+              "{\"enable_thinking\":false}",
+              "--no-context-shift",
+              "-fa",
+              "on",
+              "-ctk",
+              "q8_0",
+              "-ctv",
+              "q8_0",
+              "-b",
+              "512",
+              "-ub",
+              "128",
+              "-lv",
+              "4",
+              "--rope-scaling",
+              "yarn",
+              "--rope-scale",
+              "4",
+              "--yarn-orig-ctx",
+              "32768",
+              "--n-cpu-moe",
+              "8",
+              "--cache-ram",
+              "2048",
+              "--fit",
+              "off"
+            ],
+            "assets": {
+              "build": "b12428",
+              "assets": {
+                "cudart-llama-bin-win-cuda-12.4-x64.zip": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+                "llama-b12428-bin-win-cuda-12.4-x64.zip": "f16b22ade49824faba82f8d9a95e670fad9a8b420cacf2bbfbd692fdc7d7ff12"
+              }
+            },
+            "profile": "128k-yarn4",
+            "context": 131072,
+            "rope_scaling": "yarn",
+            "rope_scale": 4,
+            "cpu_moe_layers": 8
+          }
+        }
+      },
+      "combined_log": "data/processed/acl_qwen_recovery/reviews_combined.jsonl",
+      "combined_log_sha256": "ce22eafab7b7ca053f7c3194b99ff8a40096e2851516059176c53ba7a0a393ec",
+      "missing": [
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 0
+        },
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 1
+        },
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 2
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 0
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 1
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 2
+        }
+      ],
+      "caution": "Runtime profiles and PDF/source conversion provenance differ and remain explicit; do not describe as one identical runtime or byte-identical historical replication.",
+      "independent_audit_path": "data/processed/acl_qwen_recovery/independent_final_audit.json",
+      "independent_audit_sha256": "1d93dc4c5a97b4762d1a5d55392ade4d8afd1007a2c91cb485e707212ade594f",
+      "output_schema_warnings": [
+        {
+          "arxiv_id": "2502.11364",
+          "v": 2,
+          "rep": 1,
+          "raw_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off/raw/qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off/2502.11364v2_t1.0_r1.json",
+          "expected_fields": [
+            "summary",
+            "strengths",
+            "weaknesses",
+            "questions"
+          ],
+          "actual_fields": [
+            "accept",
+            "confidence",
+            "contribution",
+            "presentation",
+            "questions",
+            "rating",
+            "soundness",
+            "strengthses",
+            "summary",
+            "weaknesses"
+          ],
+          "score_fields_valid": true,
+          "note": "Narrative schema warning; raw content retained, no score changes or selective rerun."
+        }
+      ],
+      "score_and_provenance_checks_passed": true,
+      "narrative_schema_conformant": false,
+      "baseline_preserved": true
+    },
+    "independent_final_audit.json": {
+      "stage": "verified_with_schema_warning",
+      "checked_utc": "2026-11-17T11:58:16.187899+00:00",
+      "score_and_provenance_checks_passed": true,
+      "narrative_schema_conformant": false,
+      "valid_reviews": 10881,
+      "input_versions": 3627,
+      "papers_with_results": 1379,
+      "complete_paper_chains": 1377,
+      "partial_paper_chains": [
+        "2402.14228",
+        "2502.12509"
+      ],
+      "missing": [
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 0
+        },
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 1
+        },
+        {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "rep": 2
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 0
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 1
+        },
+        {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "rep": 2
+        }
+      ],
+      "valid_by_label": {
+        "qwen3-30b-q4km-regenerated-full-think-off": 10110,
+        "qwen3-30b-q4km-regenerated-recovery-32k-think-off": 96,
+        "qwen3-30b-q4km-regenerated-recovery-64k-yarn2-think-off": 609,
+        "qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off": 66
+      },
+      "excluded_failed_rows_by_label": {
+        "qwen3-30b-q4km-regenerated-full-think-off": 1
+      },
+      "duplicate_successes": 0,
+      "distinct_raw_files": 10881,
+      "input_hash_mismatches": 0,
+      "raw_score_mismatches": 0,
+      "raw_narrative_issues": [
+        {
+          "arxiv_id": "2502.11364",
+          "v": 2,
+          "rep": 1,
+          "raw_path": "data/processed/e1_qwen/acl/qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off/raw/qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off/2502.11364v2_t1.0_r1.json",
+          "expected_fields": [
+            "summary",
+            "strengths",
+            "weaknesses",
+            "questions"
+          ],
+          "actual_fields": [
+            "accept",
+            "confidence",
+            "contribution",
+            "presentation",
+            "questions",
+            "rating",
+            "soundness",
+            "strengthses",
+            "summary",
+            "weaknesses"
+          ],
+          "score_fields_valid": true,
+          "note": "Narrative schema warning; raw content retained, no score changes or selective rerun."
+        }
+      ],
+      "reasoning_nonempty": [],
+      "parse_retries": {
+        "0": 10879,
+        "1": 2
+      },
+      "prompt_token_differences_from_frozen_inputs": {
+        "0": 10879,
+        "14": 2
+      },
+      "max_prompt_tokens": 124462,
+      "baseline_preserved": true,
+      "log_sha256": {
+        "qwen3-30b-q4km-regenerated-full-think-off": "6651fc5873ad38d7d59ab7262f31b79d6489650563da81b6aaebbb1a78fe3fd6",
+        "qwen3-30b-q4km-regenerated-recovery-32k-think-off": "a50fc02ea23d9b61532d01d4511f73eb35142224cb8bbf737c4e5a1f43e266a6",
+        "qwen3-30b-q4km-regenerated-recovery-64k-yarn2-think-off": "b4579d82a0a519f361a3ca01ed7569a990f45886ba67c1e591f74c22d6ce6b68",
+        "qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off": "f8856876be5c167264ddb91ac5169d75c6e7722fe2184d6c4dad9f1115a8e863"
+      }
+    },
+    "input_audit.json": {
+      "checked_utc": "2026-11-17T08:36:12.985970+00:00",
+      "candidate_versions": 31,
+      "pdf_versions": 14,
+      "latex_versions": 17,
+      "checks": [
+        "exact version HTML and PDF/source evidence retained",
+        "PDF EOF and parser integrity",
+        "nonempty text on every PDF page",
+        "first and last PDF page contact sheets inspected",
+        "representative low-text page verified as chart",
+        "author headers removed; metadata-based residual audit retained",
+        "no missing include placeholders",
+        "candidate hashes frozen"
+      ],
+      "approved_sha256": {
+        "2408.01262v4": "02c1d45e67e8dc6c0f32c19cd38dd8e740a53607f729bd7fc8fe2431ad54a0d3",
+        "2408.01262v5": "4ac459944764b516823a2c6e9ecdd78dd1c221026a798839a75c38ce51d85305",
+        "2412.02830v1": "98fa7d1874610852f0bae14adfa178d1618439918d62e2b6551f703e47e5f5b0",
+        "2412.02830v2": "b6a074e26665a1aa82a372a2ca42fde25609193dc48a1de1a8828d1608df0ee5",
+        "2412.02830v3": "25c5746ca8f952b56e509c69c9b106e635c68c86549fd40ebb7ffad3374c1e83",
+        "2412.02830v4": "49467f9b7980a642b4817c981aa8c74ef2457ac9792249d135709276e4625f18",
+        "2506.01840v1": "769614efb6a1c2797dbd9debf754e06d1f525ca35433fe07b24707ccfb656495",
+        "2506.01840v2": "211c5398e9b5aec068bd2ed1c54ce759799dece2695a46e1ae8fee5137f1ace3",
+        "2505.19510v1": "95e9415bcb407b9f0963577b7cef4988b554d658c1ba7cf7386a216bbd15cec8",
+        "2505.19510v2": "5ae053d42be9734658f4b87144ba80e284572ea61b4e614b4227dd51d1b37c80",
+        "2412.12567v1": "486a12e81195dd36609ed69f314504f881ea897f845226ea625beb530b83f1ca",
+        "2412.12567v2": "539b134499900181f6310d4e7c46c596a8daf839a0f19a7327fd82290e2c60bd",
+        "2412.12567v3": "7f2ac85663aaefe9a9151969bc055627d1f23a9a468ec25495aba08d6f93e707",
+        "2412.12567v4": "7f2ac85663aaefe9a9151969bc055627d1f23a9a468ec25495aba08d6f93e707",
+        "2502.14718v1": "54473fc602650885b07494149cdd88bd159af8cdfb3a4d613bde4c20e8839211",
+        "2502.14718v2": "3ecdb7cf612f1db92fa66784033732b0f28fb9704f96e6d997b0aa3cedd49369",
+        "2402.14228v1": "ec9984237f7842f38cfeb152a9840496bd9b29d08d6915972007970c49c1d419",
+        "2402.14228v2": "fc6b3b3a2a7c43c5dd15e9711d23a0065eb3353573b6333a7b6f3f1b81beeca9",
+        "2406.14284v1": "8c9a1322b9c1e3052f128b950b13db4be13a5b0372c075f015c24e7223618b49",
+        "2406.14284v2": "c07b4322c23f7c31d6cd29276c03b0157605eb4b4b0389d5c6ebf992bc242391",
+        "2506.01846v1": "74cdaf4051f2fcbb65cf463e7f9881c3d9c2e533cbd1e1b733a4d4eaa1fcfea3",
+        "2506.01846v2": "53363142d8bb4242edb24bf57b0bb152047a49a6af032b575aef20bec6371b58",
+        "2503.15351v1": "623b121e0ad136db12ef24a909fc948bbd23a7cfcc091844d36423d08093fffd",
+        "2503.15351v2": "dfa215a0cd1986892c763c1fc99bb4b8ab9b3bb4234334adbc210ac33461e76e",
+        "2502.13520v1": "a02d9c194979293af6b078e0c1494a6b1b272f23c997840f71be98903186c228",
+        "2502.13520v2": "34865cda6fcbcf2871512a7e5f792255ee8cfde03b7528e3ebc38ae4b911c6ad",
+        "2502.12509v1": "4a95957d1af3601755b64a8d513e96ab28f26ffa131d623721eb45424a8400a3",
+        "2502.12509v2": "ee25a90c60170219471b81519a6581d2e3a4d69743e97c723392c074f29f5faa",
+        "2502.12509v3": "ee25a90c60170219471b81519a6581d2e3a4d69743e97c723392c074f29f5faa",
+        "2502.15639v1": "f7cefdac3ec3bef578aa6ec5db3707cbe45d42f64beb3a150139e54126c69992",
+        "2502.15639v2": "f37f9328dd66f4d925d8e911a86cb559c409b76fedf50e5accf62bb36e074015"
+      },
+      "unavailable_versions": {
+        "2402.14228v3": {
+          "arxiv_id": "2402.14228",
+          "v": 3,
+          "reason": "withdrawn version; no manuscript",
+          "source": "https://arxiv.org/abs/2402.14228v3",
+          "title": "COPR: Continual Human Preference Learning via Optimal Policy Regularization",
+          "authors": [
+            "Han Zhang",
+            "Lin Gui",
+            "Yu Lei",
+            "Yuanzhao Zhai",
+            "Yehong Zhang",
+            "Yulan He",
+            "Hui Wang",
+            "Yue Yu",
+            "Kam-Fai Wong",
+            "Bin Liang",
+            "Ruifeng Xu"
+          ],
+          "withdrawn": true,
+          "version_history_entry": "[v3] Sat, 21 Dec 2024 02:55:16 UTC (1 KB) (withdrawn)",
+          "notice": "This paper has been withdrawn by Zhang Han",
+          "html_sha256": "08173259a90ff47467f79ac94d6c4427c11526f9948a2a1e8227473e03c18266"
+        },
+        "2502.12509v4": {
+          "arxiv_id": "2502.12509",
+          "v": 4,
+          "reason": "withdrawn version; no manuscript",
+          "source": "https://arxiv.org/abs/2502.12509v4",
+          "title": "LegalCore: A Dataset for Event Coreference Resolution in Legal Documents",
+          "authors": [
+            "Kangda Wei",
+            "Xi Shi",
+            "Jonathan Tong",
+            "Sai Ramana Reddy",
+            "Anandhavelu Natarajan",
+            "Rajiv Jain",
+            "Aparna Garimella",
+            "Ruihong Huang"
+          ],
+          "withdrawn": true,
+          "version_history_entry": "[v4] Thu, 20 Mar 2025 16:45:57 UTC (1 KB) (withdrawn)",
+          "notice": "This paper has been withdrawn by Kangda Wei",
+          "html_sha256": "ac7680486c99ece13dcc4ea7d172c52fe760ac6372fd46f25d7eff1601604c21"
+        }
+      }
+    },
+    "unavailable_versions.json": {
+      "2402.14228v3": {
+        "arxiv_id": "2402.14228",
+        "v": 3,
+        "reason": "withdrawn version; no manuscript",
+        "source": "https://arxiv.org/abs/2402.14228v3",
+        "title": "COPR: Continual Human Preference Learning via Optimal Policy Regularization",
+        "authors": [
+          "Han Zhang",
+          "Lin Gui",
+          "Yu Lei",
+          "Yuanzhao Zhai",
+          "Yehong Zhang",
+          "Yulan He",
+          "Hui Wang",
+          "Yue Yu",
+          "Kam-Fai Wong",
+          "Bin Liang",
+          "Ruifeng Xu"
+        ],
+        "withdrawn": true,
+        "version_history_entry": "[v3] Sat, 21 Dec 2024 02:55:16 UTC (1 KB) (withdrawn)",
+        "notice": "This paper has been withdrawn by Zhang Han",
+        "html_sha256": "08173259a90ff47467f79ac94d6c4427c11526f9948a2a1e8227473e03c18266"
+      },
+      "2502.12509v4": {
+        "arxiv_id": "2502.12509",
+        "v": 4,
+        "reason": "withdrawn version; no manuscript",
+        "source": "https://arxiv.org/abs/2502.12509v4",
+        "title": "LegalCore: A Dataset for Event Coreference Resolution in Legal Documents",
+        "authors": [
+          "Kangda Wei",
+          "Xi Shi",
+          "Jonathan Tong",
+          "Sai Ramana Reddy",
+          "Anandhavelu Natarajan",
+          "Rajiv Jain",
+          "Aparna Garimella",
+          "Ruihong Huang"
+        ],
+        "withdrawn": true,
+        "version_history_entry": "[v4] Thu, 20 Mar 2025 16:45:57 UTC (1 KB) (withdrawn)",
+        "notice": "This paper has been withdrawn by Kangda Wei",
+        "html_sha256": "ac7680486c99ece13dcc4ea7d172c52fe760ac6372fd46f25d7eff1601604c21"
+      }
+    },
+    "baseline_preservation_audit.json": {
+      "valid_reviews": 10110,
+      "verified_input_versions": 3370,
+      "changed_inputs": [],
+      "log_sha256": "6651fc5873ad38d7d59ab7262f31b79d6489650563da81b6aaebbb1a78fe3fd6",
+      "config_sha256": "3dd0e94e91df6e7f6804d91663e0a2328735272d23751df18b9877d30d6916d0"
+    }
+  },
+  "export": {
+    "schema_version": 1,
+    "valid_reviews": 10881,
+    "input_versions": 3627,
+    "counts_by_label": {
+      "qwen3-30b-q4km-regenerated-full-think-off": 10110,
+      "qwen3-30b-q4km-regenerated-recovery-64k-yarn2-think-off": 609,
+      "qwen3-30b-q4km-regenerated-recovery-32k-think-off": 96,
+      "qwen3-30b-q4km-regenerated-recovery-128k-yarn4-think-off": 66
+    },
+    "transformations": [
+      "All original observation fields retained; absolute repository paths made relative.",
+      "raw_path points to the exact-byte response in raw_responses.tar.gz.",
+      "Added review: JSON parsed from raw content, removing only enclosing Markdown fences.",
+      "Metadata evidence paths are repository-relative provenance, not bundled source files.",
+      "No scores changed; narrative spelling warning retained; paper texts and model excluded."
+    ]
+  }
+}

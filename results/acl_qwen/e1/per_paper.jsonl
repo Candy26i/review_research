@@ -1,0 +1,1379 @@
+{"arxiv_id": "2303.01421", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2310.02953", "ratings_by_version": {"1": 10.0, "2": 8.0, "3": 9.333333333333334, "4": 9.333333333333334, "5": 8.0, "6": 10.0}, "tau": 0.0, "versions": 6}
+{"arxiv_id": "2310.13008", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2311.07052", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2311.07945", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2311.07978", "ratings_by_version": {"1": 5.0, "2": 6.0, "3": 8.0, "4": 8.666666666666666, "5": 8.0}, "tau": 0.7378647873726218, "versions": 5}
+{"arxiv_id": "2312.13772", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2312.17055", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2312.17294", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2401.06769", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2401.08491", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2401.09395", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667, "3": 8.0, "4": 7.333333333333333, "5": 8.0, "6": 8.0}, "tau": 0.25819888974716115, "versions": 6}
+{"arxiv_id": "2401.14640", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2402.04068", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666, "3": 8.666666666666666, "4": 9.333333333333334}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2402.04902", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 9.333333333333334, "6": 8.666666666666666}, "tau": 0.6024640760767093, "versions": 6}
+{"arxiv_id": "2402.05668", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2402.06147", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2402.07140", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.666666666666666, "6": 8.0}, "tau": 0.6024640760767093, "versions": 6}
+{"arxiv_id": "2402.07625", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666, "4": 10.0, "5": 10.0, "6": 9.333333333333334, "7": 10.0}, "tau": 0.5821817364274594, "versions": 7}
+{"arxiv_id": "2402.10184", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.0, "5": 9.333333333333334, "6": 8.0, "7": 8.0}, "tau": -0.0657951694959769, "versions": 7}
+{"arxiv_id": "2402.10735", "ratings_by_version": {"1": 6.333333333333333, "2": 7.333333333333333, "3": 8.0, "4": 8.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2402.11005", "ratings_by_version": {"1": 6.666666666666667, "2": 7.333333333333333, "3": 8.0, "4": 8.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2402.11089", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666, "4": 8.0}, "tau": 0.0, "versions": 4}
+{"arxiv_id": "2402.11347", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2402.12208", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2402.12276", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2402.12649", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667, "3": 7.333333333333333}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2402.13405", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 9.333333333333334, "5": 8.666666666666666}, "tau": 0.6708203932499368, "versions": 5}
+{"arxiv_id": "2402.13534", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2402.13606", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2402.13731", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2402.13954", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2402.14228", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2402.16733", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2402.17010", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2402.17213", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2402.17645", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2402.18679", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2403.01508", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2403.02839", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2403.03853", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2403.03923", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2403.04481", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2403.04945", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2403.05168", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2403.10056", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 10.0, "4": 8.0}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2403.13106", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2403.14459", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2403.14622", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2403.19318", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2403.20331", "ratings_by_version": {"1": 7.0, "2": 7.333333333333333, "3": 7.333333333333333, "4": 8.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2404.00530", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2404.04656", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2404.08008", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2404.08668", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2404.09992", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2404.10304", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2404.10508", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666, "5": 10.0}, "tau": 0.8944271909999159, "versions": 5}
+{"arxiv_id": "2404.12728", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2404.13370", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2404.16369", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2404.16792", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0, "5": 8.0}, "tau": 0.0, "versions": 5}
+{"arxiv_id": "2404.19597", "ratings_by_version": {"1": 7.333333333333333, "2": 9.333333333333334, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2405.00715", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.0, "5": 8.666666666666666, "6": 10.0}, "tau": 0.5449492609130661, "versions": 6}
+{"arxiv_id": "2405.03205", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2405.04065", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2405.04325", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2405.11870", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2405.11985", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2405.12617", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2405.13326", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2405.13984", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2405.14189", "ratings_by_version": {"1": 7.333333333333333, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2405.14259", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2405.14314", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0, "4": 10.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2405.17057", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2405.17820", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2405.18380", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2405.18727", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2405.18915", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2405.20267", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 8.0, "4": 10.0}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2405.20404", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2405.20421", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 9.333333333333334, "4": 8.666666666666666, "5": 8.0}, "tau": -0.4472135954999579, "versions": 5}
+{"arxiv_id": "2406.01205", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.01394", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666, "5": 8.666666666666666}, "tau": 0.7745966692414834, "versions": 5}
+{"arxiv_id": "2406.02106", "ratings_by_version": {"1": 8.0, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2406.02394", "ratings_by_version": {"1": 6.0, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.03198", "ratings_by_version": {"1": 6.0, "2": 6.666666666666667}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.05087", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.05948", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 10.0, "4": 8.0}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2406.06144", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0, "6": 8.666666666666666}, "tau": 0.0, "versions": 6}
+{"arxiv_id": "2406.06279", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2406.06326", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334, "4": 10.0, "5": 10.0}, "tau": 0.25819888974716115, "versions": 5}
+{"arxiv_id": "2406.06907", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.07146", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2406.08707", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.08979", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.09295", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.09325", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 10.0, "4": 10.0, "5": 10.0, "6": 10.0}, "tau": 0.5773502691896257, "versions": 6}
+{"arxiv_id": "2406.09556", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 10.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2406.10099", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.10504", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.10576", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.10594", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2406.10621", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.10882", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0, "4": 8.666666666666666, "5": 8.0, "6": 9.333333333333334, "7": 8.666666666666666, "8": 10.0, "9": 10.0}, "tau": 0.4642383454426297, "versions": 9}
+{"arxiv_id": "2406.11093", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.11130", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.11334", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.11546", "ratings_by_version": {"1": 10.0, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2406.11632", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.666666666666666}, "tau": 0.6324555320336759, "versions": 5}
+{"arxiv_id": "2406.11721", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2406.11753", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667, "3": 7.333333333333333}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2406.11890", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.12221", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.0, "5": 8.0, "6": 8.0}, "tau": -0.34641016151377546, "versions": 6}
+{"arxiv_id": "2406.12329", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.12548", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.12784", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.13181", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.13219", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2406.13342", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.13925", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 7.333333333333333}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.14023", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": 0.6324555320336759, "versions": 5}
+{"arxiv_id": "2406.14024", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 7.333333333333333, "4": 7.333333333333333}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2406.14284", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2406.14313", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0, "3": 9.333333333333334}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2406.15245", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.15481", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.15513", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.666666666666666}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2406.16469", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.16508", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2406.17378", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 7.333333333333333}, "tau": -0.5477225575051662, "versions": 4}
+{"arxiv_id": "2406.17507", "ratings_by_version": {"1": 10.0, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2406.17761", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.17764", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2406.18403", "ratings_by_version": {"1": 6.333333333333333, "2": 7.333333333333333, "3": 5.333333333333333}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2406.19976", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2407.00248", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2407.00934", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2407.01511", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2407.01887", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2407.01976", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2407.02779", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.02883", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2407.03181", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.03525", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2407.03572", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2407.03884", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0, "4": 8.666666666666666}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2407.04185", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 7.333333333333333}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2407.05674", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2407.06533", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2407.08551", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2407.09121", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.09590", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2407.09823", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.666666666666666}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2407.09946", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2407.11062", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2407.11770", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2407.11930", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 9.333333333333334, "4": 10.0, "5": 10.0}, "tau": 0.7378647873726218, "versions": 5}
+{"arxiv_id": "2407.12545", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2407.13301", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.14878", "ratings_by_version": {"1": 10.0, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.16724", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2407.17390", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2407.17490", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.17963", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.19342", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 10.0, "4": 9.333333333333334}, "tau": 0.3333333333333334, "versions": 4}
+{"arxiv_id": "2407.19638", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2407.19807", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.00365", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2408.01122", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.01262", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666, "5": 8.0}, "tau": 0.31622776601683794, "versions": 5}
+{"arxiv_id": "2408.02544", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2408.03819", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.04237", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2408.04873", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2408.06778", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2408.06904", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2408.07832", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0, "4": 8.666666666666666, "5": 8.666666666666666, "6": 9.333333333333334, "7": 10.0, "8": 10.0, "9": 10.0, "10": 10.0, "11": 10.0, "12": 10.0, "13": 10.0}, "tau": 0.2802242691589024, "versions": 13}
+{"arxiv_id": "2408.08089", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2408.08137", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.08545", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0, "4": 8.0}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2408.08590", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2408.08696", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2408.09070", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2408.09199", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2408.09386", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.09429", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2408.09786", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2408.09853", "ratings_by_version": {"1": 5.666666666666667, "2": 6.666666666666667}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2408.09865", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2408.09955", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666, "3": 10.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2408.10455", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0, "6": 8.0}, "tau": null, "versions": 6}
+{"arxiv_id": "2408.10722", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.10774", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 10.0, "4": 10.0, "5": 8.666666666666666}, "tau": 0.31622776601683794, "versions": 5}
+{"arxiv_id": "2408.10903", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 8.666666666666666, "4": 9.333333333333334, "5": 8.666666666666666, "6": 10.0}, "tau": -0.2335496832484569, "versions": 6}
+{"arxiv_id": "2408.11745", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.13001", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.13467", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2408.13533", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334, "4": 9.333333333333334}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2408.13586", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2408.13940", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2408.15409", "ratings_by_version": {"1": 6.666666666666667, "2": 6.666666666666667, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2408.15778", "ratings_by_version": {"1": 5.333333333333333, "2": 6.333333333333333, "3": 5.333333333333333, "4": 7.0}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2408.16493", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2409.00113", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2409.00222", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0, "4": 8.0, "5": 8.666666666666666, "6": 8.0, "7": 8.0}, "tau": 0.5832118435198044, "versions": 7}
+{"arxiv_id": "2409.00509", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2409.01893", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.02718", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2409.02813", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2409.02897", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2409.03258", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2409.03420", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.04183", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666, "4": 10.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2409.04459", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2409.04617", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2409.05137", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2409.05367", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.05806", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2409.05840", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666, "5": 8.0}, "tau": -0.25819888974716115, "versions": 5}
+{"arxiv_id": "2409.06211", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.06851", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.666666666666666}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2409.07615", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2409.10289", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 9.333333333333334}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2409.10955", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.11638", "ratings_by_version": {"1": 6.666666666666667, "2": 6.666666666666667}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.11704", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.11901", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.12887", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 9.333333333333334, "4": 9.333333333333334, "5": 10.0}, "tau": 0.8944271909999159, "versions": 5}
+{"arxiv_id": "2409.12929", "ratings_by_version": {"1": 7.333333333333333, "2": 9.333333333333334, "3": 8.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2409.13035", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2409.13686", "ratings_by_version": {"1": 5.666666666666667, "2": 6.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.14469", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.14820", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.16667", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2409.16913", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.17140", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.18199", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.18541", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.18584", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2409.18857", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2409.18980", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2409.19149", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.19257", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2409.19505", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2409.19510", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.19655", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2409.20434", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.00382", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.01106", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.01171", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2410.01350", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.01434", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.01772", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.02745", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.02892", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2410.03026", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.03136", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 8.666666666666666, "4": 10.0}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2410.03600", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.03663", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2410.03723", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.03751", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334, "4": 8.0}, "tau": -0.5477225575051662, "versions": 4}
+{"arxiv_id": "2410.03781", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.03868", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.04055", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.04659", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.04778", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.04790", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.04798", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.05605", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.05610", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.05613", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.05873", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.06638", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.666666666666666, "4": 9.333333333333334}, "tau": 0.4082482904638631, "versions": 4}
+{"arxiv_id": "2410.06885", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.07009", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.07025", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2410.07176", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.08081", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.08085", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2410.08102", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 10.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.08115", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.08145", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.08604", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.0, "4": 9.333333333333334}, "tau": 0.4082482904638631, "versions": 4}
+{"arxiv_id": "2410.08820", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 7.333333333333333, "4": 6.666666666666667}, "tau": -0.9128709291752769, "versions": 4}
+{"arxiv_id": "2410.09300", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 8.666666666666666, "4": 8.0}, "tau": -1.0, "versions": 4}
+{"arxiv_id": "2410.09338", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.09403", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2410.09824", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334, "4": 9.333333333333334, "5": 10.0, "6": 10.0}, "tau": 0.4303314829119352, "versions": 6}
+{"arxiv_id": "2410.10075", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.10360", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.10700", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.10926", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.10995", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2410.11001", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.11119", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666, "4": 8.0, "5": 8.0}, "tau": -0.7745966692414834, "versions": 5}
+{"arxiv_id": "2410.11693", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 10.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.12207", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.12323", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.12380", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.12428", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.12543", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.12600", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.12691", "ratings_by_version": {"1": 6.666666666666667, "2": 5.666666666666667, "3": 5.666666666666667, "4": 6.0, "5": 6.666666666666667, "6": 6.0}, "tau": 0.14907119849998599, "versions": 6}
+{"arxiv_id": "2410.12883", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.13097", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.13098", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.13206", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 7.333333333333333}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.13394", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.13460", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.13517", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.13523", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.13553", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.13852", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.13857", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.14248", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.14251", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.14309", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2410.14387", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.14405", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2410.14425", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.14641", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.14651", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.14676", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.14748", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333, "4": 8.0}, "tau": -0.2357022603955159, "versions": 4}
+{"arxiv_id": "2410.14971", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2410.15021", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.15268", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.15460", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.666666666666666}, "tau": 0.6324555320336759, "versions": 5}
+{"arxiv_id": "2410.15522", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.15956", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.16007", "ratings_by_version": {"1": 6.666666666666667, "2": 6.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.16069", "ratings_by_version": {"1": 6.666666666666667, "2": 7.333333333333333}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.16155", "ratings_by_version": {"1": 6.666666666666667, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.16464", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.16491", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.16520", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2410.16672", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.16801", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.16930", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666, "4": 8.0}, "tau": 0.0, "versions": 4}
+{"arxiv_id": "2410.17131", "ratings_by_version": {"1": 10.0, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.17309", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.17477", "ratings_by_version": {"1": 6.666666666666667, "2": 7.333333333333333, "3": 6.666666666666667, "4": 8.0, "5": 8.0, "6": 8.0}, "tau": 0.7006490497453707, "versions": 6}
+{"arxiv_id": "2410.17519", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.17552", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.17657", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.17714", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.17799", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.17897", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 7.333333333333333, "4": 8.0, "5": 8.0}, "tau": 0.7745966692414834, "versions": 5}
+{"arxiv_id": "2410.18057", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2410.18067", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2410.18359", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2410.18693", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.18702", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.19133", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0, "4": 10.0, "5": 9.333333333333334}, "tau": -0.6324555320336759, "versions": 5}
+{"arxiv_id": "2410.19453", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.666666666666666, "6": 8.666666666666666}, "tau": 0.7302967433402213, "versions": 6}
+{"arxiv_id": "2410.20016", "ratings_by_version": {"1": 6.666666666666667, "2": 7.333333333333333, "3": 7.333333333333333, "4": 6.333333333333333}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2410.20682", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2410.20779", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.20788", "ratings_by_version": {"1": 10.0, "2": 8.0, "3": 9.333333333333334}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.21013", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0, "4": 8.0}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2410.21216", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.21520", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 10.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2410.21545", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.21647", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 7.333333333333333, "4": 6.666666666666667, "5": 6.666666666666667}, "tau": -0.8944271909999159, "versions": 5}
+{"arxiv_id": "2410.21728", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 8.0, "4": 8.0}, "tau": -0.2357022603955159, "versions": 4}
+{"arxiv_id": "2410.21909", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 9.333333333333334}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2410.22257", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.22815", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.23330", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2410.23463", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2410.23743", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2410.24024", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2410.24200", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2411.00006", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.00387", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.00459", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.666666666666666, "5": 9.333333333333334, "6": 8.0}, "tau": 0.2335496832484569, "versions": 6}
+{"arxiv_id": "2411.00524", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2411.00696", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.01565", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 9.333333333333334, "4": 10.0, "5": 9.333333333333334, "6": 8.666666666666666}, "tau": 0.41403933560541256, "versions": 6}
+{"arxiv_id": "2411.01834", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.02355", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0, "4": 10.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2411.02391", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.02460", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.03250", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.04699", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.666666666666666}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2411.04794", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.04847", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.04905", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2411.04920", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2411.05195", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.05787", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.05872", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2411.05980", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.06208", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.07037", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.07130", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.07140", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.07533", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.07611", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2411.07892", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.07965", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666, "5": 8.666666666666666}, "tau": 0.7745966692414834, "versions": 5}
+{"arxiv_id": "2411.08334", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.08534", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.08745", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2411.08977", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.09688", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 10.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2411.09909", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2411.10272", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.10666", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2411.10912", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.11055", "ratings_by_version": {"1": 6.0, "2": 6.666666666666667, "3": 7.333333333333333}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2411.11171", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0, "4": 8.666666666666666, "5": 8.0}, "tau": 0.5976143046671968, "versions": 5}
+{"arxiv_id": "2411.11479", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667, "3": 8.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2411.11932", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.12174", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.12701", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2411.12986", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.13504", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.14055", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2411.14318", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.14483", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2411.14503", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.14842", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.15462", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2411.15640", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2411.16679", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.16765", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2411.17089", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.17679", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2411.17993", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 10.0, "4": 8.0, "5": 8.0, "6": 8.666666666666666}, "tau": -0.2148344622118299, "versions": 6}
+{"arxiv_id": "2411.18553", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2411.18797", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2411.19378", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2411.19563", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2411.19939", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.00473", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0, "4": 10.0, "5": 10.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2412.01617", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.02595", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.02819", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.666666666666666, "4": 9.333333333333334, "5": 8.666666666666666}, "tau": -0.25819888974716115, "versions": 5}
+{"arxiv_id": "2412.02830", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2412.03152", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.03304", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.03679", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.04119", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.04193", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.04300", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.04726", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.04905", "ratings_by_version": {"1": 6.666666666666667, "2": 6.666666666666667, "3": 7.333333333333333, "4": 7.333333333333333}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2412.04947", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.05167", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.05237", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.05366", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.06559", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2412.06720", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2412.06745", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.07367", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.08174", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.08268", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.08473", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.08519", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.08972", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.08985", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2412.09569", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.09645", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.09879", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2412.10105", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.10312", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.10424", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.10652", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11041", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.11142", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2412.11242", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11333", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11388", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11418", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11556", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11694", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.11716", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.11803", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.11906", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.11936", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.11940", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.11965", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.11974", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12072", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.12201", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12300", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.12310", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12359", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12472", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.12505", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12527", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2412.12559", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.12567", "ratings_by_version": {"1": 8.0, "2": 7.0, "3": 8.0, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2412.12569", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12627", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.12693", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2412.12785", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.12863", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.13102", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.0, "4": 8.666666666666666}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2412.13147", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 7.333333333333333, "5": 8.0}, "tau": -0.31622776601683794, "versions": 5}
+{"arxiv_id": "2412.13169", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.13488", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.13501", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.13540", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2412.13602", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.13631", "ratings_by_version": {"1": 5.666666666666667, "2": 6.666666666666667, "3": 8.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2412.13649", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.13663", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.13667", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.13670", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.13879", "ratings_by_version": {"1": 7.0, "2": 8.666666666666666, "3": 8.0, "4": 8.0}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2412.13942", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.13949", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.14050", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333, "4": 8.0}, "tau": -0.2357022603955159, "versions": 4}
+{"arxiv_id": "2412.14133", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.14556", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.14860", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.14959", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.15084", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.15204", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.15255", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.15265", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.15268", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2412.15272", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.15289", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0, "4": 10.0, "5": 10.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2412.15628", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 7.333333333333333, "4": 8.0, "5": 6.666666666666667}, "tau": -0.11952286093343936, "versions": 5}
+{"arxiv_id": "2412.15712", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.16145", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.16256", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.16311", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.16545", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.16926", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.16953", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.17031", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.17034", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2412.17395", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 9.333333333333334}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2412.17498", "ratings_by_version": {"1": 7.333333333333333, "2": 6.0, "3": 8.0, "4": 8.0}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2412.17533", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.18043", "ratings_by_version": {"1": 6.666666666666667, "2": 6.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.18053", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2412.18069", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.18120", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667, "3": 6.666666666666667}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.18148", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2412.18151", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2412.18232", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.18416", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.18424", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2412.18431", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.18547", "ratings_by_version": {"1": 5.666666666666667, "2": 6.666666666666667, "3": 6.666666666666667, "4": 8.0, "5": 8.0, "6": 8.0}, "tau": 0.8563488385776752, "versions": 6}
+{"arxiv_id": "2412.18702", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.19255", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.19260", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.19302", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2412.19723", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2412.19794", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.666666666666666}, "tau": 0.8366600265340756, "versions": 5}
+{"arxiv_id": "2412.20057", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2412.20070", "ratings_by_version": {"1": 10.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2412.20127", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2412.20251", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.00152", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.00581", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.00759", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.00777", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.00982", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01059", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01264", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.01306", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01366", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01377", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01652", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.01668", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01705", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.01743", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.01821", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.02009", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.02173", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.02226", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.02295", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.02460", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.02506", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.02772", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.02979", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.03040", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.03124", "ratings_by_version": {"1": 8.666666666666666, "2": 7.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": -0.11952286093343936, "versions": 5}
+{"arxiv_id": "2501.03191", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.03271", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2501.03441", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.03545", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.03835", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2501.03916", "ratings_by_version": {"1": 6.0, "2": 8.0, "3": 7.333333333333333}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2501.04070", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.04945", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.04962", "ratings_by_version": {"1": 8.0, "2": 7.0, "3": 7.0, "4": 7.333333333333333}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2501.05040", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.05714", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 6.666666666666667, "4": 8.0}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2501.05752", "ratings_by_version": {"1": 10.0, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.05767", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 10.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.05790", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.05855", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.05874", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.05952", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.06101", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.06582", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.06598", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.06645", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.06892", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.06932", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.07244", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.07301", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.07572", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.07719", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.07849", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.08208", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.08248", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2501.08319", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.08648", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.09265", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.09749", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.09957", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.10120", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.10316", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.10967", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.10970", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.11110", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 10.0, "4": 10.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2501.11463", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.11478", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2501.11549", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.11873", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.12368", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.12432", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.12485", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.12619", "ratings_by_version": {"1": 6.0, "2": 5.666666666666667, "3": 6.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.13125", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.13126", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.13288", "ratings_by_version": {"1": 6.666666666666667, "2": 6.0, "3": 8.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2501.13726", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.13953", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.13977", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.666666666666666}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2501.14491", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.0}, "tau": -1.0, "versions": 3}
+{"arxiv_id": "2501.14693", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": null, "versions": 4}
+{"arxiv_id": "2501.14883", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2501.14956", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.15225", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.15451", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.15654", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.16207", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2501.16344", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2501.16581", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2501.17182", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2501.17191", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2501.17399", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2501.18626", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 9.333333333333334, "4": 9.333333333333334}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2501.18636", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2501.19036", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.00691", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2502.00977", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.01491", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.01630", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.01718", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2502.01926", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.01977", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.02095", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.02444", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666, "4": 9.333333333333334, "5": 9.333333333333334, "6": 8.666666666666666}, "tau": 0.36514837167011066, "versions": 6}
+{"arxiv_id": "2502.03438", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.04644", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.04795", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.05390", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.05489", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.05551", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333, "4": 7.333333333333333}, "tau": -0.8164965809277261, "versions": 4}
+{"arxiv_id": "2502.05863", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.06207", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.06233", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.06659", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.07322", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.07340", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.07365", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2502.07424", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.08279", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2502.08441", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.08503", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667, "3": 8.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2502.08662", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.08767", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.08820", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 10.0}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2502.08826", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.08900", "ratings_by_version": {"1": 6.666666666666667, "2": 6.666666666666667}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.08914", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.09387", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.09416", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.09589", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.09606", "ratings_by_version": {"1": 6.0, "2": 6.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.09723", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.10201", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.10362", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.10762", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.10852", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.10855", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.10937", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.10973", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11020", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11051", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.11075", "ratings_by_version": {"1": 8.0, "2": 6.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11078", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11084", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11089", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.11095", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.11107", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11116", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11142", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11147", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11175", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.0, "4": 8.0}, "tau": -0.8164965809277261, "versions": 4}
+{"arxiv_id": "2502.11177", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0, "4": 8.0, "5": 8.666666666666666}, "tau": -0.22360679774997896, "versions": 5}
+{"arxiv_id": "2502.11183", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11184", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11187", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667, "3": 6.666666666666667}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.11190", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.11196", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11211", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11221", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.11256", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11268", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.0}, "tau": -1.0, "versions": 3}
+{"arxiv_id": "2502.11300", "ratings_by_version": {"1": 8.0, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11355", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.11357", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 9.333333333333334, "4": 9.333333333333334}, "tau": -0.8164965809277261, "versions": 4}
+{"arxiv_id": "2502.11364", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11368", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11393", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11404", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11417", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11423", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.11425", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.11433", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11435", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11441", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11448", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11466", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11469", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11471", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2502.11475", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.11476", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11491", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.11492", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.11501", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11514", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11541", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11594", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11598", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11647", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11651", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11671", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11677", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11703", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11705", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11718", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.11735", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": -1.0, "versions": 3}
+{"arxiv_id": "2502.11753", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11767", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11799", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 9.333333333333334}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2502.11859", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11862", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11874", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.11882", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334, "4": 8.666666666666666, "5": 10.0}, "tau": -0.22360679774997896, "versions": 5}
+{"arxiv_id": "2502.11901", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11903", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.11916", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.11926", "ratings_by_version": {"1": 7.333333333333333, "2": 7.0, "3": 8.0, "4": 8.0}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2502.12052", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12054", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12057", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12084", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.12085", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12134", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12143", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12204", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12215", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12361", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.12378", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12408", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12414", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12420", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12436", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.12442", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12446", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.12464", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2502.12483", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12486", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666, "4": 8.0, "5": 9.333333333333334, "6": 8.666666666666666}, "tau": 0.2335496832484569, "versions": 6}
+{"arxiv_id": "2502.12501", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12509", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.12520", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666, "4": 8.666666666666666, "5": 8.0, "6": 8.666666666666666}, "tau": 0.0, "versions": 6}
+{"arxiv_id": "2502.12562", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12568", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12583", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12611", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12616", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12658", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12665", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12685", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12734", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12782", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12788", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12821", "ratings_by_version": {"1": 7.333333333333333, "2": 6.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12829", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12835", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12904", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.12913", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.12921", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12953", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.12961", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.12988", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.13012", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.13031", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13063", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.13092", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13131", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13135", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.13137", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13172", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13179", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13246", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.13259", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.13311", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.13347", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.13398", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13442", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13458", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13487", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.13497", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667, "3": 7.333333333333333, "4": 8.0}, "tau": 0.5477225575051662, "versions": 4}
+{"arxiv_id": "2502.13509", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.13520", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13544", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.13576", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13604", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13647", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.13656", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13738", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13775", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13791", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.13842", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13917", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13928", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.13946", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.13962", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14019", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14100", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14127", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14132", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14245", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14258", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14276", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.14285", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14301", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14354", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2502.14445", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14494", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14613", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14627", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.14634", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14642", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14645", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14662", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 8.666666666666666, "4": 10.0}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2502.14677", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.14718", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.14767", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.14778", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14830", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.14837", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.14846", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14847", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14856", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.14911", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.14949", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.15132", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.15197", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15208", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15226", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15266", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.15343", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.15401", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15487", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 7.333333333333333}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2502.15572", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.15612", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15639", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15666", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.15680", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15771", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15806", "ratings_by_version": {"1": 7.0, "2": 5.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.15814", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15821", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15823", "ratings_by_version": {"1": 4.666666666666667, "2": 5.333333333333333, "3": 5.0, "4": 5.0}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2502.15910", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.15916", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.15920", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.15969", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.666666666666666, "4": 8.666666666666666}, "tau": -0.2357022603955159, "versions": 4}
+{"arxiv_id": "2502.16033", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.16169", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.16173", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.16182", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.16235", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.16377", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.16487", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.16514", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.16529", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.16580", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2502.16761", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.16770", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.16794", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.16825", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.16860", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.16880", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.16940", "ratings_by_version": {"1": 7.333333333333333, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.16994", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17041", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17163", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2502.17173", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.17184", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 10.0, "4": 10.0, "5": 10.0}, "tau": 0.31622776601683794, "versions": 5}
+{"arxiv_id": "2502.17204", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.17214", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17407", "ratings_by_version": {"1": 8.0, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.17442", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.17510", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17651", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.17701", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.17793", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2502.17817", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.17823", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17878", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.17924", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.17956", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18001", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.18116", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.18331", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18407", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18411", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18439", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.18448", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18460", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.18509", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18791", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.18795", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0, "4": 8.0}, "tau": 0.8164965809277261, "versions": 4}
+{"arxiv_id": "2502.18802", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.18874", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.18878", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.18968", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.0, "versions": 4}
+{"arxiv_id": "2502.19041", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19130", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.19163", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.19175", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.19187", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.19249", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19279", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.19361", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.19400", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19548", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19582", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19726", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19759", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2502.19765", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19830", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.19883", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 7.333333333333333}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.19941", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.20122", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2502.20129", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2502.20238", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.20258", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.20317", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.0, "4": 10.0}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2502.20490", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": -0.6324555320336759, "versions": 5}
+{"arxiv_id": "2502.20581", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2502.20616", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.20620", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.20704", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2502.20811", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2502.20864", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2502.20968", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.00024", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.00032", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 9.333333333333334, "4": 8.0, "5": 8.0}, "tau": -0.4472135954999579, "versions": 5}
+{"arxiv_id": "2503.00038", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 8.666666666666666, "4": 8.0, "5": 9.333333333333334}, "tau": -0.5270462766947298, "versions": 5}
+{"arxiv_id": "2503.00059", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.00071", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.00151", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.00172", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.00493", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2503.00771", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.00812", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.00985", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.01150", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.01163", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.01372", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.01461", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.01606", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2503.01622", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666, "4": 8.0}, "tau": 0.2357022603955159, "versions": 4}
+{"arxiv_id": "2503.01711", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": -0.4082482904638631, "versions": 4}
+{"arxiv_id": "2503.01751", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.01763", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.01875", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.01891", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.02016", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02174", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02197", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.02382", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02398", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02450", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.666666666666666}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2503.02502", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.02614", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02769", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02832", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.02951", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.02969", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.03106", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.03303", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.03335", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.03340", "ratings_by_version": {"1": 8.0, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.03417", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2503.03460", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.03499", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.03586", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.03854", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.03962", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04036", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.04167", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04378", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04381", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.04396", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04490", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.04619", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.04647", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04722", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.04779", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 7.333333333333333}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2503.04796", "ratings_by_version": {"1": 6.0, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.04800", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.04807", "ratings_by_version": {"1": 6.0, "2": 6.0, "3": 6.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.04856", "ratings_by_version": {"1": 8.0, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.04992", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.0}, "tau": -0.2357022603955159, "versions": 4}
+{"arxiv_id": "2503.05021", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.05037", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.05280", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.05328", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.05491", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2503.05507", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.05720", "ratings_by_version": {"1": 7.0, "2": 7.333333333333333, "3": 7.333333333333333}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.05750", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.05888", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.06594", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.06680", "ratings_by_version": {"1": 7.333333333333333, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.06706", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2503.06987", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.07010", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.07457", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.07604", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.07920", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.08026", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.08042", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.08057", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.08161", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 9.333333333333334, "4": 10.0}, "tau": 0.9128709291752769, "versions": 4}
+{"arxiv_id": "2503.08524", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.08640", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.09089", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.09146", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.09347", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.09600", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.09730", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10061", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.10084", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10093", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.10167", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.10267", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2503.10452", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10515", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10542", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2503.10688", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.10691", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10695", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10789", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.10995", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.11314", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.11315", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.11630", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.11921", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.12370", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.12559", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.12908", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.666666666666666}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2503.12941", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.13089", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.13305", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.13360", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.13733", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.13975", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.14432", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.14433", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.14615", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2503.14996", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.15289", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2503.15351", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.15354", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.15551", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.15848", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.16048", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.16148", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.16167", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.16334", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.16365", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.16465", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.16853", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.16870", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.17003", "ratings_by_version": {"1": 6.666666666666667, "2": 8.0, "3": 7.0, "4": 7.333333333333333}, "tau": 0.3333333333333334, "versions": 4}
+{"arxiv_id": "2503.17439", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.17579", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.17662", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.18085", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.18491", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2503.18792", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.18971", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2503.19328", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.19878", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.20290", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2503.20840", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2503.21500", "ratings_by_version": {"1": 7.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.21821", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.22353", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2503.23487", "ratings_by_version": {"1": 5.0, "2": 7.333333333333333}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2503.23899", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.00928", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.01225", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.01550", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 10.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2504.01707", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.01801", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.02107", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2504.03553", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.03561", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 7.333333333333333}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2504.05258", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.05312", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.0, "4": 8.666666666666666}, "tau": 0.4082482904638631, "versions": 4}
+{"arxiv_id": "2504.05317", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.05352", "ratings_by_version": {"1": 8.666666666666666, "2": 7.333333333333333, "3": 9.333333333333334}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2504.05506", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.06036", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.07114", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.07228", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.07527", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.07749", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.08961", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.09081", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2504.09570", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.09712", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2504.09897", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": null, "versions": 3}
+{"arxiv_id": "2504.10198", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.10792", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.10893", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.11042", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2504.11257", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 8.0, "4": 9.333333333333334}, "tau": -0.18257418583505539, "versions": 4}
+{"arxiv_id": "2504.11277", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.11582", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2504.12325", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.12563", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.12663", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2504.12911", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.13677", "ratings_by_version": {"1": 5.0, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.13816", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2504.14154", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.14175", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.14194", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0, "3": 8.666666666666666, "4": 9.333333333333334}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2504.14218", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2504.14321", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.14492", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2504.14669", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.14822", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.14928", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2504.15188", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.15573", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.15815", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2504.16727", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2504.16858", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2504.18243", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2504.21299", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.00026", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.01015", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.04066", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.04113", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.04649", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2505.05084", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.05111", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.06186", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.07459", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.07659", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.07784", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.07879", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": null, "versions": 3}
+{"arxiv_id": "2505.09338", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.09825", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.09921", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.09924", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.10354", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.10507", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.10717", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.10719", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.10736", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2505.10939", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.10945", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.10981", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2505.11297", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11368", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11436", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11541", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11693", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11726", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.11935", "ratings_by_version": {"1": 8.0, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.11958", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 8.0}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.11983", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.11988", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.12158", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.12212", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 9.333333333333334}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2505.12216", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.12654", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.12727", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.12731", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.13077", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.13089", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.13173", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.13176", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.13282", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 9.333333333333334, "4": 8.666666666666666}, "tau": 0.18257418583505539, "versions": 4}
+{"arxiv_id": "2505.14020", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.14079", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0, "3": 10.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.14279", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.14318", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.14523", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.14577", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.14742", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.14759", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334, "3": 8.0, "4": 7.333333333333333}, "tau": -0.9128709291752769, "versions": 4}
+{"arxiv_id": "2505.14910", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.15299", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.15442", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.15480", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.16104", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.16128", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.16133", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 7.333333333333333}, "tau": -0.7071067811865477, "versions": 4}
+{"arxiv_id": "2505.16491", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.16520", "ratings_by_version": {"1": 7.333333333333333, "2": 6.0, "3": 6.666666666666667}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2505.16763", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.16978", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.16983", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.17061", "ratings_by_version": {"1": 10.0, "2": 10.0, "3": 9.333333333333334}, "tau": -0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.17362", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2505.17629", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.17663", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.18557", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.18583", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.18588", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.19015", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.19073", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19121", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.19155", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19293", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19356", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19484", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.19510", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19586", "ratings_by_version": {"1": 10.0, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.19628", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.19674", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19754", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19956", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.19959", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.19997", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.20124", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.20249", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.20277", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.20322", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.20368", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2505.20429", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.20569", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.20658", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.20767", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 9.333333333333334}, "tau": 0.7071067811865477, "versions": 4}
+{"arxiv_id": "2505.20813", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666, "3": 10.0}, "tau": 1.0, "versions": 3}
+{"arxiv_id": "2505.20921", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.21043", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.21277", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.21850", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.21863", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.666666666666666}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2505.22018", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.22176", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334, "3": 8.666666666666666}, "tau": 0.33333333333333337, "versions": 3}
+{"arxiv_id": "2505.22240", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.22299", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.22630", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.22934", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.23026", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.23029", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.23224", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0, "3": 8.666666666666666}, "tau": 0.0, "versions": 3}
+{"arxiv_id": "2505.23291", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.23449", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2505.24223", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2505.24362", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.24427", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.24593", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.24671", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2505.24672", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.24757", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2505.24778", "ratings_by_version": {"1": 7.333333333333333, "2": 8.0, "3": 8.0}, "tau": 0.816496580927726, "versions": 3}
+{"arxiv_id": "2506.00253", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2506.00264", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00382", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00418", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00419", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00481", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00519", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00551", "ratings_by_version": {"1": 8.0, "2": 7.333333333333333}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00582", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00622", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00637", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00773", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.00784", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00829", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00842", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.00964", "ratings_by_version": {"1": 7.333333333333333, "2": 7.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.01047", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.01048", "ratings_by_version": {"1": 10.0, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.01531", "ratings_by_version": {"1": 9.333333333333334, "2": 8.666666666666666}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.01776", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.01784", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0, "6": 8.0}, "tau": null, "versions": 6}
+{"arxiv_id": "2506.01840", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.01846", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.02204", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.02544", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.02701", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0}, "tau": null, "versions": 4}
+{"arxiv_id": "2506.02998", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.03519", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.03532", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.03690", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.03781", "ratings_by_version": {"1": 9.333333333333334, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.03978", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.04047", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.04385", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.04772", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0, "4": 8.0, "5": 8.0}, "tau": null, "versions": 5}
+{"arxiv_id": "2506.04929", "ratings_by_version": {"1": 7.333333333333333, "2": 6.666666666666667}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.05167", "ratings_by_version": {"1": 10.0, "2": 9.333333333333334}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.05447", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.05828", "ratings_by_version": {"1": 8.666666666666666, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.06292", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.06619", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2506.06806", "ratings_by_version": {"1": 7.333333333333333, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.06842", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.07479", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.07636", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.07667", "ratings_by_version": {"1": 9.333333333333334, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2506.08371", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.08686", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.08938", "ratings_by_version": {"1": 10.0, "2": 10.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.08952", "ratings_by_version": {"1": 5.0, "2": 5.666666666666667}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.09975", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.10314", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.11095", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.12376", "ratings_by_version": {"1": 8.0, "2": 8.666666666666666}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.12446", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.12551", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.13366", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334, "3": 8.0}, "tau": -0.33333333333333337, "versions": 3}
+{"arxiv_id": "2506.13405", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.14625", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2506.15355", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.15981", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.17525", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.19325", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.21096", "ratings_by_version": {"1": 8.666666666666666, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2506.21586", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.21910", "ratings_by_version": {"1": 8.0, "2": 8.0, "3": 8.0}, "tau": null, "versions": 3}
+{"arxiv_id": "2506.22853", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2506.23520", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2507.02088", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.03038", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.04661", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.05108", "ratings_by_version": {"1": 8.666666666666666, "2": 8.666666666666666}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.05261", "ratings_by_version": {"1": 8.0, "2": 9.333333333333334}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2507.06043", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.06838", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.09506", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2507.13773", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.14900", "ratings_by_version": {"1": 9.333333333333334, "2": 9.333333333333334}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.15707", "ratings_by_version": {"1": 7.333333333333333, "2": 7.333333333333333}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.19361", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.19741", "ratings_by_version": {"1": 8.0, "2": 8.0}, "tau": null, "versions": 2}
+{"arxiv_id": "2507.23440", "ratings_by_version": {"1": 8.0, "2": 10.0}, "tau": 1.0, "versions": 2}
+{"arxiv_id": "2508.06570", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}
+{"arxiv_id": "2606.08076", "ratings_by_version": {"1": 8.666666666666666, "2": 8.0}, "tau": -1.0, "versions": 2}

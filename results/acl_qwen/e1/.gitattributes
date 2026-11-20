@@ -1,0 +1,2 @@
+# Preserve exact bytes (including the original prompt) across Windows/macOS.
+* -text whitespace=cr-at-eol
